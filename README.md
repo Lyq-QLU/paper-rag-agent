@@ -196,6 +196,16 @@ paper-rag-agent/
     └── test_structured_chunking.py
 ```
 
+## Interview & Demo Materials
+
+- [项目面试问答](docs/INTERVIEW_GUIDE.md)：关键参数、技术选型、高频追问与能力边界。
+- [3 分钟演示脚本](docs/DEMO_SCRIPT.md)：从 PDF 入库到 RAG、长期记忆、HITL 和报告生成。
+- [求职版验收清单](docs/ACCEPTANCE_CHECKLIST.md)：功能证据、仓库安全与投递前检查。
+
+### Demo Preview
+
+![Paper RAG Agent 演示首页](docs/assets/demo-home.png)
+
 ## Known Limits
 
 - Supervisor 当前采用确定性关键词和状态规则，尚未使用 LLM 结构化意图路由。

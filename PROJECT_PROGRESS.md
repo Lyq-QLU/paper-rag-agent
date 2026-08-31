@@ -9,7 +9,7 @@
 - Verify 升级为引用映射检查与可选 LLM 结构化语义核验，并保留无模型时的确定性降级。
 - 新增 FastAPI 与 SSE：对话、流式进度、PDF 上传、审批恢复、线程、论文和用户记忆接口。
 - Streamlit 增加长期记忆管理与搜索结果确认入库界面。
-- 自动化测试扩展至 21 项，并完成 Streamlit/FastAPI 启动与 API 烟雾测试。
+- 自动化测试扩展至 25 项，并完成 Streamlit/FastAPI 启动、API烟雾测试、真实PDF问答、长期记忆、HITL与Report Agent链路验证。
 
 ## 已完成
 

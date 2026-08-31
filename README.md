@@ -6,13 +6,15 @@
 
 ## Highlights
 
-- **LangGraph 多智能体工作流**：Supervisor、Search、Ingest、Analysis、RAG 与 Verify 节点分工明确，状态转移由代码控制。
+- **LangGraph 多智能体工作流**：Resolve、Supervisor、Search、Ingest、Analysis、RAG、Report、Verify 与 Clarify 节点分工明确，状态转移由代码控制。
 - **结构感知 PDF 解析**：基于 PyMuPDF 识别章节、页码、表格和嵌入图片，将表格转换为 Markdown，并关联图注与附近正文。
 - **Hybrid RAG 检索**：Sentence-Transformer Dense Retrieval 与 BM25 混合召回，结合内容类型、章节和问题意图进行规则重排。
 - **引用可追溯回答**：回答提示词要求标明论文文件名与页码；Verify 节点检查回答引用是否来自本轮检索证据。
 - **状态与会话管理**：LangGraph SQLite Checkpointer 按 `user_id:session_id` 保存工作流状态，应用层保存会话、索引和报告。
 - **可降级运行**：未配置大模型 API 时仍可完成 PDF 解析、索引构建和证据检索，便于本地调试。
-- **测试覆盖**：16 项自动化测试覆盖节点路由、引用映射、图表处理、结构化切分和端到端工作流。
+- **可恢复 HITL 与长期记忆**：搜索结果确认带 TTL 和幂等恢复；用户偏好按 `user_id` 隔离，可开关、设置 TTL 和清除。
+- **双入口交互**：同时提供 Streamlit 页面与 FastAPI/SSE 接口，支持上传、对话、审批恢复和记忆管理。
+- **测试覆盖**：21 项自动化测试覆盖节点路由、引用映射、记忆隔离、审批幂等、API、图表处理和结构化切分。
 
 ## Why This Project Matters
 
@@ -22,7 +24,7 @@
 | Retrieval engineering | FAISS Dense + BM25 混合召回，并按章节、内容类型和问题意图重排 |
 | Document intelligence | 解析正文、表格 Markdown、图片、图注、页码和章节元数据 |
 | Reliability | 对无索引、无 API Key、检索为空和引用不匹配提供确定性处理 |
-| Product implementation | Streamlit 支持多 PDF、用户会话、知识库重建、历史记录和报告下载 |
+| Product implementation | Streamlit 与 FastAPI/SSE 支持多 PDF、用户会话、审批恢复、记忆管理和报告下载 |
 | Evaluation awareness | 提供检索评测入口和自动化回归测试，不虚构线上效果指标 |
 
 ## Architecture
@@ -30,7 +32,9 @@
 ```text
 用户请求
    |
-Supervisor
+Resolve --> Supervisor
+   |          |
+Clarify <-----|
    |-- Search Agent   ----> arXiv Atom API ----> 论文元数据
    |-- Ingest Agent   ----> PDF Loader --------> FAISS + BM25
    |-- Analysis Agent ----> 科研分析模板 -------|
@@ -41,6 +45,7 @@ Supervisor
                                          带来源的最终结果
 
 SQLite Checkpointer <---- user_id + session_id ----> Streamlit 会话
+User Memory SQLite <----------- user_id -----------> FastAPI / Streamlit
 ```
 
 路由规则由代码确定，避免把所有职责堆进同一个 Prompt。Search 负责论文发现，Ingest 负责本地 PDF 入库，Analysis 处理总结、创新点、实验与复现问题，RAG 处理一般证据问答，Verify 最后检查引用映射。
@@ -64,10 +69,13 @@ SQLite Checkpointer <---- user_id + session_id ----> Streamlit 会话
 ### Multi-Agent Workflow
 
 - **Supervisor**：读取问题、PDF 输入和知识库状态，确定后续节点。
+- **Resolve**：处理显式研究偏好和常见多轮指代；缺少上下文时转入 Clarify。
+- **Clarify**：在论文指代无法落到当前线程时向用户追问，不直接猜测。
 - **Search**：根据关键词调用 arXiv Atom API，返回题目、作者、摘要、发布时间和链接。
 - **Ingest**：解析传入 PDF，执行结构感知切分并构建 FAISS/BM25 索引。
 - **Analysis**：处理论文总结、创新点、实验设置、算法比较、适用性判断和复现建议。
 - **RAG**：结合会话上下文检索证据，调用模型生成带论文名和页码的回答。
+- **Report**：生成包含问题、方法、实验、局限、复现和未来方向的结构化科研报告。
 - **Verify**：解析回答中的来源标记，核对其能否映射到本轮召回片段。
 
 ### Retrieval Pipeline
@@ -157,7 +165,15 @@ streamlit run app.py
 python -m pytest -q
 ```
 
-当前测试结果：`16 passed`。
+当前测试结果：`21 passed`。
+
+### 5. Run API
+
+```bash
+uvicorn api:app --reload --host 0.0.0.0 --port 8000
+```
+
+主要接口包括 `/api/chat`、`/api/chat/stream`、`/api/chat/resume`、`/api/upload-pdf`、`/api/approvals`、`/api/threads`、`/api/papers` 和 `/api/user-profile`。
 
 ## Project Structure
 
@@ -167,6 +183,7 @@ paper-rag-agent/
 ├── requirements.txt
 ├── src/
 │   ├── agent_workflow.py   # LangGraph 状态、节点、条件边与 Checkpointer
+│   ├── agent_memory.py     # 长期偏好、TTL 和可恢复审批
 │   ├── analysis_tasks.py   # 科研分析任务模板
 │   ├── paper_loader.py     # PDF 正文、表格、图片与结构解析
 │   ├── rag_pipeline.py     # FAISS/BM25、混合召回与重排
@@ -181,21 +198,20 @@ paper-rag-agent/
 
 ## Known Limits
 
-- Supervisor 当前采用确定性关键词和状态规则，不是 LLM 结构化意图路由。
-- arXiv Search 当前返回论文元数据，尚未实现搜索结果确认后自动下载并入库。
-- 暂无 Resolve/Clarify 节点，复杂多轮指代和候选消歧能力有限。
-- Verify 只检查引用来源映射，不执行逐条事实主张的语义蕴含判断。
+- Supervisor 当前采用确定性关键词和状态规则，尚未使用 LLM 结构化意图路由。
+- Search 支持 arXiv 搜索、选择、下载和入库，但尚未接入 OpenAlex/MCP 多源检索。
+- Resolve/Clarify 已覆盖常见指代与缺失上下文，复杂候选标题消歧仍需增强。
+- Verify 提供确定性引用映射和可选 LLM 语义检查，但事实拆分与结构化判定仍需增强。
 - SQLite Checkpointer 和本地文件存储适合单机演示，不适合高并发生产环境。
-- 暂无用户认证、MCP、SSE、长期偏好记忆和扫描页 OCR。
+- 暂无正式用户认证、MCP 和扫描页 OCR；`user_id` 是隔离键而非安全身份凭证。
 - 图片处理基于图注与附近文本，不进行像素级视觉理解。
 
 ## Roadmap
 
-- 增加 Resolve/Clarify 节点，处理“这篇论文”“第二篇”等指代与候选冲突。
-- 完成 arXiv 搜索、用户确认、PDF 下载、解析和入库闭环。
-- 将 Verify 升级为规则检查与 LLM 事实级核验结合的 AnswerGuard。
-- 增加独立 Report Agent，支持多论文综述和流式报告生成。
-- 增加 FastAPI/SSE 接口、用户隔离、长期偏好记忆和更完整的评测集。
+- 增强基于候选标题、作者和 arXiv ID 的多轮指代消歧。
+- 接入 OpenAlex/MCP 多源检索并统一相关性评分。
+- 将 Verify 升级为主张拆分、结构化判定与证据不足拒答结合的 AnswerGuard。
+- 增加 token 级模型流式输出、用户认证和更完整的真实标注评测集。
 
 ## Disclaimer
 

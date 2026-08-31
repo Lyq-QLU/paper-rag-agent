@@ -6,6 +6,7 @@ from src.analysis_tasks import get_task_names, get_task_prompt
 from src.config import save_api_config
 from src.evaluation import evaluate_retrieval, parse_evaluation_cases
 from src.agent_workflow import PaperAgentWorkflow, result_sources, select_route
+from src.agent_memory import AgentMemoryStore
 from src.llm import get_llm_status, test_llm_connection
 from src.paper_loader import load_pdf_documents
 from src.providers import build_secrets_example, get_preset_by_name, get_provider_options
@@ -15,6 +16,7 @@ from src.session_manager import (
     delete_session,
     get_index_dir,
     get_session_dir,
+    get_user_dir,
     get_or_create_session_data,
     get_uploaded_pdf_paths,
     get_session_label,
@@ -524,6 +526,32 @@ with st.sidebar:
             st.link_button("打开 API Key 页面", preset.console_url, use_container_width=True)
         st.code(build_secrets_example(preset), language="toml")
 
+    with st.expander("长期记忆"):
+        memory_store = AgentMemoryStore(get_user_dir(user_id) / "agent_memory.sqlite3")
+        try:
+            profile = memory_store.get_profile(user_id)
+            memory_enabled = st.toggle("启用用户偏好记忆", value=profile["enabled"])
+            memory_ttl = st.number_input(
+                "记忆 TTL（天）", min_value=1, max_value=3650,
+                value=int(profile["ttl_days"]), step=1,
+            )
+            if st.button("保存记忆设置", use_container_width=True):
+                memory_store.update_settings(
+                    user_id, enabled=memory_enabled, ttl_days=int(memory_ttl)
+                )
+                st.success("长期记忆设置已保存。")
+            preferences = profile.get("preferences", {})
+            if preferences:
+                st.json(preferences)
+            else:
+                st.caption("尚未提取到显式研究偏好。")
+            if st.button("清除长期记忆", use_container_width=True):
+                memory_store.clear_profile(user_id)
+                st.success("长期记忆已清除。")
+                st.rerun()
+        finally:
+            memory_store.close()
+
     with st.expander("RAG 评估"):
         st.caption("格式：问题 | 期望关键词1, 期望关键词2")
         default_eval_cases = "\n".join(
@@ -771,6 +799,7 @@ if pending_question:
             workflow = PaperAgentWorkflow(
                 session_data["rag"],
                 get_session_dir(user_id, active_session_id) / "agent_checkpoints.sqlite",
+                get_user_dir(user_id) / "agent_memory.sqlite3",
             )
             try:
                 agent_result = workflow.invoke(
@@ -802,6 +831,7 @@ if pending_question:
                     "agent_route": agent_result.get("route", ""),
                     "agent_events": agent_result.get("events", []),
                     "verification": agent_result.get("verification", {}),
+                    "pending_action": agent_result.get("pending_action", {}),
                 }
             )
             session_data["last_sources"] = source_details
@@ -829,6 +859,31 @@ if pending_question:
                 file_name=report_path.name,
                 mime="text/markdown",
             )
+            pending_action = agent_result.get("pending_action", {})
+            if pending_action and pending_action.get("status") == "pending":
+                with st.form(f"approval_{pending_action['action_id']}"):
+                    selected_text = st.text_input("输入待下载入库的论文序号", placeholder="例如：1,3")
+                    approved = st.form_submit_button("确认下载并入库", type="primary")
+                if approved:
+                    selections = [
+                        int(value) for value in selected_text.replace("，", ",").split(",")
+                        if value.strip().isdigit()
+                    ]
+                    approval_workflow = PaperAgentWorkflow(
+                        session_data["rag"],
+                        get_session_dir(user_id, active_session_id) / "agent_checkpoints.sqlite",
+                        get_user_dir(user_id) / "agent_memory.sqlite3",
+                    )
+                    try:
+                        approval_result = approval_workflow.resume_approval(
+                            pending_action["action_id"], selections,
+                            index_dir=str(get_index_dir(user_id, active_session_id)),
+                        )
+                        session_data["rag"] = approval_workflow.rag
+                    finally:
+                        approval_workflow.close()
+                    st.success(approval_result.get("answer", "入库操作完成。"))
+                    st.rerun()
 
         with st.expander("本轮检索来源", expanded=False):
             render_retrieval_sources(

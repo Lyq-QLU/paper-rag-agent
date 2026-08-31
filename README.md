@@ -1,121 +1,202 @@
-# 基于 LangGraph 与 Hybrid RAG 的科研论文智能体
+# paper-rag-agent
 
-这是一个面向科研阅读、论文发现和方法复现的状态化智能体系统。项目在原有PDF深度解析与Hybrid RAG基础上，引入LangGraph完成任务路由、节点编排、状态持久化和回答核验。
+面向科研阅读与方法复现的 LangGraph 多智能体论文检索、PDF 解析、Hybrid RAG 问答与引用核验系统。
 
-## Agent 工作流
+项目将论文发现、结构化解析、向量入库、混合检索、科研分析和来源核验组织为可恢复的工作流。重点不只是调用大模型，而是让回答尽量建立在可追溯的论文页码、表格和图片说明上。
 
-```text
-用户问题 -> Supervisor
-              |-- Search Agent   -> arXiv论文发现
-              |-- Ingest Agent   -> PDF解析与知识库构建
-              |-- Analysis Agent -> 创新点/实验/复现等科研分析
-              `-- RAG Agent      -> 本地论文证据检索与回答
-                         |
-                    Verify Agent -> 引用来源核验
-```
+## Highlights
 
-- `Supervisor`：根据问题和输入状态执行确定性条件路由，无API Key时也可稳定运行。
-- `Search Agent`：调用arXiv Atom API搜索论文元数据。
-- `Ingest Agent`：复用PyMuPDF解析、结构感知切分和FAISS/BM25索引构建。
-- `Analysis Agent`：处理结构化总结、创新点、实验设置、算法对比和复现建议。
-- `RAG Agent`：执行会话上下文增强检索并生成带页码来源的回答。
-- `Verify Agent`：检查回答中的来源是否能映射到本轮检索证据。
-- `SQLite Checkpointer`：按用户和会话保存LangGraph状态，支持跨轮状态恢复。
+- **LangGraph 多智能体工作流**：Supervisor、Search、Ingest、Analysis、RAG 与 Verify 节点分工明确，状态转移由代码控制。
+- **结构感知 PDF 解析**：基于 PyMuPDF 识别章节、页码、表格和嵌入图片，将表格转换为 Markdown，并关联图注与附近正文。
+- **Hybrid RAG 检索**：Sentence-Transformer Dense Retrieval 与 BM25 混合召回，结合内容类型、章节和问题意图进行规则重排。
+- **引用可追溯回答**：回答提示词要求标明论文文件名与页码；Verify 节点检查回答引用是否来自本轮检索证据。
+- **状态与会话管理**：LangGraph SQLite Checkpointer 按 `user_id:session_id` 保存工作流状态，应用层保存会话、索引和报告。
+- **可降级运行**：未配置大模型 API 时仍可完成 PDF 解析、索引构建和证据检索，便于本地调试。
+- **测试覆盖**：16 项自动化测试覆盖节点路由、引用映射、图表处理、结构化切分和端到端工作流。
 
-核心工作流实现在 `src/agent_workflow.py`，测试位于 `tests/test_agent_workflow.py`。
+## Why This Project Matters
 
-底层RAG流程：
+| 能力点 | 项目中的体现 |
+| --- | --- |
+| Agent workflow engineering | 使用 LangGraph StateGraph、条件边和 SQLite Checkpointer 编排多个职责节点 |
+| Retrieval engineering | FAISS Dense + BM25 混合召回，并按章节、内容类型和问题意图重排 |
+| Document intelligence | 解析正文、表格 Markdown、图片、图注、页码和章节元数据 |
+| Reliability | 对无索引、无 API Key、检索为空和引用不匹配提供确定性处理 |
+| Product implementation | Streamlit 支持多 PDF、用户会话、知识库重建、历史记录和报告下载 |
+| Evaluation awareness | 提供检索评测入口和自动化回归测试，不虚构线上效果指标 |
 
-```text
-上传 PDF 论文 -> 提取文本 -> 文本分块 -> Embedding 向量化 -> FAISS 检索 -> 拼接 Prompt -> 大模型回答
-```
-
-## 核心功能
-
-- 上传一篇或多篇 PDF 科研论文
-- 自动解析 PDF 文本
-- 识别论文章节与小节，在章节内按段落/句子递归切分
-- 提取 PDF 表格并转换为 Markdown，大表分块时自动重复表头
-- 提取嵌入图片，绑定 Figure Caption、页码和附近正文
-- 使用 Embedding 生成向量
-- 使用 FAISS 建立本地向量索引
-- 使用 BM25 与 FAISS 进行混合召回和规则重排
-- 使用 LangGraph 编排 Supervisor、Search、Ingest、Analysis、RAG 和 Verify 节点
-- 使用 SQLite Checkpointer 持久化 Agent 状态
-- 根据问题检索最相关的论文片段
-- 调用大模型生成回答
-- 支持常用论文分析问题：
-  - 这篇论文的创新点是什么？
-  - 这篇论文用了什么算法？
-  - 实验对比了哪些方法？
-  - 这个算法能不能作为我的对比算法？
-  - 这篇论文如何复现？
-
-## 项目结构
+## Architecture
 
 ```text
-.
-├── app.py                 # Streamlit 页面入口
-├── requirements.txt       # Python 依赖
-├── src/
-│   ├── config.py          # 参数配置
-│   ├── llm.py             # 大模型调用
-│   ├── paper_loader.py    # PDF 文本解析
-│   ├── prompts.py         # Prompt 模板
-│   └── rag_pipeline.py    # RAG 核心流程
-└── data/
-    └── .gitkeep
+用户请求
+   |
+Supervisor
+   |-- Search Agent   ----> arXiv Atom API ----> 论文元数据
+   |-- Ingest Agent   ----> PDF Loader --------> FAISS + BM25
+   |-- Analysis Agent ----> 科研分析模板 -------|
+   `-- RAG Agent      ----> Hybrid Retrieval ---|--> LLM Answer
+                                                |
+                                           Verify Agent
+                                                |
+                                         带来源的最终结果
+
+SQLite Checkpointer <---- user_id + session_id ----> Streamlit 会话
 ```
 
-## 安装
+路由规则由代码确定，避免把所有职责堆进同一个 Prompt。Search 负责论文发现，Ingest 负责本地 PDF 入库，Analysis 处理总结、创新点、实验与复现问题，RAG 处理一般证据问答，Verify 最后检查引用映射。
+
+## Tech Stack
+
+| 模块 | 实现 |
+| --- | --- |
+| Agent workflow | LangGraph StateGraph + SQLite Checkpointer |
+| LLM orchestration | OpenAI-compatible API |
+| Academic search | arXiv Atom API |
+| Vector retrieval | FAISS |
+| Embedding | Sentence-Transformer |
+| Sparse retrieval | BM25 |
+| PDF parsing | PyMuPDF |
+| Frontend | Streamlit |
+| Testing | pytest |
+
+## Core Design
+
+### Multi-Agent Workflow
+
+- **Supervisor**：读取问题、PDF 输入和知识库状态，确定后续节点。
+- **Search**：根据关键词调用 arXiv Atom API，返回题目、作者、摘要、发布时间和链接。
+- **Ingest**：解析传入 PDF，执行结构感知切分并构建 FAISS/BM25 索引。
+- **Analysis**：处理论文总结、创新点、实验设置、算法比较、适用性判断和复现建议。
+- **RAG**：结合会话上下文检索证据，调用模型生成带论文名和页码的回答。
+- **Verify**：解析回答中的来源标记，核对其能否映射到本轮召回片段。
+
+### Retrieval Pipeline
+
+```text
+Query
+  |-- Dense Retrieval (Sentence-Transformer + FAISS)
+  |-- Sparse Retrieval (BM25)
+  `-- Query-aware candidate expansion
+                 |
+         Merge + Deduplicate
+                 |
+     Rule-based intent reranking
+                 |
+       Top-K evidence chunks
+```
+
+Dense Retrieval 负责语义匹配，BM25 补充论文名、缩写、算法名和指标等精确词匹配。重排阶段根据问题是否关注方法、实验、数据集、局限性或参考文献调整相关片段顺序。
+
+### PDF Ingestion
+
+- 在章节边界内按段落和句子递归切分，降低跨章节语义混杂。
+- 保存文件名、页码、章节路径和内容类型等元数据。
+- 表格转为 Markdown；大表分块时重复表头。
+- 提取嵌入图片并关联 Figure Caption、页码与附近正文。
+- 对正文、表格、图片说明建立统一检索索引。
+
+### Verification Boundary
+
+当前 Verify Agent 执行**确定性引用映射检查**：核对回答中的来源名称是否出现在本轮召回证据中，并计算引用覆盖率。它不是完整的事实级 NLI/LLM AnswerGuard，不能证明每个自然语言主张都得到证据支持。
+
+## Quick Start
+
+### 1. Install
 
 建议使用 Python 3.10 或更高版本。
 
 ```bash
+git clone https://github.com/Lyq-QLU/paper-rag-agent.git
+cd paper-rag-agent
 python -m venv .venv
+```
+
+Windows：
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Linux / macOS：
+
+```bash
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 配置大模型
+### 2. Configure
 
-如果要调用 OpenAI 兼容接口，请设置环境变量：
+可在 `.streamlit/secrets.toml` 中配置 OpenAI 兼容接口：
 
-```bash
-export OPENAI_API_KEY="你的 API Key"
-export OPENAI_BASE_URL="https://api.openai.com/v1"
-export OPENAI_MODEL="gpt-4o-mini"
+```toml
+OPENAI_API_KEY = "your-api-key"
+OPENAI_BASE_URL = "https://api.openai.com/v1"
+OPENAI_MODEL = "gpt-4o-mini"
 ```
 
-如果不设置 `OPENAI_API_KEY`，系统仍然可以运行，会返回“检索到的相关论文片段”，方便先验证 PDF 解析、分块和向量检索流程。
+参考 `.streamlit/secrets.toml.example` 和 [API_SETUP.md](API_SETUP.md)。密钥文件已被 `.gitignore` 排除。
 
-更推荐的本地私密配置方式见 [API_SETUP.md](API_SETUP.md)。
-
-## 运行
+### 3. Run
 
 ```bash
 streamlit run app.py
 ```
 
-打开页面后，上传 PDF 论文，点击“构建论文知识库”，然后输入问题即可。
+上传一篇或多篇 PDF，构建知识库并开始提问。典型问题：
 
-页面左侧会显示当前模型、接口地址和 API Key 配置状态，也可以直接点击“测试 API 连接”。
+- 这篇论文的核心创新点是什么？
+- 实验使用了哪些数据集和评价指标？
+- 这个算法能否作为我的对比算法？
+- 按模块说明如何复现该方法。
+- 搜索近期有关 multi-depot routing 的 arXiv 论文。
 
-## 测试
+### 4. Test
 
 ```bash
 python -m pytest -q
 ```
 
-## 学习重点
+当前测试结果：`16 passed`。
 
-短期内先理解这几个概念：
+## Project Structure
 
-- `Chunk`：把论文切成较短文本块
-- `Structure-aware Chunking`：先识别章节边界，再在章节内切块，避免方法、实验和参考文献相互混合
-- `content_type`：区分 `text`、`table` 和 `figure`，让图表与普通正文独立检索
-- `Embedding`：把文本转换成向量
-- `FAISS`：本地向量检索库
-- `Top-K Retrieval`：找到最相关的几个文本块
-- `Prompt Template`：把问题和检索内容组织成提示词
-- `Hallucination`：大模型脱离资料胡说，RAG 用检索内容来约束回答
+```text
+paper-rag-agent/
+├── app.py
+├── requirements.txt
+├── src/
+│   ├── agent_workflow.py   # LangGraph 状态、节点、条件边与 Checkpointer
+│   ├── analysis_tasks.py   # 科研分析任务模板
+│   ├── paper_loader.py     # PDF 正文、表格、图片与结构解析
+│   ├── rag_pipeline.py     # FAISS/BM25、混合召回与重排
+│   ├── evaluation.py       # 检索评测
+│   ├── session_manager.py  # 用户、会话、索引与报告管理
+│   ├── llm.py              # OpenAI 兼容模型调用
+│   └── config.py           # 配置读取
+└── tests/
+    ├── test_agent_workflow.py
+    └── test_structured_chunking.py
+```
+
+## Known Limits
+
+- Supervisor 当前采用确定性关键词和状态规则，不是 LLM 结构化意图路由。
+- arXiv Search 当前返回论文元数据，尚未实现搜索结果确认后自动下载并入库。
+- 暂无 Resolve/Clarify 节点，复杂多轮指代和候选消歧能力有限。
+- Verify 只检查引用来源映射，不执行逐条事实主张的语义蕴含判断。
+- SQLite Checkpointer 和本地文件存储适合单机演示，不适合高并发生产环境。
+- 暂无用户认证、MCP、SSE、长期偏好记忆和扫描页 OCR。
+- 图片处理基于图注与附近文本，不进行像素级视觉理解。
+
+## Roadmap
+
+- 增加 Resolve/Clarify 节点，处理“这篇论文”“第二篇”等指代与候选冲突。
+- 完成 arXiv 搜索、用户确认、PDF 下载、解析和入库闭环。
+- 将 Verify 升级为规则检查与 LLM 事实级核验结合的 AnswerGuard。
+- 增加独立 Report Agent，支持多论文综述和流式报告生成。
+- 增加 FastAPI/SSE 接口、用户隔离、长期偏好记忆和更完整的评测集。
+
+## Disclaimer
+
+本项目用于学习和科研辅助。模型回答可能存在遗漏或错误，重要结论应回到原论文及页码复核。

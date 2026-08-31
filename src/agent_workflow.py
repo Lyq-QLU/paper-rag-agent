@@ -427,6 +427,7 @@ class PaperAgentWorkflow:
             "events": [],
             "sources": [],
             "verification": {},
+            "pending_action": {},
             "error": "",
         }
         config = {"configurable": {"thread_id": f"{user_id}:{session_id}"}}
@@ -443,10 +444,12 @@ class PaperAgentWorkflow:
         papers = pending["payload"].get("papers", [])
         selected = sorted({int(value) for value in selections if 1 <= int(value) <= len(papers)})
         if not selected:
-            self.memory_store.resolve_pending(action_id, {"selected": [], "cancelled": True})
+            resolved = self.memory_store.resolve_pending(
+                action_id, {"selected": [], "cancelled": True}
+            )
             return {
                 "answer": "已取消本次论文入库。", "events": [{"node": "ingest", "message": "用户取消入库。"}],
-                "sources": [], "verification": {}, "error": "",
+                "sources": [], "verification": {}, "pending_action": resolved, "error": "",
             }
         download_dir = Path(index_dir).parent / "search_downloads" / action_id
         download_dir.mkdir(parents=True, exist_ok=True)
@@ -464,16 +467,21 @@ class PaperAgentWorkflow:
             path = download_dir / f"{number:02d}_{safe_name}.pdf"
             path.write_bytes(response.content)
             paths.append(str(path))
-        self.memory_store.resolve_pending(action_id, {"selected": selected, "downloaded": len(paths)})
+        resolved = self.memory_store.resolve_pending(
+            action_id, {"selected": selected, "downloaded": len(paths)}
+        )
         if not paths:
             return {
                 "answer": "已确认选择，但PDF下载失败或来源不符合安全校验。", "events": [],
-                "sources": [], "verification": {}, "error": "download_failed",
+                "sources": [], "verification": {}, "pending_action": resolved,
+                "error": "download_failed",
             }
-        return self.invoke(
+        result = self.invoke(
             "确认搜索结果并入库", user_id=pending["user_id"], session_id=pending["thread_id"],
             pdf_paths=paths, index_dir=index_dir,
         )
+        result["pending_action"] = resolved
+        return result
 
     def close(self) -> None:
         self.memory_store.close()

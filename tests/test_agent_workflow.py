@@ -38,6 +38,18 @@ def test_missing_reference_routes_to_clarify(tmp_path: Path):
     assert "提供论文标题" in result["answer"]
 
 
+def test_cancelled_approval_returns_resolved_snapshot(tmp_path: Path):
+    workflow = PaperAgentWorkflow(FakeRAG(), tmp_path / "checkpoints.sqlite")
+    workflow.memory_store.create_pending(
+        action_id="cancel-1", user_id="u", thread_id="s",
+        action_type="ingest_search_results", payload={"papers": [{"title": "p"}]},
+    )
+    result = workflow.resume_approval("cancel-1", [], index_dir=str(tmp_path / "index"))
+    workflow.close()
+    assert result["pending_action"]["status"] == "resolved"
+    assert result["pending_action"]["payload"]["decision"]["cancelled"] is True
+
+
 def test_citation_report_matches_retrieved_source():
     report = citation_report(
         "结论（来源：paper.pdf，第 3 页）。",

@@ -17,3 +17,9 @@ def test_health_and_profile_lifecycle(tmp_path, monkeypatch):
     ).json()
     assert updated["enabled"] is False
     assert updated["ttl_days"] == 30
+
+
+def test_upload_openapi_exposes_binary_file_picker():
+    schema = app.openapi()
+    body = schema["components"]["schemas"]["Body_upload_pdf_api_upload_pdf_post"]
+    assert body["properties"]["files"]["items"]["format"] == "binary"

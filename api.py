@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi.openapi.utils import get_openapi
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
@@ -20,6 +21,25 @@ from src.session_manager import (
 
 
 app = FastAPI(title="Paper RAG Agent API", version="2.0.0")
+
+
+def compatible_openapi() -> dict:
+    """Add Swagger-compatible binary hints for OpenAPI 3.1 file arrays."""
+    if app.openapi_schema:
+        return app.openapi_schema
+    schema = get_openapi(title=app.title, version=app.version, routes=app.routes)
+    upload_schema = schema.get("components", {}).get("schemas", {}).get(
+        "Body_upload_pdf_api_upload_pdf_post", {}
+    )
+    files = upload_schema.get("properties", {}).get("files", {})
+    items = files.get("items", {})
+    if items.get("type") == "string":
+        items["format"] = "binary"
+    app.openapi_schema = schema
+    return schema
+
+
+app.openapi = compatible_openapi
 
 
 class ChatRequest(BaseModel):

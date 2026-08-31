@@ -115,10 +115,16 @@ def citation_report(answer: str, sources: list[dict]) -> dict:
         for item in sources
         if item.get("metadata", {}).get("source")
     }
-    cited = {
-        match.strip()
-        for match in re.findall(r"来源[:：]\s*([^，,）)\n]+)", answer or "")
-    }
+    cited: set[str] = set()
+    last_explicit = ""
+    for raw in re.findall(r"来源[:：]\s*([^，,）)\n]+)", answer or ""):
+        citation = raw.strip().strip("`*_ ")
+        if citation.lower() in {"同上", "ibid", "ibid."}:
+            citation = last_explicit
+        elif citation:
+            last_explicit = citation
+        if citation:
+            cited.add(citation)
     matched = {
         citation
         for citation in cited

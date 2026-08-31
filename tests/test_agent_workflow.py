@@ -59,6 +59,16 @@ def test_citation_report_matches_retrieved_source():
     assert report["matched_sources"] == ["paper.pdf"]
 
 
+def test_citation_report_normalizes_markdown_and_ibid():
+    report = citation_report(
+        "结论（来源：`real.pdf`，第 3 页）；补充（来源：同上，第 4 页）。",
+        [{"text": "evidence", "metadata": {"source": "real.pdf"}}],
+    )
+    assert report["cited_sources"] == ["real.pdf"]
+    assert report["matched_sources"] == ["real.pdf"]
+    assert report["citation_coverage"] == 1.0
+
+
 def test_graph_runs_rag_and_verify(tmp_path: Path):
     workflow = PaperAgentWorkflow(FakeRAG(), tmp_path / "checkpoints.sqlite")
     try:

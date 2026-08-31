@@ -1,0 +1,12 @@
+.venv/
+.venv-win/
+__pycache__/
+*.py[cod]
+.DS_Store
+.streamlit/secrets.toml
+data/users/
+data/agent_checkpoints/
+data/model_cache/
+data/model_cache_incomplete_*/
+.pytest_cache/
+*.zip

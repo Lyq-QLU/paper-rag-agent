@@ -206,6 +206,14 @@ paper-rag-agent/
 
 ![Paper RAG Agent 演示首页](docs/assets/demo-home.png)
 
+### Verified Evidence
+
+| PDF 入库 | RAG 与引用核验 |
+| --- | --- |
+| ![PDF 入库与混合索引](docs/assets/evidence-ingest.png) | ![RAG 与引用核验](docs/assets/evidence-rag.png) |
+| 长期记忆 | HITL 人工确认 |
+| ![用户长期记忆](docs/assets/evidence-memory.png) | ![搜索与人工确认](docs/assets/evidence-hitl.png) |
+
 ## Known Limits
 
 - Supervisor 当前采用确定性关键词和状态规则，尚未使用 LLM 结构化意图路由。

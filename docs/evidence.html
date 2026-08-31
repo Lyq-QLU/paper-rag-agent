@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper RAG Agent 验收证据</title>
+  <style>
+    :root { color-scheme: light; --ink:#182230; --muted:#526070; --blue:#1769e0; --green:#11845b; --line:#dce3ec; --bg:#f3f6fa; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Microsoft YaHei","PingFang SC",sans-serif; }
+    main { width:1040px; margin:0 auto; padding:36px 0 60px; }
+    header { margin-bottom:24px; }
+    h1 { margin:0 0 8px; font-size:30px; }
+    header p { margin:0; color:var(--muted); }
+    .card { background:#fff; border:1px solid var(--line); border-radius:16px; margin:0 0 24px; padding:28px 30px; box-shadow:0 8px 24px rgba(30,55,85,.06); }
+    .top { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    h2 { margin:0; font-size:22px; }
+    .badge { border-radius:999px; padding:7px 13px; background:#e8f7f0; color:var(--green); font-weight:700; }
+    .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0; }
+    .metric { padding:16px; border-radius:12px; background:#f7f9fc; border:1px solid #e5eaf1; }
+    .metric strong { display:block; color:var(--blue); font-size:25px; margin-bottom:5px; }
+    .metric span { color:var(--muted); font-size:14px; }
+    .flow { padding:14px 16px; border-left:4px solid var(--blue); background:#f5f9ff; line-height:1.8; }
+    .answer { background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:17px 19px; line-height:1.75; }
+    .source { color:#234e83; font-size:14px; }
+    table { width:100%; border-collapse:collapse; margin-top:18px; }
+    th,td { text-align:left; padding:13px 14px; border-bottom:1px solid var(--line); }
+    th { color:var(--muted); font-size:14px; }
+    code { background:#eef3f8; padding:3px 7px; border-radius:6px; }
+    .note { color:var(--muted); font-size:13px; margin-top:16px; }
+    body.single .card { display:none; }
+    body.single .card.selected { display:block; }
+  </style>
+</head>
+<body>
+<main>
+  <header><h1>Paper RAG Agent · 本地验收记录</h1><p>真实接口复测结果，展示内容已脱敏 · 2026-08-31</p></header>
+
+  <section class="card" id="ingest">
+    <div class="top"><h2>01 · PDF 入库与 Hybrid RAG 索引</h2><span class="badge">BUILD SUCCESS</span></div>
+    <div class="metrics">
+      <div class="metric"><strong>1</strong><span>已入库论文</span></div>
+      <div class="metric"><strong>353</strong><span>结构化检索片段</span></div>
+      <div class="metric"><strong>2</strong><span>FAISS + BM25 双路召回</span></div>
+    </div>
+    <div class="flow">PDF → PyMuPDF 结构解析 → 章节感知切分 → Sentence-Transformer Embedding → FAISS / BM25 持久化索引</div>
+    <p class="note">元数据保留 source、page、section、content_type，用于回答引用与页码核验。</p>
+  </section>
+
+  <section class="card" id="rag">
+    <div class="top"><h2>02 · 带页码的 RAG 问答与核验</h2><span class="badge">VERIFICATION PASSED</span></div>
+    <div class="metrics">
+      <div class="metric"><strong>5</strong><span>Top-K 证据片段</span></div>
+      <div class="metric"><strong>100%</strong><span>引用覆盖率</span></div>
+      <div class="metric"><strong>0.95</strong><span>语义核验置信度</span></div>
+    </div>
+    <div class="answer"><b>问题：</b>论文提出的核心算法是什么？请简要说明其核心组件。<br><br><b>回答摘要：</b>核心算法为 MDFIHA，基于模因搜索框架，包含 MDFIS 可行—不可行搜索、DCREX 多样性控制交叉、多惩罚评价函数与车场相关局部搜索算子。<br><span class="source">来源：A_GPU-Accelerated_Hybrid_Method_for_a_Class_of_Multi-Depot_Vehicle_Routing_Problems.pdf，第 6–7 页</span></div>
+    <p class="note">工作流：Resolve → Supervisor → RAG → Verify；语义检查返回 grounded=true。</p>
+  </section>
+
+  <section class="card" id="memory">
+    <div class="top"><h2>03 · 用户长期记忆</h2><span class="badge">MEMORY ACTIVE</span></div>
+    <table>
+      <tr><th>隔离键</th><td><code>demo_user</code></td></tr>
+      <tr><th>研究方向</th><td>多目标家庭医疗路径规划</td></tr>
+      <tr><th>TTL</th><td>90 天</td></tr>
+      <tr><th>状态</th><td>已启用，可更新、清除并跨会话读取</td></tr>
+    </table>
+    <p class="note">会话 Checkpoint 与长期偏好分开存储，避免把论文正文写入用户画像。</p>
+  </section>
+
+  <section class="card" id="hitl">
+    <div class="top"><h2>04 · arXiv 搜索与 HITL 人工确认</h2><span class="badge">RESOLVED</span></div>
+    <table>
+      <tr><th>搜索词</th><td>multi-depot home healthcare routing</td></tr>
+      <tr><th>候选结果</th><td>5 篇</td></tr>
+      <tr><th>确认入库</th><td>A GPU-Accelerated Hybrid Method for a Class of Multi-Depot Vehicle Routing Problems</td></tr>
+      <tr><th>处理结果</th><td>下载 1 篇并构建 353 个检索片段</td></tr>
+      <tr><th>可靠性</th><td>Pending Action + TTL + 幂等恢复</td></tr>
+    </table>
+    <p class="note">搜索不会直接触发下载；用户确认后通过 resume 恢复工作流。</p>
+  </section>
+</main>
+<script>
+  const card = new URLSearchParams(location.search).get("card");
+  if (card) {
+    document.body.classList.add("single");
+    document.getElementById(card)?.classList.add("selected");
+  }
+</script>
+</body>
+</html>

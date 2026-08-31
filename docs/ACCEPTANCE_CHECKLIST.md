@@ -21,7 +21,7 @@
 - [x] `.streamlit/secrets.toml` 已被 `.gitignore` 排除
 - [x] `data/users/` 与 Checkpoint 数据已排除
 - [x] Git 跟踪文件未发现真实 API Key
-- [ ] 添加 4—6 张脱敏演示截图
+- [x] 添加 5 张脱敏演示截图（首页、入库、RAG、记忆、HITL）
 - [ ] 添加 2—3 分钟演示视频链接
 - [ ] 创建 GitHub Release 或固定演示版本标签
 

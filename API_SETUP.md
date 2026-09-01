@@ -100,6 +100,16 @@ OPENAI_MODEL = "服务商给你的模型名"
 
 如果服务商没有 OpenAI 兼容接口，而是自定义鉴权、请求字段或响应字段，则需要单独改 `src/llm.py` 写适配器。
 
+## OpenAlex MCP 工具
+
+`search_openalex` MCP Tool 使用独立的 OpenAlex API 配额。需要时设置环境变量：
+
+```powershell
+$env:OPENALEX_API_KEY = "你的 OpenAlex API Key"
+```
+
+未配置或额度耗尽时，OpenAlex工具会返回明确的降级错误；ArXiv MCP工具仍可独立工作。
+
 ## 页面内检查
 
 启动项目后，左侧栏会显示：

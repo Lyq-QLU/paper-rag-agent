@@ -2,7 +2,7 @@
 
 ## 30 秒项目介绍
 
-这是一个面向科研阅读的 LangGraph 多智能体系统。我把论文搜索、PDF 解析、知识库构建、证据问答、报告生成和引用核验拆成多个状态节点，并用条件边完成路由。检索侧采用 Sentence-Transformer + FAISS 的语义召回与 BM25 关键词召回，保存文件名、页码、章节和内容类型，最终回答必须携带来源。系统同时提供 Streamlit 页面和 FastAPI/SSE 接口，并用 SQLite 实现工作流恢复、用户长期偏好与人工审批。
+这是一个面向科研阅读的 LangGraph 多智能体系统。我把论文搜索、PDF 解析、知识库构建、证据问答、报告生成和引用核验拆成多个状态节点，并用条件边完成路由。外部能力通过 MCP Server 暴露 arXiv 搜索和受控下载工具；检索侧采用 Sentence-Transformer + FAISS 的语义召回与 BM25 关键词召回。系统同时提供 Streamlit 页面和 FastAPI/SSE 接口，并用 SQLite 实现工作流恢复、用户长期偏好与人工审批。
 
 ## 关键参数（必须能直接回答）
 
@@ -20,7 +20,8 @@
 | 长期记忆 | 独立 SQLite，按 `user_id` 隔离，默认 TTL 90 天 |
 | 后端 | FastAPI；流式响应采用 SSE |
 | 前端 | Streamlit |
-| 自动化测试 | 25 项 |
+| MCP | 官方 Python SDK 1.x，stdio transport，3 个工具 |
+| 自动化测试 | 36 项 |
 
 ## 高频问题
 
@@ -68,27 +69,31 @@
 
 Search Agent 返回论文候选后不会直接下载，而是创建带 TTL 的 pending action。用户确认后通过 resume 接口恢复，下载选中的论文并建库；同一个 action 重复提交会返回已处理结果，避免重复下载和重复入库。
 
-### 12. 为什么使用 SSE？
+### 12. MCP 如何实现？
+
+项目使用官方 Python SDK 构建 `paper-tools` MCP Server，通过 stdio 暴露 `search_arxiv`、`search_openalex` 和 `download_arxiv_pdf`。LangGraph 节点经 MCP Client 完成初始化、工具发现、Schema 校验和调用；客户端缓存工具 Schema，设置调用超时，并在失败后重新发现工具和重连一次。下载工具只允许 HTTPS ArXiv 域名，并检查 50 MB 上限和 PDF 文件头。Checkpoint不属于MCP工具，它负责工作流状态持久化与恢复。
+
+### 13. 为什么使用 SSE？
 
 工作流会经历 resolve、supervisor、rag、verify 等多个阶段。SSE 可以通过一个 HTTP 连接持续返回状态、进度和最终答案，浏览器实现简单，适合服务端单向推送。若需要双向实时控制或高频交互，再考虑 WebSocket。
 
-### 13. 25 项测试覆盖什么？
+### 14. 36 项测试覆盖什么？
 
-覆盖 Supervisor 路由、缺失指代澄清、RAG→Verify 图执行、引用归一化、长期记忆用户隔离、审批幂等、FastAPI 健康检查和用户画像生命周期、Swagger 文件上传 Schema、PDF 表格/图片处理、章节识别与结构化切分等。测试数量不能代替真实效果评测，所以项目另留检索评测入口。
+覆盖 Supervisor 路由、六类结构化缺失信息澄清、MCP Atom 解析、下载域名安全校验、工具 Schema 校验、Search Agent MCP 调用、RAG→Verify 图执行、引用归一化、长期记忆用户隔离、审批幂等、FastAPI、PDF 表格/图片处理与结构化切分等。测试数量不能代替真实效果评测，所以项目另留检索评测入口。
 
-### 14. 项目最大的不足是什么？
+### 15. 项目最大的不足是什么？
 
-目前主要不足是规则路由和规则重排泛化有限；仅接入 arXiv，尚未实现 OpenAlex/MCP；SQLite 和本地文件适合单机演示；没有正式认证；引用核验尚未做到逐主张证据蕴含。回答不足时要同时说明下一步方案，而不是回避。
+目前主要不足是规则路由和规则重排泛化有限；MCP 目前只有 arXiv 两个工具且使用本地 stdio，尚未接入 OpenAlex 和 Streamable HTTP；SQLite 和本地文件适合单机演示；没有正式认证；引用核验尚未做到逐主张证据蕴含。
 
-### 15. 如果要上线，怎么改？
+### 16. 如果要上线，怎么改？
 
 将用户认证与 `user_id` 绑定；对象存储保存 PDF，PostgreSQL 保存业务数据，Redis/任务队列处理异步入库；向量库换成支持过滤和并发的服务；增加限流、审计、指标监控和模型调用重试；建立真实标注集评估 Recall@K、MRR、引用正确率、回答忠实度和端到端延迟。
 
 ## 不要说错的边界
 
 - 当前是 **FAISS**，不是 ChromaDB。
-- 当前外部搜索是 **arXiv Atom API**，不是已经完成 MCP/OpenAlex。
+- 当前已实现 **arXiv MCP Tools**，但还没有 OpenAlex 和远程 Streamable HTTP。
 - 当前 Rerank 是 **规则重排**，不是 Cross-Encoder。
-- 25 项是自动化回归测试，不代表 25 个真实业务场景。
+- 36 项是自动化回归测试，不代表 36 个真实业务场景。
 - 不应继续使用未经保存和复现的 `Recall@5 = 89%` 作为简历指标。
 - Verify 降低引用错误风险，但不能宣称彻底解决幻觉。

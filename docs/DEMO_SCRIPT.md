@@ -63,7 +63,7 @@
 
 展示：FastAPI Swagger 和测试结果。
 
-讲解：项目提供同步与 SSE 流式 API，并有 25 项自动化测试；当前边界是规则路由、规则重排和单机 SQLite，README 中已明确说明。
+讲解：项目提供同步与 SSE 流式 API，并有 36 项自动化测试；ArXiv、OpenAlex搜索与论文下载已封装为MCP Tool，当前边界是规则路由、规则重排和单机 SQLite，README 中已明确说明。
 
 ## 失败时的备用说法
 

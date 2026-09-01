@@ -1,7 +1,8 @@
 from pathlib import Path
 
 from src.agent_workflow import (
-    PaperAgentWorkflow, citation_report, extract_preferences, parse_json_object, select_route,
+    PaperAgentWorkflow, build_clarification_question, citation_report,
+    detect_clarification_needs, extract_preferences, parse_json_object, select_route,
 )
 from src.rag_pipeline import Chunk
 
@@ -36,6 +37,34 @@ def test_missing_reference_routes_to_clarify(tmp_path: Path):
     result = workflow.invoke("这篇论文有什么创新？", user_id="u", session_id="s")
     workflow.close()
     assert "提供论文标题" in result["answer"]
+
+
+def test_detects_structured_clarification_needs():
+    assert detect_clarification_needs("这篇论文用了什么模型？") == ["paper_identity"]
+    assert detect_clarification_needs("分析近几年这个方向的发展") == ["data_scope"]
+    assert detect_clarification_needs("解释一下图中的流程") == ["figure_or_table_identity"]
+    assert detect_clarification_needs("处理一下这些资料") == ["task_goal"]
+
+
+def test_combines_comparison_clarifications():
+    fields = detect_clarification_needs("这两篇论文哪个更好？")
+    assert fields == ["paper_identity", "comparison_target", "evaluation_metric"]
+    question = build_clarification_question(fields)
+    assert "论文标题" in question
+    assert "比较" in question
+    assert "指标" in question
+
+
+def test_visual_identity_and_explicit_year_do_not_clarify():
+    assert detect_clarification_needs("解释Figure 3中的流程") == []
+    assert detect_clarification_needs("分析2022年至2025年的研究") == []
+
+
+def test_history_resolves_reference_without_clarification():
+    assert detect_clarification_needs(
+        "这篇论文用了什么模型？",
+        [{"question": "介绍MODRAL", "answer": "..."}],
+    ) == []
 
 
 def test_cancelled_approval_returns_resolved_snapshot(tmp_path: Path):

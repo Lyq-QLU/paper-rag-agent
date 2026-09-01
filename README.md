@@ -7,6 +7,7 @@
 ## Highlights
 
 - **LangGraph 多智能体工作流**：Resolve、Supervisor、Search、Ingest、Analysis、RAG、Report、Verify 与 Clarify 节点分工明确，状态转移由代码控制。
+- **MCP 工具扩展**：使用官方 Python SDK 构建独立 MCP Server，通过 stdio 暴露 ArXiv、OpenAlex 检索与受控 PDF 下载工具；客户端支持工具发现、Schema 校验、缓存、超时与自动重连。
 - **结构感知 PDF 解析**：基于 PyMuPDF 识别章节、页码、表格和嵌入图片，将表格转换为 Markdown，并关联图注与附近正文。
 - **Hybrid RAG 检索**：Sentence-Transformer Dense Retrieval 与 BM25 混合召回，结合内容类型、章节和问题意图进行规则重排。
 - **引用可追溯回答**：回答提示词要求标明论文文件名与页码；Verify 节点检查回答引用是否来自本轮检索证据。
@@ -14,7 +15,7 @@
 - **可降级运行**：未配置大模型 API 时仍可完成 PDF 解析、索引构建和证据检索，便于本地调试。
 - **可恢复 HITL 与长期记忆**：搜索结果确认带 TTL 和幂等恢复；用户偏好按 `user_id` 隔离，可开关、设置 TTL 和清除。
 - **双入口交互**：同时提供 Streamlit 页面与 FastAPI/SSE 接口，支持上传、对话、审批恢复和记忆管理。
-- **测试覆盖**：25 项自动化测试覆盖节点路由、引用归一化、记忆隔离、审批幂等、API、图表处理和结构化切分。
+- **测试覆盖**：36 项自动化测试覆盖节点路由、结构化澄清、MCP 工具发现与调用、引用归一化、记忆隔离、审批幂等、API、图表处理和结构化切分。
 
 ## Why This Project Matters
 
@@ -35,7 +36,10 @@
 Resolve --> Supervisor
    |          |
 Clarify <-----|
-   |-- Search Agent   ----> arXiv Atom API ----> 论文元数据
+   |-- Search Agent   ----> MCP Client ----> paper-tools MCP Server
+   |                                      |-- search_arxiv
+   |                                      |-- search_openalex
+   |                                      `-- download_arxiv_pdf
    |-- Ingest Agent   ----> PDF Loader --------> FAISS + BM25
    |-- Analysis Agent ----> 科研分析模板 -------|
    `-- RAG Agent      ----> Hybrid Retrieval ---|--> LLM Answer
@@ -56,7 +60,8 @@ User Memory SQLite <----------- user_id -----------> FastAPI / Streamlit
 | --- | --- |
 | Agent workflow | LangGraph StateGraph + SQLite Checkpointer |
 | LLM orchestration | OpenAI-compatible API |
-| Academic search | arXiv Atom API |
+| Tool protocol | MCP Python SDK + stdio transport |
+| Academic search | ArXiv Atom API + OpenAlex API（经 MCP Tool 调用） |
 | Vector retrieval | FAISS |
 | Embedding | Sentence-Transformer |
 | Sparse retrieval | BM25 |
@@ -69,9 +74,9 @@ User Memory SQLite <----------- user_id -----------> FastAPI / Streamlit
 ### Multi-Agent Workflow
 
 - **Supervisor**：读取问题、PDF 输入和知识库状态，确定后续节点。
-- **Resolve**：处理显式研究偏好和常见多轮指代；缺少上下文时转入 Clarify。
-- **Clarify**：在论文指代无法落到当前线程时向用户追问，不直接猜测。
-- **Search**：根据关键词调用 arXiv Atom API，返回题目、作者、摘要、发布时间和链接。
+- **Resolve**：处理显式研究偏好和常见多轮指代，并识别论文身份、任务目标、比较对象、数据范围、评价指标及图表身份等关键缺失信息。
+- **Clarify**：根据 `missing_fields` 生成针对性追问；多个关键字段同时缺失时合并询问，避免系统猜测或连续多轮追问。
+- **Search**：通过 MCP Client 发现并调用 `search_arxiv`，返回题目、作者、摘要、发布时间和链接。
 - **Ingest**：解析传入 PDF，执行结构感知切分并构建 FAISS/BM25 索引。
 - **Analysis**：处理论文总结、创新点、实验设置、算法比较、适用性判断和复现建议。
 - **RAG**：结合会话上下文检索证据，调用模型生成带论文名和页码的回答。
@@ -165,7 +170,7 @@ streamlit run app.py
 python -m pytest -q
 ```
 
-当前测试结果：`25 passed`。
+当前测试结果：`36 passed`。
 
 ### 5. Run API
 
@@ -180,10 +185,13 @@ uvicorn api:app --reload --host 0.0.0.0 --port 8000
 ```text
 paper-rag-agent/
 ├── app.py
+├── mcp_server.py           # paper-tools MCP Server
 ├── requirements.txt
 ├── src/
 │   ├── agent_workflow.py   # LangGraph 状态、节点、条件边与 Checkpointer
 │   ├── agent_memory.py     # 长期偏好、TTL 和可恢复审批
+│   ├── mcp_client.py       # MCP工具发现、Schema校验、缓存、超时与重连
+│   ├── mcp_paper_tools.py  # arXiv搜索与安全下载实现
 │   ├── analysis_tasks.py   # 科研分析任务模板
 │   ├── paper_loader.py     # PDF 正文、表格、图片与结构解析
 │   ├── rag_pipeline.py     # FAISS/BM25、混合召回与重排
@@ -217,17 +225,17 @@ paper-rag-agent/
 ## Known Limits
 
 - Supervisor 当前采用确定性关键词和状态规则，尚未使用 LLM 结构化意图路由。
-- Search 支持 arXiv 搜索、选择、下载和入库，但尚未接入 OpenAlex/MCP 多源检索。
-- Resolve/Clarify 已覆盖常见指代与缺失上下文，复杂候选标题消歧仍需增强。
+- MCP Server 已提供 ArXiv、OpenAlex 检索与 ArXiv 安全下载；OpenAlex实时调用需要可用API配额。
+- Resolve/Clarify 已覆盖常见指代及六类结构化缺失信息；复杂候选标题消歧和自由表达识别仍需增强。
 - Verify 提供确定性引用映射和可选 LLM 语义检查，但事实拆分与结构化判定仍需增强。
 - SQLite Checkpointer 和本地文件存储适合单机演示，不适合高并发生产环境。
-- 暂无正式用户认证、MCP 和扫描页 OCR；`user_id` 是隔离键而非安全身份凭证。
+- MCP 当前使用本地 stdio 传输，尚未部署 Streamable HTTP；暂无正式用户认证和扫描页 OCR，`user_id` 是隔离键而非安全身份凭证。
 - 图片处理基于图注与附近文本，不进行像素级视觉理解。
 
 ## Roadmap
 
 - 增强基于候选标题、作者和 arXiv ID 的多轮指代消歧。
-- 接入 OpenAlex/MCP 多源检索并统一相关性评分。
+- 统一 ArXiv/OpenAlex 多源相关性评分，并增加跨源去重。
 - 将 Verify 升级为主张拆分、结构化判定与证据不足拒答结合的 AnswerGuard。
 - 增加 token 级模型流式输出、用户认证和更完整的真实标注评测集。
 

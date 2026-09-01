@@ -2,14 +2,15 @@
 
 ## 2026-08-31：完整科研智能体扩展
 
-- 新增 Resolve 与 Clarify 节点，处理显式研究偏好、常见指代和缺失上下文追问。
+- 扩展 Resolve 与 Clarify 节点，除显式研究偏好和常见指代外，可识别论文身份、任务目标、比较对象、数据范围、评价指标及图表身份等缺失信息，并生成合并式针对性追问。
 - 新增 Report Agent，基于本地论文证据生成结构化科研综述。
 - 新增 SQLite 长期记忆：按 user_id 隔离，支持开关、TTL、查看和清除，只保存提取后的显式偏好。
 - 新增搜索结果 HITL：带确认 ID、30 分钟 TTL、幂等恢复、PDF 文件头校验和确认后入库。
 - Verify 升级为引用映射检查与可选 LLM 结构化语义核验，并保留无模型时的确定性降级。
 - 新增 FastAPI 与 SSE：对话、流式进度、PDF 上传、审批恢复、线程、论文和用户记忆接口。
 - Streamlit 增加长期记忆管理与搜索结果确认入库界面。
-- 自动化测试扩展至 25 项，并完成 Streamlit/FastAPI 启动、API烟雾测试、真实PDF问答、长期记忆、HITL与Report Agent链路验证。
+- 自动化测试扩展至 36 项，并完成 Streamlit/FastAPI 启动、API烟雾测试、真实PDF问答、结构化澄清、长期记忆、HITL、MCP与Report Agent链路验证。
+- 新增 paper-tools MCP Server，提供 `search_arxiv`、`search_openalex` 与 `download_arxiv_pdf`；Search Agent 和审批下载通过 MCP Client 调用，支持工具发现缓存、Schema 校验、超时与自动重连。
 
 ## 已完成
 

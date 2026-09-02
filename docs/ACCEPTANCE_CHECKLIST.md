@@ -13,7 +13,7 @@
 - [x] arXiv 搜索进入人工确认流程
 - [x] 确认后下载并入库
 - [x] Report Agent 可生成结构化报告
-- [x] 36 项自动化测试通过（含结构化澄清、ArXiv/OpenAlex MCP、Schema 校验与 Agent 调用）
+- [x] 40 项自动化测试通过（含结构化澄清、MCP、标准检索指标与Unicode路径索引读写）
 
 ## GitHub 与安全
 

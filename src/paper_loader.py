@@ -21,7 +21,10 @@ CAPTION_PATTERN = re.compile(
 )
 
 
-def load_pdf_documents(pdf_paths: list[Path]) -> list[Document]:
+def load_pdf_documents(
+    pdf_paths: list[Path],
+    asset_root: Path | None = None,
+) -> list[Document]:
     """
     从 PDF 中生成三类可检索文档：正文、Markdown 表格和图片说明。
 
@@ -32,7 +35,11 @@ def load_pdf_documents(pdf_paths: list[Path]) -> list[Document]:
 
     for pdf_path in pdf_paths:
         pdf = fitz.open(str(pdf_path))
-        asset_dir = pdf_path.parent / "assets" / sanitize_asset_name(pdf_path.stem)
+        asset_dir = (
+            asset_root / sanitize_asset_name(pdf_path.stem)
+            if asset_root is not None
+            else pdf_path.parent / "assets" / sanitize_asset_name(pdf_path.stem)
+        )
 
         try:
             for page_index, page in enumerate(pdf, start=1):

@@ -2,8 +2,11 @@ from dataclasses import dataclass
 from collections import Counter
 import json
 import math
+import os
 from pathlib import Path
 import re
+import shutil
+import tempfile
 
 import faiss
 import numpy as np
@@ -53,7 +56,11 @@ class PaperRAG:
         self.bm25: BM25Index | None = None
 
     def build_index(self, documents: list[Document]) -> None:
-        self.chunks = split_documents(documents)
+        self.build_index_from_chunks(split_documents(documents))
+
+    def build_index_from_chunks(self, chunks: list[Chunk]) -> None:
+        """从已解析Chunk构建索引，便于离线评测复用解析结果。"""
+        self.chunks = chunks
         if not self.chunks:
             raise ValueError("没有从 PDF 中解析到可用文本。")
 
@@ -67,7 +74,7 @@ class PaperRAG:
             raise ValueError("没有可保存的向量索引。")
 
         directory.mkdir(parents=True, exist_ok=True)
-        faiss.write_index(self.index, str(directory / "index.faiss"))
+        write_faiss_index(self.index, directory / "index.faiss")
         chunks_data = [chunk.to_dict() for chunk in self.chunks]
         (directory / "chunks.json").write_text(
             json.dumps(chunks_data, ensure_ascii=False, indent=2),
@@ -80,7 +87,7 @@ class PaperRAG:
         if not index_path.exists() or not chunks_path.exists():
             return False
 
-        self.index = faiss.read_index(str(index_path))
+        self.index = read_faiss_index(index_path)
         chunks_data = json.loads(chunks_path.read_text(encoding="utf-8"))
         self.chunks = [Chunk.from_dict(item) for item in chunks_data]
         self.bm25 = BM25Index.from_chunks(self.chunks)
@@ -142,17 +149,37 @@ class PaperRAG:
         return fallback, sources
 
     def retrieve(self, question: str, top_k: int = 4) -> list[Chunk]:
+        return self.retrieve_by_mode(question, top_k=top_k, mode="hybrid")
+
+    def retrieve_by_mode(
+        self,
+        question: str,
+        top_k: int = 4,
+        mode: str = "hybrid",
+    ) -> list[Chunk]:
+        """分别运行 Dense、BM25 或完整 Hybrid 检索，供消融评测使用。"""
         if self.index is None:
             raise ValueError("请先构建向量索引。")
 
-        query_embedding = self._embed([question])
+        normalized_mode = mode.strip().lower()
+        if normalized_mode not in {"dense", "bm25", "hybrid"}:
+            raise ValueError("mode 必须是 dense、bm25 或 hybrid。")
+
         limit = min(max(top_k * 10, 30), len(self.chunks))
+        if normalized_mode == "bm25":
+            keyword_hits = self.bm25.search(question, limit) if self.bm25 else []
+            return [hit.chunk for hit in keyword_hits[:top_k]]
+
+        query_embedding = self._embed([question])
         scores, indices = self.index.search(query_embedding, limit)
         vector_hits = [
             SearchHit(chunk=self.chunks[index], score=float(score), source="vector")
             for score, index in zip(scores[0], indices[0])
             if index >= 0
         ]
+        if normalized_mode == "dense":
+            return [hit.chunk for hit in vector_hits[:top_k]]
+
         keyword_hits = self.bm25.search(question, limit) if self.bm25 else []
         candidates = merge_search_hits(vector_hits, keyword_hits)
         candidates = filter_retrieval_candidates(question, candidates)
@@ -189,6 +216,34 @@ class SearchHit:
     chunk: Chunk
     score: float
     source: str
+
+
+def write_faiss_index(index, path: Path) -> None:
+    """兼容Windows版FAISS无法直接写入Unicode路径的问题。"""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if os.name != "nt" or str(path).isascii():
+        faiss.write_index(index, str(path))
+        return
+    with tempfile.NamedTemporaryFile(suffix=".faiss", delete=False) as handle:
+        temporary_path = Path(handle.name)
+    try:
+        faiss.write_index(index, str(temporary_path))
+        shutil.copyfile(temporary_path, path)
+    finally:
+        temporary_path.unlink(missing_ok=True)
+
+
+def read_faiss_index(path: Path):
+    """兼容Windows版FAISS无法直接读取Unicode路径的问题。"""
+    if os.name != "nt" or str(path).isascii():
+        return faiss.read_index(str(path))
+    with tempfile.NamedTemporaryFile(suffix=".faiss", delete=False) as handle:
+        temporary_path = Path(handle.name)
+    try:
+        shutil.copyfile(path, temporary_path)
+        return faiss.read_index(str(temporary_path))
+    finally:
+        temporary_path.unlink(missing_ok=True)
 
 
 class BM25Index:

@@ -21,7 +21,7 @@
 | 后端 | FastAPI；流式响应采用 SSE |
 | 前端 | Streamlit |
 | MCP | 官方 Python SDK 1.x，stdio transport，3 个工具 |
-| 自动化测试 | 36 项 |
+| 自动化测试 | 40 项 |
 
 ## 高频问题
 
@@ -77,7 +77,7 @@ Search Agent 返回论文候选后不会直接下载，而是创建带 TTL 的 p
 
 工作流会经历 resolve、supervisor、rag、verify 等多个阶段。SSE 可以通过一个 HTTP 连接持续返回状态、进度和最终答案，浏览器实现简单，适合服务端单向推送。若需要双向实时控制或高频交互，再考虑 WebSocket。
 
-### 14. 36 项测试覆盖什么？
+### 14. 40 项测试覆盖什么？
 
 覆盖 Supervisor 路由、六类结构化缺失信息澄清、MCP Atom 解析、下载域名安全校验、工具 Schema 校验、Search Agent MCP 调用、RAG→Verify 图执行、引用归一化、长期记忆用户隔离、审批幂等、FastAPI、PDF 表格/图片处理与结构化切分等。测试数量不能代替真实效果评测，所以项目另留检索评测入口。
 
@@ -94,6 +94,6 @@ Search Agent 返回论文候选后不会直接下载，而是创建带 TTL 的 p
 - 当前是 **FAISS**，不是 ChromaDB。
 - 当前已实现 **arXiv MCP Tools**，但还没有 OpenAlex 和远程 Streamable HTTP。
 - 当前 Rerank 是 **规则重排**，不是 Cross-Encoder。
-- 36 项是自动化回归测试，不代表 36 个真实业务场景。
+- 40 项是自动化回归测试，不代表 40 个真实业务场景。
 - 不应继续使用未经保存和复现的 `Recall@5 = 89%` 作为简历指标。
 - Verify 降低引用错误风险，但不能宣称彻底解决幻觉。

@@ -234,14 +234,24 @@ def run_evaluation(args) -> None:
     if args.split != "all":
         cases = [case for case in cases if case.split == args.split]
 
-    rag = PaperRAG()
+    rag = PaperRAG(user_id=args.user_id)
     if not rag.load(args.index):
         raise ValueError(f"无法加载索引：{args.index}")
 
     report = {"summaries": [], "rows": {}}
-    for mode in ("bm25", "dense", "hybrid"):
+    modes = ["bm25", "dense", "hybrid"]
+    if args.include_reranker:
+        modes.append("hybrid_rerank")
+    if args.include_llm_reranker:
+        modes.append("hybrid_llm_rerank")
+    for mode in modes:
         rows, summary = evaluate_ground_truth(
-            rag, cases, top_k=args.top_k, mode=mode, dense_weight=args.dense_weight
+            rag,
+            cases,
+            top_k=args.top_k,
+            mode=mode,
+            dense_weight=args.dense_weight,
+            max_per_source=args.max_per_source,
         )
         report["summaries"].append(summary)
         report["rows"][mode] = rows
@@ -389,10 +399,16 @@ def verify_questions(args) -> None:
             "只返回JSON对象：{\"items\":[{\"case_id\":\"...\",\"answerable\":true,\"reason\":\"...\"}]}。\n\n"
             + json.dumps(payload, ensure_ascii=False)
         )
-        response = call_llm(prompt, user_id=args.user_id)
-        if not response:
-            raise ValueError("LLM未配置，无法执行证据一致性校验。")
-        parsed = parse_json_object(response)
+        parsed = None
+        for attempt in range(1, 4):
+            response = call_llm(prompt, user_id=args.user_id)
+            if response:
+                parsed = parse_json_object(response)
+            if isinstance(parsed, dict) and isinstance(parsed.get("items"), list):
+                break
+            print(f"第 {start // args.batch_size + 1} 批JSON解析失败，重试 {attempt}/3")
+        if not isinstance(parsed, dict) or not isinstance(parsed.get("items"), list):
+            raise ValueError(f"证据校验第 {start // args.batch_size + 1} 批连续3次未返回合法JSON。")
         verdicts = {str(item.get("case_id")): item for item in parsed.get("items", [])}
         missing = [case["case_id"] for case in batch if case["case_id"] not in verdicts]
         if missing:
@@ -408,6 +424,63 @@ def verify_questions(args) -> None:
     args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
     write_review_csv(cases, args.csv)
     print(json.dumps({"verified": verified, "rejected": rejected}, ensure_ascii=False))
+
+
+def add_holdout(args) -> None:
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
+    chunks = [Chunk.from_dict(item) for item in json.loads(args.chunks.read_text(encoding="utf-8"))]
+    used_ids = {value for case in cases for value in case.get("relevant_chunk_ids", [])}
+    sources = []
+    for case in cases:
+        source = case.get("metadata", {}).get("source")
+        if source and source not in sources:
+            sources.append(source)
+    added = 0
+    for paper_index, source in enumerate(sources, start=1):
+        eligible = [
+            chunk for chunk in chunks
+            if chunk.metadata.get("source") == source
+            and chunk_id(chunk) not in used_ids
+            and len(chunk.text) >= 350
+            and chunk.metadata.get("section") not in {"references", "back_matter", "front_matter"}
+            and chunk.metadata.get("content_type", "text") in {"text", "table"}
+        ]
+        eligible.sort(key=lambda chunk: hashlib.sha256(chunk_id(chunk).encode()).hexdigest())
+        selected = []
+        section_counts: dict[str, int] = {}
+        for chunk in eligible:
+            section = str(chunk.metadata.get("section", "body"))
+            if section_counts.get(section, 0) >= 1 and len(eligible) >= args.per_paper * 2:
+                continue
+            selected.append(chunk)
+            section_counts[section] = section_counts.get(section, 0) + 1
+            if len(selected) >= args.per_paper:
+                break
+        for question_index, evidence in enumerate(selected, start=1):
+            evidence_id = chunk_id(evidence)
+            cases.append(
+                {
+                    "case_id": f"{args.case_prefix}{paper_index:02d}_q{question_index}",
+                    "question": "待根据证据改写",
+                    "relevant_chunk_ids": [evidence_id],
+                    "split": args.split_name,
+                    "status": "needs_review",
+                    "metadata": {
+                        "source": source,
+                        "page_start": evidence.metadata.get("page_start", evidence.metadata.get("page")),
+                        "page_end": evidence.metadata.get("page_end", evidence.metadata.get("page")),
+                        "section": evidence.metadata.get("section", "body"),
+                        "content_type": evidence.metadata.get("content_type", "text"),
+                        "evidence_preview": evidence.text[:600],
+                        "review_note": "架构与融合权重锁定后新增的盲测候选",
+                    },
+                }
+            )
+            used_ids.add(evidence_id)
+            added += 1
+    args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_review_csv(cases, args.csv)
+    print(json.dumps({"added": added, "split": args.split_name}, ensure_ascii=False))
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -442,7 +515,7 @@ def build_parser() -> argparse.ArgumentParser:
     refine_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
     refine_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
     refine_parser.add_argument("--user-id", default="liuyongqi")
-    refine_parser.add_argument("--split", choices=["dev", "test", "all"], default="test")
+    refine_parser.add_argument("--split", choices=["dev", "test", "holdout", "blind", "all"], default="test")
     refine_parser.add_argument("--from-status", action="append", default=["needs_review"])
     refine_parser.add_argument("--to-status", default="assistant_reviewed")
     refine_parser.add_argument("--batch-size", type=int, default=10)
@@ -453,21 +526,34 @@ def build_parser() -> argparse.ArgumentParser:
     verify_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
     verify_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
     verify_parser.add_argument("--user-id", default="liuyongqi")
-    verify_parser.add_argument("--split", choices=["dev", "test", "all"], default="test")
+    verify_parser.add_argument("--split", choices=["dev", "test", "holdout", "blind", "all"], default="test")
     verify_parser.add_argument("--from-status", action="append", default=["assistant_reviewed"])
     verify_parser.add_argument("--pass-status", default="evidence_verified")
     verify_parser.add_argument("--reject-status", default="rejected")
     verify_parser.add_argument("--batch-size", type=int, default=10)
     verify_parser.set_defaults(handler=verify_questions)
 
+    holdout_parser = subparsers.add_parser("add-holdout", help="在锁定方案后增加未参与调参的新问题证据")
+    holdout_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    holdout_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
+    holdout_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    holdout_parser.add_argument("--per-paper", type=int, default=2)
+    holdout_parser.add_argument("--split-name", choices=["holdout", "blind"], default="holdout")
+    holdout_parser.add_argument("--case-prefix", default="h")
+    holdout_parser.set_defaults(handler=add_holdout)
+
     evaluate_parser = subparsers.add_parser("evaluate", help="对已审核问题运行三路检索评测")
     evaluate_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
     evaluate_parser.add_argument("--index", type=Path, default=DEFAULT_OUTPUT / "index")
     evaluate_parser.add_argument("--report", type=Path, default=DEFAULT_OUTPUT / "report.json")
-    evaluate_parser.add_argument("--split", choices=["dev", "test", "all"], default="test")
+    evaluate_parser.add_argument("--split", choices=["dev", "test", "holdout", "blind", "all"], default="test")
     evaluate_parser.add_argument("--top-k", type=int, default=5)
     evaluate_parser.add_argument("--dense-weight", type=float, default=0.65)
+    evaluate_parser.add_argument("--max-per-source", type=int, default=2)
     evaluate_parser.add_argument("--accept-status", action="append", default=["approved"])
+    evaluate_parser.add_argument("--include-reranker", action="store_true")
+    evaluate_parser.add_argument("--include-llm-reranker", action="store_true")
+    evaluate_parser.add_argument("--user-id", default="liuyongqi")
     evaluate_parser.set_defaults(handler=run_evaluation)
 
     grid_parser = subparsers.add_parser("grid-search", help="仅在开发集上选择Dense/BM25融合权重")

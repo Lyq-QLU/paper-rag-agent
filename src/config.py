@@ -50,6 +50,8 @@ class RAGConfig:
     chunk_size: int = 1200
     chunk_overlap: int = 200
     embedding_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    reranker_model: str = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+    retrieval_mode: str = "hybrid"
     openai_api_key: str | None = None
     openai_base_url: str = "https://api.openai.com/v1"
     openai_model: str = "gpt-4o-mini"
@@ -57,6 +59,7 @@ class RAGConfig:
 
 def get_config(user_id: str | None = None) -> RAGConfig:
     return RAGConfig(
+        retrieval_mode=_get_setting("RETRIEVAL_MODE", "hybrid", user_id=user_id) or "hybrid",
         openai_api_key=_get_setting("OPENAI_API_KEY", user_id=user_id),
         openai_base_url=_get_setting("OPENAI_BASE_URL", "https://api.openai.com/v1", user_id=user_id) or "https://api.openai.com/v1",
         openai_model=_get_setting("OPENAI_MODEL", "gpt-4o-mini", user_id=user_id) or "gpt-4o-mini",

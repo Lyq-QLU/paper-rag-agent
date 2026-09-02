@@ -9,7 +9,7 @@
 - Verify 升级为引用映射检查与可选 LLM 结构化语义核验，并保留无模型时的确定性降级。
 - 新增 FastAPI 与 SSE：对话、流式进度、PDF 上传、审批恢复、线程、论文和用户记忆接口。
 - Streamlit 增加长期记忆管理与搜索结果确认入库界面。
-- 自动化测试扩展至 41 项，并完成 Streamlit/FastAPI 启动、API烟雾测试、真实PDF问答、结构化澄清、长期记忆、HITL、MCP、Report Agent与标准检索评测链路验证。
+- 自动化测试扩展至 43 项，并完成 Streamlit/FastAPI 启动、API烟雾测试、真实PDF问答、结构化澄清、长期记忆、HITL、MCP、Report Agent与标准检索评测链路验证。
 - 新增 paper-tools MCP Server，提供 `search_arxiv`、`search_openalex` 与 `download_arxiv_pdf`；Search Agent 和审批下载通过 MCP Client 调用，支持工具发现缓存、Schema 校验、超时与自动重连。
 
 ## 已完成

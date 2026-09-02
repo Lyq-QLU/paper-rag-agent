@@ -61,6 +61,7 @@ def evaluate_ground_truth(
     top_k: int = 5,
     mode: str = "hybrid",
     dense_weight: float = 0.65,
+    max_per_source: int = 2,
 ) -> tuple[list[dict], dict]:
     """计算严格的 Recall@K、Hit@K、MRR 与平均检索耗时。"""
     rows: list[dict] = []
@@ -78,6 +79,7 @@ def evaluate_ground_truth(
             top_k=top_k,
             mode=mode,
             dense_weight=dense_weight,
+            max_per_source=max_per_source,
         )
         latencies_ms.append((time.perf_counter() - started) * 1000)
 
@@ -124,7 +126,8 @@ def evaluate_ground_truth(
     summary = {
         "mode": mode,
         "top_k": top_k,
-        "dense_weight": dense_weight if mode == "hybrid" else None,
+        "dense_weight": dense_weight if mode.startswith("hybrid") else None,
+        "max_per_source": max_per_source if mode.startswith("hybrid") else None,
         "case_count": count,
         "recall_at_k": round(sum(recalls) / count, 4) if count else 0.0,
         "hit_at_k": round(sum(hits) / count, 4) if count else 0.0,

@@ -7,14 +7,23 @@ from src.evaluation import (
 import faiss
 import numpy as np
 
-from src.rag_pipeline import Chunk, read_faiss_index, rerank_candidates, write_faiss_index
+from src.rag_pipeline import (
+    Chunk,
+    read_faiss_index,
+    rerank_candidates,
+    parse_reranker_ranking,
+    select_with_source_cap,
+    write_faiss_index,
+)
 
 
 class FakeRAG:
     def __init__(self, results):
         self.results = results
 
-    def retrieve_by_mode(self, question, top_k=5, mode="hybrid", dense_weight=0.65):
+    def retrieve_by_mode(
+        self, question, top_k=5, mode="hybrid", dense_weight=0.65, max_per_source=2
+    ):
         return self.results[mode][:top_k]
 
 
@@ -86,3 +95,19 @@ def test_rerank_keeps_fusion_score_primary():
     ranked = rerank_candidates("使用了什么算法？", [weak_method, strong])
 
     assert ranked[0] is strong
+
+
+def test_source_cap_prevents_one_paper_from_filling_top_k():
+    chunks = [
+        Chunk(text=str(index), metadata={"source": "a.pdf" if index < 4 else "b.pdf"})
+        for index in range(6)
+    ]
+
+    selected = select_with_source_cap(chunks, top_k=4, max_per_source=2)
+
+    assert [chunk.metadata["source"] for chunk in selected] == ["a.pdf", "a.pdf", "b.pdf", "b.pdf"]
+
+
+def test_parse_reranker_ranking_requires_all_unique_candidates():
+    assert parse_reranker_ranking('{"ranking":["c2","c0","c1"]}', 3) == [2, 0, 1]
+    assert parse_reranker_ranking('{"ranking":["c0","c0"]}', 2) == []

@@ -10,7 +10,7 @@ import tempfile
 
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import CrossEncoder, SentenceTransformer
 
 from src.config import get_config
 from src.llm import LLMServiceError, call_llm
@@ -51,6 +51,7 @@ class PaperRAG:
     def __init__(self, user_id: str | None = None) -> None:
         self.user_id = user_id
         self.embedding_model: SentenceTransformer | None = None
+        self.reranker_model: CrossEncoder | None = None
         self.index: faiss.IndexFlatIP | None = None
         self.chunks: list[Chunk] = []
         self.bm25: BM25Index | None = None
@@ -149,7 +150,8 @@ class PaperRAG:
         return fallback, sources
 
     def retrieve(self, question: str, top_k: int = 4) -> list[Chunk]:
-        return self.retrieve_by_mode(question, top_k=top_k, mode="hybrid")
+        mode = get_config(user_id=self.user_id).retrieval_mode
+        return self.retrieve_by_mode(question, top_k=top_k, mode=mode)
 
     def retrieve_by_mode(
         self,
@@ -157,16 +159,20 @@ class PaperRAG:
         top_k: int = 4,
         mode: str = "hybrid",
         dense_weight: float = 0.65,
+        max_per_source: int = 2,
     ) -> list[Chunk]:
         """分别运行 Dense、BM25 或完整 Hybrid 检索，供消融评测使用。"""
         if self.index is None:
             raise ValueError("请先构建向量索引。")
 
         normalized_mode = mode.strip().lower()
-        if normalized_mode not in {"dense", "bm25", "hybrid"}:
-            raise ValueError("mode 必须是 dense、bm25 或 hybrid。")
+        valid_modes = {"dense", "bm25", "hybrid", "hybrid_rerank", "hybrid_llm_rerank"}
+        if normalized_mode not in valid_modes:
+            raise ValueError(f"mode 必须是 {', '.join(sorted(valid_modes))}。")
         if not 0 <= dense_weight <= 1:
             raise ValueError("dense_weight 必须位于0到1之间。")
+        if max_per_source < 1:
+            raise ValueError("max_per_source 必须大于等于1。")
 
         limit = min(max(top_k * 10, 30), len(self.chunks))
         if normalized_mode == "bm25":
@@ -188,7 +194,55 @@ class PaperRAG:
         candidates = filter_retrieval_candidates(question, candidates)
         if needs_source_diversity(question):
             return retrieve_diverse_method_chunks(question, candidates, top_k)
-        return rerank_candidates(question, candidates)[:top_k]
+        ranked = rerank_candidates(question, candidates)
+        if normalized_mode == "hybrid_rerank":
+            ranked = self._cross_encoder_rerank(question, ranked[:30])
+        elif normalized_mode == "hybrid_llm_rerank":
+            ranked = self._llm_rerank(question, ranked[:20])
+        return select_with_source_cap(ranked, top_k=top_k, max_per_source=max_per_source)
+
+    def _cross_encoder_rerank(self, question: str, candidates: list[Chunk]) -> list[Chunk]:
+        if not candidates:
+            return []
+        model = self._get_reranker_model()
+        scores = model.predict(
+            [(question, chunk.text) for chunk in candidates],
+            batch_size=16,
+            show_progress_bar=False,
+        )
+        ranked = sorted(zip(candidates, scores), key=lambda item: float(item[1]), reverse=True)
+        for chunk, score in ranked:
+            chunk.metadata.setdefault("_retrieval", {})["reranker_score"] = round(float(score), 6)
+        return [chunk for chunk, _ in ranked]
+
+    def _llm_rerank(self, question: str, candidates: list[Chunk]) -> list[Chunk]:
+        """用已配置LLM精排少量候选；调用失败时安全回退到原排序。"""
+        if not candidates:
+            return []
+        payload = [
+            {
+                "id": f"c{index}",
+                "source": chunk.metadata.get("source", "unknown"),
+                "page": chunk.metadata.get("page_start", chunk.metadata.get("page", "unknown")),
+                "section": chunk.metadata.get("section", "body"),
+                "text": chunk.text[:700],
+            }
+            for index, chunk in enumerate(candidates)
+        ]
+        prompt = (
+            "请根据问题对候选论文片段按回答相关性从高到低排序。"
+            "只依据片段内容，不要补充答案。只返回JSON对象，例如"
+            "{\"ranking\":[\"c2\",\"c0\"]}，并包含所有候选ID且每个ID只出现一次。\n"
+            f"问题：{question}\n候选：{json.dumps(payload, ensure_ascii=False)}"
+        )
+        try:
+            response = call_llm(prompt, user_id=self.user_id)
+            ranking = parse_reranker_ranking(response or "", len(candidates))
+        except LLMServiceError:
+            return candidates
+        if not ranking:
+            return candidates
+        return [candidates[index] for index in ranking]
 
     def _embed(self, texts: list[str]) -> np.ndarray:
         embeddings = self._get_embedding_model().encode(
@@ -212,6 +266,16 @@ class PaperRAG:
                 "请检查网络和 Hugging Face 缓存后重试。"
             ) from exc
         return self.embedding_model
+
+    def _get_reranker_model(self) -> CrossEncoder:
+        if self.reranker_model is not None:
+            return self.reranker_model
+        config = get_config(user_id=self.user_id)
+        try:
+            self.reranker_model = CrossEncoder(config.reranker_model, max_length=512)
+        except (FileNotFoundError, OSError) as exc:
+            raise RuntimeError("Reranker模型下载或缓存不完整，请检查网络后重试。") from exc
+        return self.reranker_model
 
 
 @dataclass
@@ -247,6 +311,27 @@ def read_faiss_index(path: Path):
         return faiss.read_index(str(temporary_path))
     finally:
         temporary_path.unlink(missing_ok=True)
+
+
+def parse_reranker_ranking(response: str, candidate_count: int) -> list[int]:
+    match = re.search(r"\{.*\}", response, re.S)
+    if not match:
+        return []
+    try:
+        values = json.loads(match.group(0)).get("ranking", [])
+    except (json.JSONDecodeError, AttributeError):
+        return []
+    ranking: list[int] = []
+    for value in values:
+        item = re.fullmatch(r"c(\d+)", str(value).strip())
+        if not item:
+            continue
+        index = int(item.group(1))
+        if 0 <= index < candidate_count and index not in ranking:
+            ranking.append(index)
+    if len(ranking) != candidate_count:
+        return []
+    return ranking
 
 
 class BM25Index:
@@ -744,6 +829,25 @@ def rerank_candidates(question: str, candidates: list[Chunk]) -> list[Chunk]:
         retrieval = chunk.metadata.setdefault("_retrieval", {})
         retrieval["final_score"] = final_score
     return sorted(candidates, key=lambda chunk: chunk.metadata.get("_retrieval", {}).get("final_score", 0), reverse=True)
+
+
+def select_with_source_cap(
+    candidates: list[Chunk],
+    top_k: int,
+    max_per_source: int = 2,
+) -> list[Chunk]:
+    """避免多论文知识库的Top-K被同一来源的近重复Chunk占满。"""
+    selected: list[Chunk] = []
+    source_counts: Counter = Counter()
+    for chunk in candidates:
+        source = str(chunk.metadata.get("source", "unknown"))
+        if source_counts[source] >= max_per_source:
+            continue
+        selected.append(chunk)
+        source_counts[source] += 1
+        if len(selected) >= top_k:
+            return selected
+    return selected
 
 
 def hybrid_relevance_score(question: str, chunk: Chunk) -> float:

@@ -7,7 +7,7 @@ from src.evaluation import (
 import faiss
 import numpy as np
 
-from src.rag_pipeline import Chunk, read_faiss_index, write_faiss_index
+from src.rag_pipeline import Chunk, read_faiss_index, rerank_candidates, write_faiss_index
 
 
 class FakeRAG:
@@ -68,3 +68,18 @@ def test_faiss_index_round_trip_supports_unicode_path(tmp_path):
 
     assert target.exists()
     assert loaded.ntotal == 1
+
+
+def test_rerank_keeps_fusion_score_primary():
+    strong = Chunk(
+        text="general evidence",
+        metadata={"section": "body", "_retrieval": {"fused_score": 0.8}},
+    )
+    weak_method = Chunk(
+        text="proposed algorithm model framework",
+        metadata={"section": "method", "_retrieval": {"fused_score": 0.2}},
+    )
+
+    ranked = rerank_candidates("使用了什么算法？", [weak_method, strong])
+
+    assert ranked[0] is strong

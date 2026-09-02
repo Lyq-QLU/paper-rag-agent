@@ -736,17 +736,25 @@ def rerank_candidates(question: str, candidates: list[Chunk]) -> list[Chunk]:
     return sorted(candidates, key=lambda chunk: chunk.metadata.get("_retrieval", {}).get("final_score", 0), reverse=True)
 
 
-def hybrid_relevance_score(question: str, chunk: Chunk) -> int:
-    score = method_relevance_score(chunk)
+def hybrid_relevance_score(question: str, chunk: Chunk) -> float:
+    """以融合排名为主，只施加小幅、可解释的意图奖励。"""
+    retrieval = chunk.metadata.get("_retrieval", {})
+    score = float(retrieval.get("fused_score", 0.0))
     question_tokens = set(tokenize_for_bm25(question))
     chunk_tokens = set(tokenize_for_bm25(chunk.text))
-    score += len(question_tokens & chunk_tokens) * 2
+    score += min(len(question_tokens & chunk_tokens), 5) * 0.01
 
     if asks_method_question(question):
-        score += method_relevance_score(chunk)
-    if asks_experiment_question(question) and chunk.metadata.get("section") == "experiment":
-        score += 10
-    return score
+        if chunk.metadata.get("section") == "method":
+            score += 0.08
+        elif chunk.metadata.get("section") == "abstract":
+            score += 0.03
+    if asks_experiment_question(question):
+        if chunk.metadata.get("section") == "experiment":
+            score += 0.08
+        if chunk.metadata.get("content_type") == "table":
+            score += 0.05
+    return round(score, 6)
 
 
 def split_text_by_paragraphs(text: str, chunk_size: int, chunk_overlap: int) -> list[str]:

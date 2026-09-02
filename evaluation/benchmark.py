@@ -225,10 +225,10 @@ def load_case_records(path: Path) -> list[dict]:
 
 def run_evaluation(args) -> None:
     raw_cases = load_case_records(args.cases)
-    approved = [item for item in raw_cases if item.get("status") == "approved"]
+    approved = [item for item in raw_cases if item.get("status") in set(args.accept_status)]
     cases = parse_ground_truth_cases(approved)
     if not cases:
-        raise ValueError("没有已审核案例。请把确认后的案例 status 改为 approved。")
+        raise ValueError(f"没有符合审核状态的案例：{', '.join(args.accept_status)}")
     if args.split != "all":
         cases = [case for case in cases if case.split == args.split]
 
@@ -261,6 +261,27 @@ def export_review(args) -> None:
     print(json.dumps({"cases": len(cases), "output": str(args.output)}, ensure_ascii=False))
 
 
+def apply_review(args) -> None:
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
+    reviews = {
+        item["case_id"]: item
+        for item in json.loads(args.review.read_text(encoding="utf-8"))
+    }
+    updated = 0
+    for case in cases:
+        review = reviews.get(case.get("case_id"))
+        if not review:
+            continue
+        for field in ("question", "relevant_chunk_ids", "status"):
+            if field in review:
+                case[field] = review[field]
+        case.setdefault("metadata", {})["review_note"] = review.get("review_note", "")
+        updated += 1
+    args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_review_csv(cases, args.csv)
+    print(json.dumps({"updated": updated, "cases": str(args.cases), "csv": str(args.csv)}, ensure_ascii=False))
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -282,12 +303,19 @@ def build_parser() -> argparse.ArgumentParser:
     export_parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
     export_parser.set_defaults(handler=export_review)
 
+    review_parser = subparsers.add_parser("apply-review", help="应用问题与证据审核结果")
+    review_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    review_parser.add_argument("--review", type=Path, required=True)
+    review_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    review_parser.set_defaults(handler=apply_review)
+
     evaluate_parser = subparsers.add_parser("evaluate", help="对已审核问题运行三路检索评测")
     evaluate_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
     evaluate_parser.add_argument("--index", type=Path, default=DEFAULT_OUTPUT / "index")
     evaluate_parser.add_argument("--report", type=Path, default=DEFAULT_OUTPUT / "report.json")
     evaluate_parser.add_argument("--split", choices=["dev", "test", "all"], default="test")
     evaluate_parser.add_argument("--top-k", type=int, default=5)
+    evaluate_parser.add_argument("--accept-status", action="append", default=["approved"])
     evaluate_parser.set_defaults(handler=run_evaluation)
     return parser
 

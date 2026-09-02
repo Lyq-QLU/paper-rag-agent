@@ -16,6 +16,7 @@
 - **可恢复 HITL 与长期记忆**：搜索结果确认带 TTL 和幂等恢复；用户偏好按 `user_id` 隔离，可开关、设置 TTL 和清除。
 - **双入口交互**：同时提供 Streamlit 页面与 FastAPI/SSE 接口，支持上传、对话、审批恢复和记忆管理。
 - **测试覆盖**：41 项自动化测试覆盖节点路由、结构化澄清、MCP 工具发现与调用、引用归一化、记忆隔离、审批幂等、API、图表处理、结构化切分与标准检索指标。
+- **可复现检索评测**：提供30篇语料清单、开发/测试集隔离、BM25/Dense/Hybrid消融，以及文档级和证据Chunk级Recall@K、Hit@K、MRR与延迟统计，详细结果见 `evaluation/RESULTS.md`。
 
 ## Why This Project Matters
 

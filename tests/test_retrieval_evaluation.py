@@ -14,7 +14,7 @@ class FakeRAG:
     def __init__(self, results):
         self.results = results
 
-    def retrieve_by_mode(self, question, top_k=5, mode="hybrid"):
+    def retrieve_by_mode(self, question, top_k=5, mode="hybrid", dense_weight=0.65):
         return self.results[mode][:top_k]
 
 
@@ -48,6 +48,7 @@ def test_evaluate_ground_truth_computes_recall_hit_and_mrr():
         case_id="q1",
         question="target?",
         relevant_chunk_ids=[chunk_id(relevant), chunk_id(second_relevant)],
+        metadata={"source": "paper.pdf"},
     )
 
     rows, summary = evaluate_ground_truth(rag, [case], top_k=2, mode="hybrid")
@@ -56,6 +57,8 @@ def test_evaluate_ground_truth_computes_recall_hit_and_mrr():
     assert summary["recall_at_k"] == 0.5
     assert summary["hit_at_k"] == 1.0
     assert summary["mrr"] == 0.5
+    assert summary["document_hit_at_k"] == 1.0
+    assert summary["document_mrr"] == 1.0
 
 
 def test_faiss_index_round_trip_supports_unicode_path(tmp_path):

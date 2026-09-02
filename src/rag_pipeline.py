@@ -156,6 +156,7 @@ class PaperRAG:
         question: str,
         top_k: int = 4,
         mode: str = "hybrid",
+        dense_weight: float = 0.65,
     ) -> list[Chunk]:
         """分别运行 Dense、BM25 或完整 Hybrid 检索，供消融评测使用。"""
         if self.index is None:
@@ -164,6 +165,8 @@ class PaperRAG:
         normalized_mode = mode.strip().lower()
         if normalized_mode not in {"dense", "bm25", "hybrid"}:
             raise ValueError("mode 必须是 dense、bm25 或 hybrid。")
+        if not 0 <= dense_weight <= 1:
+            raise ValueError("dense_weight 必须位于0到1之间。")
 
         limit = min(max(top_k * 10, 30), len(self.chunks))
         if normalized_mode == "bm25":
@@ -181,7 +184,7 @@ class PaperRAG:
             return [hit.chunk for hit in vector_hits[:top_k]]
 
         keyword_hits = self.bm25.search(question, limit) if self.bm25 else []
-        candidates = merge_search_hits(vector_hits, keyword_hits)
+        candidates = merge_search_hits(vector_hits, keyword_hits, dense_weight=dense_weight)
         candidates = filter_retrieval_candidates(question, candidates)
         if needs_source_diversity(question):
             return retrieve_diverse_method_chunks(question, candidates, top_k)
@@ -688,7 +691,11 @@ def build_contextual_retrieval_query(question: str, conversation_history: list[d
     return f"{recent_context}\n当前追问：{question}"
 
 
-def merge_search_hits(vector_hits: list[SearchHit], keyword_hits: list[SearchHit]) -> list[Chunk]:
+def merge_search_hits(
+    vector_hits: list[SearchHit],
+    keyword_hits: list[SearchHit],
+    dense_weight: float = 0.65,
+) -> list[Chunk]:
     merged: dict[int, dict] = {}
 
     for rank, hit in enumerate(vector_hits):
@@ -716,7 +723,10 @@ def merge_search_hits(vector_hits: list[SearchHit], keyword_hits: list[SearchHit
         item["keyword_rank_score"] = max(item["keyword_rank_score"], 1 / (rank + 1))
 
     for item in merged.values():
-        item["fused_score"] = item["vector_rank_score"] * 0.65 + item["keyword_rank_score"] * 0.35
+        item["fused_score"] = (
+            item["vector_rank_score"] * dense_weight
+            + item["keyword_rank_score"] * (1 - dense_weight)
+        )
         item["chunk"].metadata["_retrieval"] = {
             "vector_rank_score": round(item["vector_rank_score"], 4),
             "keyword_rank_score": round(item["keyword_rank_score"], 4),

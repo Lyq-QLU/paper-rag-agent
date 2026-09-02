@@ -38,3 +38,5 @@ python -m evaluation.benchmark evaluate --split test --top-k 5
 - Average Latency：单次检索的平均耗时。
 
 开发集用于选择融合权重，测试集只用于报告最终结果，避免测试集泄漏。
+
+当前Benchmark V1的方法、真实结果和适用边界见[RESULTS.md](RESULTS.md)。

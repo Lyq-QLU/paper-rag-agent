@@ -2,7 +2,7 @@
 
 ## 2026-10-28：Skill + 独立科研 Agent Harness
 
-- 移除 LangGraph 编排与依赖，保留原有 RAG/MCP 能力；独立运行 decide / tool / finish / check 循环。模型选择 Skill 和下一步，代码限制 Skill、工具与参数；完成检查不通过会返回循环。
+- 科研任务由独立 Harness 运行 decide / tool / finish / check 循环。模型选择 Skill 和下一步，代码限制 Skill、工具与参数；完成检查不通过会返回循环。
 - 新增仓库受信任 Skill：`paper_discovery`、`evidence_reading`、`research_synthesis`。每个工具必须唯一归属一个 Skill，运行时会拒绝越权组合。
 - 工具包括会话论文列表、arXiv/OpenAlex/Crossref 搜索、按来源过滤的证据检索、人工确认入库。确认后继续原始目标并沿用预算；取消或审批过期后可补充说明恢复。
 - 新增步数、工具次数、模型次数、累计执行时间和上下文字符限制；失败调用也记账，API返回token usage。时间对原生PDF操作为协作式检查，不是强制取消。

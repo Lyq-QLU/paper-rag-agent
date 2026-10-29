@@ -1,6 +1,6 @@
 # 科研 Agent Harness
 
-科研任务由独立、受预算约束的 Harness 直接执行，不依赖 LangGraph，也不依赖模型原生 function-calling 协议。仓库内 Skill 提供任务规则和工具权限；模型输出 JSON 决策，代码使用 Pydantic Schema、Skill 权限和工具白名单三层校验。
+科研任务由独立、受预算约束的 Harness 直接执行。仓库内 Skill 提供任务规则和工具权限；模型输出 JSON 决策，代码使用 Pydantic Schema、Skill 权限和工具白名单三层校验。
 
 ## 执行图
 

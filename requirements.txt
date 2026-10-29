@@ -10,3 +10,4 @@ uvicorn>=0.30.0,<1.0
 python-multipart>=0.0.9,<1.0
 mcp>=1.29.0,<2.0
 filelock>=3.12,<4.0
+PyMySQL>=1.1,<2.0

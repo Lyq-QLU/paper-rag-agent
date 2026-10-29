@@ -231,7 +231,7 @@ paper-rag-agent/
 - MCP Server 已提供 arXiv、OpenAlex、Crossref 检索与 arXiv 安全下载；OpenAlex 实时调用需要可用 API 配额。
 - Resolve/Clarify 已覆盖常见指代及六类结构化缺失信息；复杂候选标题消歧和自由表达识别仍需增强。
 - Verify 提供确定性引用映射和可选 LLM 语义检查，但事实拆分与结构化判定仍需增强。
-- 本地 JSON 任务快照、SQLite 审批和文件锁适合单机或低并发部署，不适合分布式高并发环境。
+- 本地 JSON 任务快照、SQLite 审批和文件锁适合单机或低并发部署，不适合分布式高并发环境。会话目录元数据可按 [MySQL 配置说明](docs/MYSQL.md) 单独切换到 MySQL。
 - MCP 当前使用本地 stdio 传输，尚未部署 Streamable HTTP；暂无正式用户认证和扫描页 OCR，`user_id` 是隔离键而非安全身份凭证。
 - 图片处理基于图注与附近文本，不进行像素级视觉理解。
 

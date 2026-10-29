@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import shutil
 import uuid
+from functools import lru_cache
 from filelock import FileLock
 
 
@@ -45,7 +46,28 @@ def get_sessions_file(user_id: str) -> Path:
     return get_user_dir(user_id) / "sessions.json"
 
 
+@lru_cache(maxsize=4)
+def _mysql_store(url: str):
+    from src.mysql_sessions import MySQLSessionStore
+    return MySQLSessionStore(url)
+
+
+def _session_store():
+    backend = os.getenv("PAPER_SESSION_STORE", "json").strip().lower()
+    if backend == "json":
+        return None
+    if backend != "mysql":
+        raise ValueError("PAPER_SESSION_STORE must be json or mysql")
+    url = os.getenv("PAPER_MYSQL_URL", "").strip()
+    if not url:
+        raise ValueError("PAPER_MYSQL_URL is required when PAPER_SESSION_STORE=mysql")
+    return _mysql_store(url)
+
+
 def load_user_sessions(user_id: str) -> list[dict]:
+    store = _session_store()
+    if store is not None:
+        return store.load(sanitize_identifier(user_id))
     sessions_file = get_sessions_file(user_id)
     if not sessions_file.exists():
         return []
@@ -53,12 +75,22 @@ def load_user_sessions(user_id: str) -> list[dict]:
 
 
 def save_user_sessions(user_id: str, sessions: list[dict]) -> None:
+    store = _session_store()
+    if store is not None:
+        store.replace(sanitize_identifier(user_id), sessions)
+        return
     sessions_file = get_sessions_file(user_id)
     sessions_file.parent.mkdir(parents=True, exist_ok=True)
     atomic_write_text_or_bytes(sessions_file, json.dumps(sessions, ensure_ascii=False, indent=2))
 
 
 def upsert_session_meta(user_id: str, session_id: str, **updates) -> dict:
+    store = _session_store()
+    if store is not None:
+        return store.upsert(
+            sanitize_identifier(user_id), sanitize_identifier(session_id),
+            updates, _new_session_meta(session_id, updates),
+        )
     user_dir = get_user_dir(user_id)
     user_dir.mkdir(parents=True, exist_ok=True)
     with FileLock(str(user_dir / "sessions.lock")):
@@ -69,21 +101,25 @@ def _upsert_session_meta(user_id: str, session_id: str, **updates) -> dict:
     sessions = load_user_sessions(user_id)
     existing = next((item for item in sessions if item["session_id"] == session_id), None)
     if existing is None:
-        existing = {
-            "session_id": session_id,
-            "title": updates.get("title") or f"会话 {session_id}",
-            "created_at": now_text(),
-            "updated_at": now_text(),
-            "chunk_count": 0,
-            "paper_count": 0,
-            "question_count": 0,
-        }
+        existing = _new_session_meta(session_id, updates)
         sessions.insert(0, existing)
 
     existing.update(updates)
     existing["updated_at"] = now_text()
     save_user_sessions(user_id, sessions)
     return existing
+
+
+def _new_session_meta(session_id: str, updates: dict) -> dict:
+    return {
+        "session_id": session_id,
+        "title": updates.get("title") or f"会话 {session_id}",
+        "created_at": now_text(),
+        "updated_at": now_text(),
+        "chunk_count": 0,
+        "paper_count": 0,
+        "question_count": 0,
+    }
 
 
 def get_session_label(meta: dict) -> str:
@@ -130,18 +166,21 @@ def rename_session(user_id: str, session_id: str, title: str) -> None:
 
 
 def delete_session(user_id: str, session_id: str) -> str | None:
-    sessions = [
-        item for item in load_user_sessions(user_id) if item["session_id"] != session_id
-    ]
-    save_user_sessions(user_id, sessions)
+    store = _session_store()
+    if store is not None:
+        next_session_id = store.delete(sanitize_identifier(user_id), sanitize_identifier(session_id))
+    else:
+        sessions = [
+            item for item in load_user_sessions(user_id) if item["session_id"] != session_id
+        ]
+        save_user_sessions(user_id, sessions)
+        next_session_id = sessions[0]["session_id"] if sessions else None
 
     session_dir = get_session_dir(user_id, session_id)
     if session_dir.exists():
         shutil.rmtree(session_dir)
 
-    if sessions:
-        return sessions[0]["session_id"]
-    return None
+    return next_session_id
 
 
 def get_history_file(user_id: str, session_id: str) -> Path:

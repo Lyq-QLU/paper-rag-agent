@@ -1,0 +1,5458 @@
+{
+  "scheme": "CCF",
+  "year": 2026,
+  "edition": "第七版正式目录",
+  "source_url": "https://lib.zjgsu.edu.cn/_upload/article/files/f5/b1/f4f7201343b88c0f10564f590ebe/854a3c68-36a6-4698-a359-5184d5e30a0c.pdf",
+  "official_url": "https://www.ccf.org.cn/Academic_Evaluation/By_category/",
+  "sha256": "271b630b576bf8a4f802e767f5694caded93680e22b3a19bef7902591c45c1d3",
+  "entries": [
+    {
+      "name": "ACM Transactions on Computer Systems",
+      "abbreviation": "TOCS",
+      "kind": "journal",
+      "level": "A",
+      "page": 2,
+      "url": "http://dblp.uni-trier.de/db/journals/tocs/"
+    },
+    {
+      "name": "ACM Transactions on Storage",
+      "abbreviation": "TOS",
+      "kind": "journal",
+      "level": "A",
+      "page": 2,
+      "url": "http://dblp.uni-trier.de/db/journals/tos/"
+    },
+    {
+      "name": "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems",
+      "abbreviation": "TCAD",
+      "kind": "journal",
+      "level": "A",
+      "page": 2,
+      "url": "http://dblp.uni-trier.de/db/journals/tcad/"
+    },
+    {
+      "name": "IEEE Transactions on Computers",
+      "abbreviation": "TC",
+      "kind": "journal",
+      "level": "A",
+      "page": 2,
+      "url": "http://dblp.uni-trier.de/db/journals/tc/index.html"
+    },
+    {
+      "name": "IEEE Transactions on Parallel and Distributed Systems",
+      "abbreviation": "TPDS",
+      "kind": "journal",
+      "level": "A",
+      "page": 2,
+      "url": "http://dblp.uni-trier.de/db/journals/tpds/"
+    },
+    {
+      "name": "ACM Transactions on Architecture and Code Optimization",
+      "abbreviation": "TACO",
+      "kind": "journal",
+      "level": "A",
+      "page": 2,
+      "url": "http://dblp.uni-trier.de/db/journals/taco/"
+    },
+    {
+      "name": "ACM Transactions on Autonomous and Adaptive Systems",
+      "abbreviation": "TAAS",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/taas/"
+    },
+    {
+      "name": "ACM Transactions on Design Automation of Electronic Systems",
+      "abbreviation": "TODAES",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/todaes/"
+    },
+    {
+      "name": "ACM Transactions on Embedded Computing Systems",
+      "abbreviation": "TECS",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/tecs/"
+    },
+    {
+      "name": "ACM Transactions on Reconfigurable Technology and Systems",
+      "abbreviation": "TRETS",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/trets/"
+    },
+    {
+      "name": "IEEE Transactions on Very Large Scale Integration (VLSI) Systems",
+      "abbreviation": "TVLSI",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/tvlsi/"
+    },
+    {
+      "name": "Journal of Parallel and Distributed Computing",
+      "abbreviation": "JPDC",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/jpdc/"
+    },
+    {
+      "name": "Journal of Systems Architecture: Embedded Software Design",
+      "abbreviation": "JSA",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "http://dblp.uni-trier.de/db/journals/jsa/"
+    },
+    {
+      "name": "Parallel Computing",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "https://dblp.org/db/journals/pc/index.html"
+    },
+    {
+      "name": "Performance Evaluation: An International Journal",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "https://dblp.org/db/journals/pe/index.html"
+    },
+    {
+      "name": "IEEE Transactions on Cloud Computing",
+      "abbreviation": "TCC",
+      "kind": "journal",
+      "level": "B",
+      "page": 3,
+      "url": "https://dblp.uni-trier.de/db/journals/tcc/"
+    },
+    {
+      "name": "ACM Journal on Emerging Technologies in Computing Systems",
+      "abbreviation": "JETC",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/jetc/"
+    },
+    {
+      "name": "Concurrency and Computation: Practice and Experience",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/concurrency/"
+    },
+    {
+      "name": "Distributed Computing",
+      "abbreviation": "DC",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/dc/"
+    },
+    {
+      "name": "Future Generation Computer Systems",
+      "abbreviation": "FGCS",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/fgcs"
+    },
+    {
+      "name": "Integration, the VLSI Journal",
+      "abbreviation": "Integration",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/integration"
+    },
+    {
+      "name": "Journal of Electronic Testing-Theory and Applications",
+      "abbreviation": "JETTA",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "https://dblp.org/db/journals/et/index.html"
+    },
+    {
+      "name": "Journal of Grid computing",
+      "abbreviation": "JGC",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "https://dblp.uni-trier.de/db/journals/grid/"
+    },
+    {
+      "name": "Real-Time Systems",
+      "abbreviation": "RTS",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/rts/"
+    },
+    {
+      "name": "The Journal of Supercomputing",
+      "abbreviation": "TJSC",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "http://dblp.uni-trier.de/db/journals/tjs/"
+    },
+    {
+      "name": "IEEE Transactions on Circuits and Systems I: Regular Papers",
+      "abbreviation": "TCASI",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "https://dblp.org/db/journals/tcasI/index.html"
+    },
+    {
+      "name": "CCF Transactions on High Performance Computing",
+      "abbreviation": "CCF- THPC",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "https://dblp.org/db/journals/ccfthpc/index.html"
+    },
+    {
+      "name": "IEEE Transactions on Sustainable Computing",
+      "abbreviation": "TSUSC",
+      "kind": "journal",
+      "level": "C",
+      "page": 4,
+      "url": "https://dblp.org/db/journals/tsusc/index.html"
+    },
+    {
+      "name": "ACM SIGPLAN Symposium on Principles & Practice of Parallel Programming",
+      "abbreviation": "PPoPP",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/ppopp/"
+    },
+    {
+      "name": "USENIX Conference on File and Storage Technologies",
+      "abbreviation": "FAST",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/fast/"
+    },
+    {
+      "name": "Design Automation Conference",
+      "abbreviation": "DAC",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "https://dblp.uni-trier.de/db/conf/dac/"
+    },
+    {
+      "name": "IEEE International Symposium on High Performance Computer Architecture",
+      "abbreviation": "HPCA",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/hpca/"
+    },
+    {
+      "name": "IEEE/ACM International Symposium on Microarchitecture",
+      "abbreviation": "MICRO",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "https://dblp.uni-trier.de/db/conf/micro/index.html"
+    },
+    {
+      "name": "International Conference for High Performance Computing, Networking, Storage, and Analysis",
+      "abbreviation": "SC",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/sc/"
+    },
+    {
+      "name": "International Conference on Architectural Support for Programming Languages and Operating Systems",
+      "abbreviation": "ASPLOS",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/asplos/"
+    },
+    {
+      "name": "International Symposium on Computer Architecture",
+      "abbreviation": "ISCA",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/isca/"
+    },
+    {
+      "name": "ACM SIGOPS Annual Technical Conference",
+      "abbreviation": "ACM SIGOPS ATC （原USENIX ATC）",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/usenix/index.html"
+    },
+    {
+      "name": "European Conference on Computer Systems",
+      "abbreviation": "EuroSys",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/eurosys/"
+    },
+    {
+      "name": "The International ACM Symposium on High-Performance Parallel and Distributed Computing",
+      "abbreviation": "HPDC",
+      "kind": "conference",
+      "level": "A",
+      "page": 5,
+      "url": "http://dblp.uni-trier.de/db/conf/hpdc/"
+    },
+    {
+      "name": "ACM Symposium on Cloud Computing",
+      "abbreviation": "SoCC",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/cloud/"
+    },
+    {
+      "name": "ACM Symposium on Parallelism in Algorithms and Architectures",
+      "abbreviation": "SPAA",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/spaa/"
+    },
+    {
+      "name": "ACM Symposium on Principles of Distributed Computing",
+      "abbreviation": "PODC",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/podc/"
+    },
+    {
+      "name": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays",
+      "abbreviation": "FPGA",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/fpga/"
+    },
+    {
+      "name": "The International Symposium on Code Generation and Optimization",
+      "abbreviation": "CGO",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/cgo/"
+    },
+    {
+      "name": "Design, Automation & Test in Europe",
+      "abbreviation": "DATE",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/date/"
+    },
+    {
+      "name": "Hot Chips: A Symposium on High Performance Chips",
+      "abbreviation": "HOT CHIPS",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "https://dblp.org/db/conf/hotchips/index.html"
+    },
+    {
+      "name": "IEEE International Conference on Cluster Computing",
+      "abbreviation": "CLUSTER",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "https://dblp.uni-trier.de/db/conf/cluster/"
+    },
+    {
+      "name": "International Conference on Computer Design",
+      "abbreviation": "ICCD",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/iccd/"
+    },
+    {
+      "name": "International Conference on Computer-Aided Design",
+      "abbreviation": "ICCAD",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/iccad/"
+    },
+    {
+      "name": "IEEE International Conference on Distributed Computing Systems",
+      "abbreviation": "ICDCS",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/icdcs/"
+    },
+    {
+      "name": "International Conference on Hardware/Software Co-design and System Synthesis",
+      "abbreviation": "CODES+ ISSS",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "https://dblp.uni- trier.de/db/conf/codesisss/index.html"
+    },
+    {
+      "name": "International Conference on High Performance and Embedded Architectures and Compilers",
+      "abbreviation": "HiPEAC",
+      "kind": "conference",
+      "level": "B",
+      "page": 6,
+      "url": "http://dblp.uni-trier.de/db/conf/hipeac/"
+    },
+    {
+      "name": "International Conference on Measurement and Modeling of Computer Systems",
+      "abbreviation": "SIG- METRICS",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/sigmetrics/"
+    },
+    {
+      "name": "International Conference on Parallel Architectures and Compilation Techniques",
+      "abbreviation": "PACT",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/IEEEpact/"
+    },
+    {
+      "name": "International Conference on Parallel Processing",
+      "abbreviation": "ICPP",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/icpp/"
+    },
+    {
+      "name": "International Conference on Supercomputing",
+      "abbreviation": "ICS",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/ics/"
+    },
+    {
+      "name": "International Conference on Virtual Execution Environments",
+      "abbreviation": "VEE",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/vee/"
+    },
+    {
+      "name": "IEEE International Parallel & Distributed Processing Symposium",
+      "abbreviation": "IPDPS",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/ipps/"
+    },
+    {
+      "name": "International Symposium on Computer Performance, Modeling, Measurements and Evaluation",
+      "abbreviation": "Performance",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/performance/"
+    },
+    {
+      "name": "International Test Conference",
+      "abbreviation": "ITC",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/itc/"
+    },
+    {
+      "name": "Large Installation System Administration Conference",
+      "abbreviation": "LISA",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/lisa/"
+    },
+    {
+      "name": "Mass Storage Systems and Technologies",
+      "abbreviation": "MSST",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/mss/"
+    },
+    {
+      "name": "IEEE Real-Time and Embedded Technology and Applications Symposium",
+      "abbreviation": "RTAS",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/rtas/"
+    },
+    {
+      "name": "European Conference on Parallel and Distributed Computing Springer",
+      "abbreviation": "Euro-Par",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/europar/"
+    },
+    {
+      "name": "IEEE International Symposium on Circuits and Systems",
+      "abbreviation": "ISCAS",
+      "kind": "conference",
+      "level": "B",
+      "page": 7,
+      "url": "http://dblp.uni-trier.de/db/conf/iscas/"
+    },
+    {
+      "name": "ACM International Conference on Computing Frontiers",
+      "abbreviation": "CF",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/cf"
+    },
+    {
+      "name": "ACM International Systems and Storage Conference",
+      "abbreviation": "SYSTOR",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/systor/index.html"
+    },
+    {
+      "name": "ACM/IEEE International Symposium on Networks-on-Chip",
+      "abbreviation": "NOCS",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/nocs"
+    },
+    {
+      "name": "IEEE International Conference on Application-Specific Systems, Architectures, and Processors",
+      "abbreviation": "ASAP",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/asap"
+    },
+    {
+      "name": "Asia and South Pacific Design Automation Conference",
+      "abbreviation": "ASP-DAC",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/aspdac"
+    },
+    {
+      "name": "IEEE European Test Symposium",
+      "abbreviation": "ETS",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/ets/"
+    },
+    {
+      "name": "International Conference on Field-Programmable Logic and Applications",
+      "abbreviation": "FPL",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/fpl/"
+    },
+    {
+      "name": "IEEE Symposium on Field-Programmable Custom Computing Machines",
+      "abbreviation": "FCCM",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/fccm/"
+    },
+    {
+      "name": "Great Lakes Symposium on VLSI",
+      "abbreviation": "GLSVLSI",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/glvlsi/"
+    },
+    {
+      "name": "IEEE Asian Test Symposium",
+      "abbreviation": "ATS",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/ats/"
+    },
+    {
+      "name": "IEEE International Conference on High Performance Computing and Communications",
+      "abbreviation": "HPCC",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/hpcc/"
+    },
+    {
+      "name": "IEEE International Conference on High Performance Computing, Data and Analytics",
+      "abbreviation": "HiPC",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/hipc/index.html"
+    },
+    {
+      "name": "International Symposium on Modeling, Analysis, and Simulation of Computer and Telecommunication Systems",
+      "abbreviation": "MASCOTS",
+      "kind": "conference",
+      "level": "C",
+      "page": 8,
+      "url": "http://dblp.uni-trier.de/db/conf/mascots/"
+    },
+    {
+      "name": "IEEE International Symposium on Parallel and Distributed Processing with Applications",
+      "abbreviation": "ISPA",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/ispa/"
+    },
+    {
+      "name": "IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing",
+      "abbreviation": "CCGRID",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/ccgrid/"
+    },
+    {
+      "name": "IFIP International Conference on Network and Parallel Computing",
+      "abbreviation": "NPC",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/npc/"
+    },
+    {
+      "name": "International Conference on Algorithms and Architectures for Parallel Processing",
+      "abbreviation": "ICA3PP",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/ica3pp/"
+    },
+    {
+      "name": "International Conference on Compilers, Architectures, and Synthesis for Embedded Systems",
+      "abbreviation": "CASES",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/cases/index.html"
+    },
+    {
+      "name": "International Conference on Field-Programmable Technology",
+      "abbreviation": "FPT",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/fpt/"
+    },
+    {
+      "name": "International Conference on Parallel and Distributed Systems",
+      "abbreviation": "ICPADS",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/icpads/"
+    },
+    {
+      "name": "International Symposium on Low Power Electronics and Design",
+      "abbreviation": "ISLPED",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/islped/"
+    },
+    {
+      "name": "International Symposium on Physical Design",
+      "abbreviation": "ISPD",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/ispd/"
+    },
+    {
+      "name": "IEEE Symposium on High-Performance Interconnects",
+      "abbreviation": "HOTI",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/hoti/"
+    },
+    {
+      "name": "IEEE VLSI Test Symposium",
+      "abbreviation": "VTS",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "http://dblp.uni-trier.de/db/conf/vts/"
+    },
+    {
+      "name": "International Test Conference in Asia",
+      "abbreviation": "ITC-Asia",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "https://dblp.uni-trier.de/db/conf/itc-asia/"
+    },
+    {
+      "name": "ACM/IEEE Symposium on Edge Computing",
+      "abbreviation": "SEC",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "https://dblp.uni-trier.de/db/conf/ieeesec/index.html"
+    },
+    {
+      "name": "International Conference on Networking, Architecture and Storages",
+      "abbreviation": "NAS",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "https://dblp.uni-trier.de/db/conf/nas/index.html"
+    },
+    {
+      "name": "HotStorage",
+      "abbreviation": "HotStorage",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "https://dblp.uni-trier.de/db/conf/hotstorage/index.html"
+    },
+    {
+      "name": "International Symposium on Advanced Parallel Processing Technology",
+      "abbreviation": "APPT",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": "https://dblp.uni-trier.de/db/conf/appt/index.html"
+    },
+    {
+      "name": "International Conference on JointCloud Computing",
+      "abbreviation": "JCC",
+      "kind": "conference",
+      "level": "C",
+      "page": 9,
+      "url": ""
+    },
+    {
+      "name": "IEEE Journal on Selected Areas in Communications",
+      "abbreviation": "JSAC",
+      "kind": "journal",
+      "level": "A",
+      "page": 10,
+      "url": "http://dblp.uni-trier.de/db/journals/jsac/"
+    },
+    {
+      "name": "IEEE Transactions on Mobile Computing",
+      "abbreviation": "TMC",
+      "kind": "journal",
+      "level": "A",
+      "page": 10,
+      "url": "http://dblp.uni-trier.de/db/journals/tmc/"
+    },
+    {
+      "name": "IEEE Transactions on Networking （原IEEE/ACM Transactions on Networking）",
+      "abbreviation": "TON",
+      "kind": "journal",
+      "level": "A",
+      "page": 10,
+      "url": "http://dblp.uni-trier.de/db/journals/ton/"
+    },
+    {
+      "name": "ACM Transactions on Internet Technology",
+      "abbreviation": "TOIT",
+      "kind": "journal",
+      "level": "B",
+      "page": 11,
+      "url": "http://dblp.uni-trier.de/db/journals/toit/"
+    },
+    {
+      "name": "ACM Transactions on Multimedia Computing, Communications and Applications",
+      "abbreviation": "TOMM",
+      "kind": "journal",
+      "level": "B",
+      "page": 11,
+      "url": "http://dblp.uni-trier.de/db/journals/tomccap/"
+    },
+    {
+      "name": "ACM Transactions on Sensor Networks",
+      "abbreviation": "TOSN",
+      "kind": "journal",
+      "level": "B",
+      "page": 11,
+      "url": "http://dblp.uni-trier.de/db/journals/tosn/"
+    },
+    {
+      "name": "Computer Networks",
+      "abbreviation": "CN",
+      "kind": "journal",
+      "level": "B",
+      "page": 11,
+      "url": "http://dblp.uni-trier.de/db/journals/cn/"
+    },
+    {
+      "name": "IEEE Transactions on Communications",
+      "abbreviation": "TCOM",
+      "kind": "journal",
+      "level": "B",
+      "page": 11,
+      "url": "http://dblp.uni-trier.de/db/journals/tcom/"
+    },
+    {
+      "name": "IEEE Transactions on Wireless Communications",
+      "abbreviation": "TWC",
+      "kind": "journal",
+      "level": "B",
+      "page": 11,
+      "url": "http://dblp.uni-trier.de/db/journals/twc/"
+    },
+    {
+      "name": "Ad Hoc Networks",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/adhoc/"
+    },
+    {
+      "name": "Computer Communications",
+      "abbreviation": "CC",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/comcom/"
+    },
+    {
+      "name": "IEEE Transactions on Network and Service Management",
+      "abbreviation": "TNSM",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/tnsm/"
+    },
+    {
+      "name": "IET Communications",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/iet-com/"
+    },
+    {
+      "name": "Journal of Network and Computer Applications",
+      "abbreviation": "JNCA",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/jnca/"
+    },
+    {
+      "name": "Mobile Networks and Applications",
+      "abbreviation": "MONET",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/monet/"
+    },
+    {
+      "name": "Networks",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/networks/"
+    },
+    {
+      "name": "Peer-to-Peer Networking and Applications",
+      "abbreviation": "PPNA",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/ppna/"
+    },
+    {
+      "name": "Wireless Communications and Mobile Computing",
+      "abbreviation": "WCMC",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/wicomm/"
+    },
+    {
+      "name": "Wireless Networks",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "http://dblp.uni-trier.de/db/journals/winet/"
+    },
+    {
+      "name": "IEEE Internet of Things Journal",
+      "abbreviation": "IOT",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "https://dblp.org/db/journals/iotj/index.html"
+    },
+    {
+      "name": "ACM Transactions on Internet of Things",
+      "abbreviation": "TIOT",
+      "kind": "journal",
+      "level": "C",
+      "page": 12,
+      "url": "https://dblp.uni-trier.de/db/journals/tiot/index.html"
+    },
+    {
+      "name": "ACM International Conference on Applications, Technologies, Architectures, and Protocols for Computer Communication",
+      "abbreviation": "SIGCOMM",
+      "kind": "conference",
+      "level": "A",
+      "page": 13,
+      "url": "http://dblp.uni-trier.de/db/conf/sigcomm/index.html"
+    },
+    {
+      "name": "ACM International Conference on Mobile Computing and Networking",
+      "abbreviation": "MobiCom",
+      "kind": "conference",
+      "level": "A",
+      "page": 13,
+      "url": "http://dblp.uni-trier.de/db/conf/mobicom/"
+    },
+    {
+      "name": "IEEE International Conference on Computer Communications",
+      "abbreviation": "INFOCOM",
+      "kind": "conference",
+      "level": "A",
+      "page": 13,
+      "url": "http://dblp.uni-trier.de/db/conf/infocom/"
+    },
+    {
+      "name": "Symposium on Network System Design and Implementation",
+      "abbreviation": "NSDI",
+      "kind": "conference",
+      "level": "A",
+      "page": 13,
+      "url": "http://dblp.uni-trier.de/db/conf/nsdi/"
+    },
+    {
+      "name": "ACM Conference on Embedded Networked Sensor Systems",
+      "abbreviation": "SenSys",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/sensys/"
+    },
+    {
+      "name": "ACM International Conference on Emerging Networking Experiments and Technologies",
+      "abbreviation": "CoNEXT",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/conext/"
+    },
+    {
+      "name": "IEEE International Conference on Sensing, Communication, and Networking",
+      "abbreviation": "SECON",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/secon/"
+    },
+    {
+      "name": "International Conference on Information Processing in Sensor Networks",
+      "abbreviation": "IPSN",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/ipsn/"
+    },
+    {
+      "name": "ACM International Conference on Mobile Systems, Applications, and Services",
+      "abbreviation": "MobiSys",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/mobisys/"
+    },
+    {
+      "name": "IEEE International Conference on Network Protocols",
+      "abbreviation": "ICNP",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/icnp/"
+    },
+    {
+      "name": "International Symposium on Theory, Algorithmic Foundations, and Protocol Design for Mobile Networks and Mobile Computing",
+      "abbreviation": "MobiHoc",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/mobihoc/"
+    },
+    {
+      "name": "International Workshop on Network and Operating System Support for Digital Audio and Video",
+      "abbreviation": "NOSSDAV",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/nossdav/"
+    },
+    {
+      "name": "IEEE/ACM International Workshop on Quality of Service",
+      "abbreviation": "IWQoS",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/iwqos/"
+    },
+    {
+      "name": "ACM Internet Measurement Conference",
+      "abbreviation": "IMC",
+      "kind": "conference",
+      "level": "B",
+      "page": 14,
+      "url": "http://dblp.uni-trier.de/db/conf/imc/"
+    },
+    {
+      "name": "ACM/IEEE Symposium on Architectures for Networking and Communication Systems",
+      "abbreviation": "ANCS",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/ancs/"
+    },
+    {
+      "name": "Asia-Pacific Network Operations and Management Symposium",
+      "abbreviation": "APNOMS",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/apnoms/"
+    },
+    {
+      "name": "International Conference on Formal Techniques for Distributed Objects, Components, and Systems",
+      "abbreviation": "FORTE",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/forte/"
+    },
+    {
+      "name": "IEEE Conference on Local Computer Networks",
+      "abbreviation": "LCN",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/lcn/"
+    },
+    {
+      "name": "IEEE Global Communications Conference",
+      "abbreviation": "GLOBECOM",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/globecom/"
+    },
+    {
+      "name": "IEEE International Conference on Communications",
+      "abbreviation": "ICC",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/icc/"
+    },
+    {
+      "name": "IEEE International Conference on Computer Communications and Networks",
+      "abbreviation": "ICCCN",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/icccn/"
+    },
+    {
+      "name": "IEEE International Conference on Mobile Adhoc and Sensor Systems",
+      "abbreviation": "MASS",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/mass/index.html"
+    },
+    {
+      "name": "IEEE International Conference on Peer-to-Peer Computing",
+      "abbreviation": "P2P",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/p2p/"
+    },
+    {
+      "name": "IEEE International Performance Computing and Communications Conference",
+      "abbreviation": "IPCCC",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/ipccc/"
+    },
+    {
+      "name": "IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks",
+      "abbreviation": "WoWMoM",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/wowmom/"
+    },
+    {
+      "name": "IEEE Symposium on Computers and Communications",
+      "abbreviation": "ISCC",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/iscc/"
+    },
+    {
+      "name": "IEEE Wireless Communications and Networking Conference",
+      "abbreviation": "WCNC",
+      "kind": "conference",
+      "level": "C",
+      "page": 15,
+      "url": "http://dblp.uni-trier.de/db/conf/wcnc/"
+    },
+    {
+      "name": "IFIP International Conferences on Networking",
+      "abbreviation": "Networking",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "http://dblp.uni-trier.de/db/conf/networking/index.html"
+    },
+    {
+      "name": "IFIP/IEEE International Symposium on Integrated Network Management",
+      "abbreviation": "IM",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "http://dblp.uni-trier.de/db/conf/im/index.html"
+    },
+    {
+      "name": "International Conference on Mobility, Sensing and Networking",
+      "abbreviation": "MSN",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "https://dblp.uni-trier.de/db/conf/msn/"
+    },
+    {
+      "name": "International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems",
+      "abbreviation": "MSWiM",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "http://dblp.uni-trier.de/db/conf/mswim/"
+    },
+    {
+      "name": "The International Conference on Wireless Artificial Intelligent Computing Systems and Applications",
+      "abbreviation": "WASA",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "http://dblp.uni-trier.de/db/conf/wasa/"
+    },
+    {
+      "name": "ACM The Workshop on Hot Topics in Networks",
+      "abbreviation": "HotNets",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "http://dblp.uni-trier.de/db/conf/hotnets/"
+    },
+    {
+      "name": "Asia-Pacific Workshop on Networking",
+      "abbreviation": "APNet",
+      "kind": "conference",
+      "level": "C",
+      "page": 16,
+      "url": "https://dblp.org/db/conf/apnet/index.html"
+    },
+    {
+      "name": "IEEE Transactions on Dependable and Secure Computing",
+      "abbreviation": "TDSC",
+      "kind": "journal",
+      "level": "A",
+      "page": 17,
+      "url": "http://dblp.uni-trier.de/db/journals/tdsc/"
+    },
+    {
+      "name": "IEEE Transactions on Information Forensics and Security",
+      "abbreviation": "TIFS",
+      "kind": "journal",
+      "level": "A",
+      "page": 17,
+      "url": "http://dblp.uni-trier.de/db/journals/tifs/"
+    },
+    {
+      "name": "Journal of Cryptology",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "A",
+      "page": 17,
+      "url": "http://dblp.uni-trier.de/db/journals/joc/"
+    },
+    {
+      "name": "ACM Transactions on Privacy and Security",
+      "abbreviation": "TOPS",
+      "kind": "journal",
+      "level": "B",
+      "page": 18,
+      "url": "https://dblp.org/db/journals/tissec/index.html"
+    },
+    {
+      "name": "Computers & Security",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 18,
+      "url": "http://dblp.uni-trier.de/db/journals/compsec/"
+    },
+    {
+      "name": "Designs, Codes and Cryptography",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 18,
+      "url": "http://dblp.uni-trier.de/db/journals/dcc/"
+    },
+    {
+      "name": "Journal of Computer Security",
+      "abbreviation": "JCS",
+      "kind": "journal",
+      "level": "B",
+      "page": 18,
+      "url": "http://dblp.uni-trier.de/db/journals/jcs/"
+    },
+    {
+      "name": "Cybersecurity",
+      "abbreviation": "Cybersecurity",
+      "kind": "journal",
+      "level": "B",
+      "page": 18,
+      "url": "https://dblp.uni- trier.de/db/journals/cybersec/index.html"
+    },
+    {
+      "name": "Computer Law & Security Review",
+      "abbreviation": "CLSR",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "https://dblp.org/db/journals/clsr/index.html"
+    },
+    {
+      "name": "EURASIP Journal on Information Security",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "http://dblp.uni-trier.de/db/journals/ejisec/"
+    },
+    {
+      "name": "IET Information Security",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "http://dblp.uni-trier.de/db/journals/iet-ifs/"
+    },
+    {
+      "name": "Information and Computer Security",
+      "abbreviation": "IMCS",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "http://dblp.uni-trier.de/db/journals/imcs/"
+    },
+    {
+      "name": "International Journal of Information and Computer Security",
+      "abbreviation": "IJICS",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "http://dblp.uni-trier.de/db/journals/ijics/"
+    },
+    {
+      "name": "International Journal of Information Security and Privacy",
+      "abbreviation": "IJISP",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "http://dblp.uni-trier.de/db/journals/ijisp/"
+    },
+    {
+      "name": "Journal of Information Security and Applications",
+      "abbreviation": "JISA",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "https://dblp.uni-trier.de/db/journals/istr/"
+    },
+    {
+      "name": "Security and Communication Networks",
+      "abbreviation": "SCN",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "http://dblp.uni-trier.de/db/journals/scn/"
+    },
+    {
+      "name": "High-Confidence Computing",
+      "abbreviation": "HCC",
+      "kind": "journal",
+      "level": "C",
+      "page": 19,
+      "url": "https://www.journals.elsevier.com/high-confidence- computing"
+    },
+    {
+      "name": "ACM Conference on Computer and Communications Security",
+      "abbreviation": "CCS",
+      "kind": "conference",
+      "level": "A",
+      "page": 20,
+      "url": "http://dblp.uni-trier.de/db/conf/ccs/"
+    },
+    {
+      "name": "International Conference on the Theory and Applications of Cryptographic Techniques",
+      "abbreviation": "EUROCRYPT",
+      "kind": "conference",
+      "level": "A",
+      "page": 20,
+      "url": "http://dblp.uni-trier.de/db/conf/eurocrypt/"
+    },
+    {
+      "name": "IEEE Symposium on Security and Privacy",
+      "abbreviation": "S&P",
+      "kind": "conference",
+      "level": "A",
+      "page": 20,
+      "url": "http://dblp.uni-trier.de/db/conf/sp/"
+    },
+    {
+      "name": "International Cryptology Conference",
+      "abbreviation": "CRYPTO",
+      "kind": "conference",
+      "level": "A",
+      "page": 20,
+      "url": "http://dblp.uni-trier.de/db/conf/crypto/"
+    },
+    {
+      "name": "USENIX Security Symposium",
+      "abbreviation": "USENIX Security",
+      "kind": "conference",
+      "level": "A",
+      "page": 20,
+      "url": "http://dblp.uni-trier.de/db/conf/uss/"
+    },
+    {
+      "name": "Network and Distributed System Security Symposium",
+      "abbreviation": "NDSS",
+      "kind": "conference",
+      "level": "A",
+      "page": 20,
+      "url": "http://dblp.uni-trier.de/db/conf/ndss/"
+    },
+    {
+      "name": "Annual Computer Security Applications Conference",
+      "abbreviation": "ACSAC",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/acsac/index.html"
+    },
+    {
+      "name": "Annual International Conference on the Theory and Application of Cryptology and Information Security",
+      "abbreviation": "ASIACRYPT",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/asiacrypt/index.html"
+    },
+    {
+      "name": "European Symposium on Research in Computer Security",
+      "abbreviation": "ESORICS",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/esorics/index.html"
+    },
+    {
+      "name": "Fast Software Encryption",
+      "abbreviation": "FSE",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/fse/index.html"
+    },
+    {
+      "name": "IEEE Computer Security Foundations Workshop",
+      "abbreviation": "CSFW",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/csfw/index.html"
+    },
+    {
+      "name": "IEEE International Symposium on Reliable Distributed Systems",
+      "abbreviation": "SRDS",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/srds/index.html"
+    },
+    {
+      "name": "International Conference on Cryptographic Hardware and Embedded Systems",
+      "abbreviation": "CHES",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/ches/index.html"
+    },
+    {
+      "name": "International Conference on Dependable Systems and Networks",
+      "abbreviation": "DSN",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/dsn/index.html"
+    },
+    {
+      "name": "International Symposium on Recent Advances in Intrusion Detection",
+      "abbreviation": "RAID",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/raid/index.html"
+    },
+    {
+      "name": "International Workshop on Practice and Theory in Public Key Cryptography",
+      "abbreviation": "PKC",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/pkc/index.html"
+    },
+    {
+      "name": "Theory of Cryptography Conference",
+      "abbreviation": "TCC",
+      "kind": "conference",
+      "level": "B",
+      "page": 21,
+      "url": "https://dblp.uni-trier.de/db/conf/tcc/index.html"
+    },
+    {
+      "name": "ACM Conference on Security and Privacy in Wireless and Mobile Networks",
+      "abbreviation": "WiSec",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/wisec/"
+    },
+    {
+      "name": "ACM Symposium on Access Control Models and Technologies",
+      "abbreviation": "SACMAT",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/sacmat/"
+    },
+    {
+      "name": "ACM Workshop on Digital Rights Management",
+      "abbreviation": "DRM",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/drm/"
+    },
+    {
+      "name": "ACM Workshop on Information Hiding and Multimedia Security",
+      "abbreviation": "IH&MMSec",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/ih/"
+    },
+    {
+      "name": "International Conference on Applied Cryptography and Network Security",
+      "abbreviation": "ACNS",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/acns/"
+    },
+    {
+      "name": "ACM Asia Conference on Computer and Communications Security",
+      "abbreviation": "AsiaCCS",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/ccs/"
+    },
+    {
+      "name": "Australasia Conference on Information Security and Privacy",
+      "abbreviation": "ACISP",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/acisp/"
+    },
+    {
+      "name": "The Cryptographer's Track at RSA Conference",
+      "abbreviation": "CT-RSA",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/ctrsa/"
+    },
+    {
+      "name": "Conference on Detection of Intrusions and Malware & Vulnerability Assessment",
+      "abbreviation": "DIMVA",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/dimva/"
+    },
+    {
+      "name": "Digital Forensic Research Workshop",
+      "abbreviation": "DFRWS",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/dfrws/"
+    },
+    {
+      "name": "Financial Cryptography and Data Security",
+      "abbreviation": "FC",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/fc/"
+    },
+    {
+      "name": "IEEE International Conference on Trust, Security and Privacy in Computing and Communications",
+      "abbreviation": "TrustCom",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/trustcom/"
+    },
+    {
+      "name": "IFIP International Information Security Conference",
+      "abbreviation": "SEC",
+      "kind": "conference",
+      "level": "C",
+      "page": 22,
+      "url": "http://dblp.uni-trier.de/db/conf/sec/"
+    },
+    {
+      "name": "IFIP Working Group 11.9 International Conference on Digital Forensics",
+      "abbreviation": "IFIP WG 11.9",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "https://dblp.org/db/conf/ifip11-9/index.html"
+    },
+    {
+      "name": "Information Security Conference",
+      "abbreviation": "ISC",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/isw/"
+    },
+    {
+      "name": "International Conference on Digital Forensics & Cyber Crime",
+      "abbreviation": "ICDF2C",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/icdf2c/"
+    },
+    {
+      "name": "International Conference on Information and Communications Security",
+      "abbreviation": "ICICS",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/icics/"
+    },
+    {
+      "name": "International Conference on Security and Privacy in Communication Networks",
+      "abbreviation": "SecureComm",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/securecomm/"
+    },
+    {
+      "name": "New Security Paradigms Workshop",
+      "abbreviation": "NSPW",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/nspw/"
+    },
+    {
+      "name": "Passive and Active Measurement Conference",
+      "abbreviation": "PAM",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/pam/"
+    },
+    {
+      "name": "Privacy Enhancing Technologies Symposium",
+      "abbreviation": "PETS",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/pet/"
+    },
+    {
+      "name": "Selected Areas in Cryptography",
+      "abbreviation": "SAC",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/sacrypt/"
+    },
+    {
+      "name": "Symposium On Usable Privacy and Security",
+      "abbreviation": "SOUPS",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://dblp.uni-trier.de/db/conf/soups/"
+    },
+    {
+      "name": "USENIX Workshop on Hot Topics in Security",
+      "abbreviation": "HotSec",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "http://www.usenix.org/events/"
+    },
+    {
+      "name": "IEEE European Symposium on Security and Privacy",
+      "abbreviation": "EuroS&P",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "https://dblp.org/db/conf/eurosp/index.html"
+    },
+    {
+      "name": "International Conference on Information Security and Cryptology",
+      "abbreviation": "Inscrypt",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "https://dblp.org/db/conf/cisc/index.html"
+    },
+    {
+      "name": "Conference on Data and Application Security and Privacy",
+      "abbreviation": "CODASPY",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "https://dblp.uni-trier.de/db/conf/codaspy/index.html"
+    },
+    {
+      "name": "International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems",
+      "abbreviation": "BlockSys",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "https://dblp.uni-trier.de/db/conf/blocksys/index.html"
+    },
+    {
+      "name": "International Conference on Cyber Security and Cloud Computing",
+      "abbreviation": "CSCloud",
+      "kind": "conference",
+      "level": "C",
+      "page": 23,
+      "url": "https://dblp.uni-trier.de/db/conf/cscloud/index.html"
+    },
+    {
+      "name": "ACM Transactions on Programming Languages and Systems",
+      "abbreviation": "TOPLAS",
+      "kind": "journal",
+      "level": "A",
+      "page": 24,
+      "url": "http://dblp.uni-trier.de/db/journals/toplas/"
+    },
+    {
+      "name": "ACM Transactions on Software Engineering and Methodology",
+      "abbreviation": "TOSEM",
+      "kind": "journal",
+      "level": "A",
+      "page": 24,
+      "url": "http://dblp.uni-trier.de/db/journals/tosem/"
+    },
+    {
+      "name": "IEEE Transactions on Software Engineering",
+      "abbreviation": "TSE",
+      "kind": "journal",
+      "level": "A",
+      "page": 24,
+      "url": "http://dblp.uni-trier.de/db/journals/tse/"
+    },
+    {
+      "name": "IEEE Transactions on Services Computing",
+      "abbreviation": "TSC",
+      "kind": "journal",
+      "level": "A",
+      "page": 24,
+      "url": "http://dblp.uni-trier.de/db/journals/tsc/"
+    },
+    {
+      "name": "Automated Software Engineering",
+      "abbreviation": "ASE",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/ase/"
+    },
+    {
+      "name": "Empirical Software Engineering",
+      "abbreviation": "ESE",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/ese/"
+    },
+    {
+      "name": "IET Software",
+      "abbreviation": "IETS",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "https://dblp.uni-trier.de/db/journals/iet-sen/"
+    },
+    {
+      "name": "Information and Software Technology",
+      "abbreviation": "IST",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/infsof/index.html"
+    },
+    {
+      "name": "Journal of Functional Programming",
+      "abbreviation": "JFP",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/jfp/"
+    },
+    {
+      "name": "Journal of Software: Evolution and Process",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/smr/"
+    },
+    {
+      "name": "Journal of Systems and Software",
+      "abbreviation": "JSS",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/jss/"
+    },
+    {
+      "name": "Requirements Engineering",
+      "abbreviation": "RE",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/re/"
+    },
+    {
+      "name": "Science of Computer Programming",
+      "abbreviation": "SCP",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/scp/"
+    },
+    {
+      "name": "Software and Systems Modeling",
+      "abbreviation": "SoSyM",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/sosym/"
+    },
+    {
+      "name": "Software Testing, Verification and Reliability",
+      "abbreviation": "STVR",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/stvr/index.html"
+    },
+    {
+      "name": "Software: Practice and Experience",
+      "abbreviation": "SPE",
+      "kind": "journal",
+      "level": "B",
+      "page": 25,
+      "url": "http://dblp.uni-trier.de/db/journals/spe/"
+    },
+    {
+      "name": "Computer Languages, Systems and Structures",
+      "abbreviation": "CL",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/cl/index.html"
+    },
+    {
+      "name": "International Journal of Software Engineering and Knowledge Engineering",
+      "abbreviation": "IJSEKE",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/ijseke/index.html"
+    },
+    {
+      "name": "International Journal of Software Tools for Technology Transfer",
+      "abbreviation": "STTT",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/sttt/"
+    },
+    {
+      "name": "Journal of Logical and Algebraic Methods in Programming",
+      "abbreviation": "JLAMP",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "https://dblp.uni-trier.de/db/journals/jlap/index.html"
+    },
+    {
+      "name": "Journal of Web Engineering",
+      "abbreviation": "JWE",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/jwe/"
+    },
+    {
+      "name": "Service Oriented Computing and Applications",
+      "abbreviation": "SOCA",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/soca/"
+    },
+    {
+      "name": "Software Quality Journal",
+      "abbreviation": "SQJ",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/sqj/"
+    },
+    {
+      "name": "Theory and Practice of Logic Programming",
+      "abbreviation": "TPLP",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "http://dblp.uni-trier.de/db/journals/tplp/"
+    },
+    {
+      "name": "Proceedings of the ACM on Programming Languages",
+      "abbreviation": "PACM PL",
+      "kind": "journal",
+      "level": "C",
+      "page": 26,
+      "url": "https://dblp.org/db/journals/pacmpl/index.html"
+    },
+    {
+      "name": "ACM SIGPLAN Conference on Programming Language Design and Implementation",
+      "abbreviation": "PLDI",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/pldi/"
+    },
+    {
+      "name": "ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages",
+      "abbreviation": "POPL",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/popl/"
+    },
+    {
+      "name": "ACM International Conference on the Foundations of Software Engineering",
+      "abbreviation": "FSE",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/sigsoft/"
+    },
+    {
+      "name": "ACM Symposium on Operating Systems Principles",
+      "abbreviation": "SOSP",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/sosp/"
+    },
+    {
+      "name": "Conference on Object-Oriented Programming Systems, Languages, and Applications",
+      "abbreviation": "OOPSLA",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/oopsla/"
+    },
+    {
+      "name": "International Conference on Automated Software Engineering",
+      "abbreviation": "ASE",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/kbse/"
+    },
+    {
+      "name": "International Conference on Software Engineering",
+      "abbreviation": "ICSE",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/icse/"
+    },
+    {
+      "name": "International Symposium on Software Testing and Analysis",
+      "abbreviation": "ISSTA",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/issta/"
+    },
+    {
+      "name": "USENIX Symposium on Operating Systems Design and Implementation",
+      "abbreviation": "OSDI",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/osdi/"
+    },
+    {
+      "name": "International Symposium on Formal Methods",
+      "abbreviation": "FM",
+      "kind": "conference",
+      "level": "A",
+      "page": 27,
+      "url": "http://dblp.uni-trier.de/db/conf/fm/"
+    },
+    {
+      "name": "European Conference on Object-Oriented Programming",
+      "abbreviation": "ECOOP",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/ecoop/"
+    },
+    {
+      "name": "European Joint Conferences on Theory and Practice of Software",
+      "abbreviation": "ETAPS",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/etaps/"
+    },
+    {
+      "name": "IEEE International Conference on Program Comprehension",
+      "abbreviation": "ICPC",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/iwpc/"
+    },
+    {
+      "name": "IEEE International Requirements Engineering Conference",
+      "abbreviation": "RE",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/re/"
+    },
+    {
+      "name": "International Conference on Advanced Information Systems Engineering",
+      "abbreviation": "CAiSE",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/caise/"
+    },
+    {
+      "name": "ACM SIGPLAN International Conference on Function Programming",
+      "abbreviation": "ICFP",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/icfp/"
+    },
+    {
+      "name": "ACM SIGPLAN/SIGBED International Conference on Languages, Compilers and Tools for Embedded Systems",
+      "abbreviation": "LCTES",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/lctrts/"
+    },
+    {
+      "name": "ACM/IEEE International Conference on Model Driven EngineeringLanguages and Systems",
+      "abbreviation": "MoDELS",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/models/"
+    },
+    {
+      "name": "International Conference on Principles and Practice of Constraint Programming",
+      "abbreviation": "CP",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/cp/"
+    },
+    {
+      "name": "International Conference on Service Oriented Computing",
+      "abbreviation": "ICSOC",
+      "kind": "conference",
+      "level": "B",
+      "page": 28,
+      "url": "http://dblp.uni-trier.de/db/conf/icsoc/"
+    },
+    {
+      "name": "IEEE International Conference on Software Analysis, Evolution, and Reengineering",
+      "abbreviation": "SANER",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/wcre/"
+    },
+    {
+      "name": "International Conference on Software Maintenance and Evolution",
+      "abbreviation": "ICSME",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/icsm/"
+    },
+    {
+      "name": "International Conference on Verification, Model Checking and Abstract Interpretation",
+      "abbreviation": "VMCAI",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/vmcai/"
+    },
+    {
+      "name": "IEEE International Conference on Web Services",
+      "abbreviation": "ICWS",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/icws/"
+    },
+    {
+      "name": "International Middleware Conference",
+      "abbreviation": "Middleware",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/middleware/"
+    },
+    {
+      "name": "International Static Analysis Symposium",
+      "abbreviation": "SAS",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/sas/"
+    },
+    {
+      "name": "International Symposium on Empirical Software Engineering and Measurement",
+      "abbreviation": "ESEM",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/esem/"
+    },
+    {
+      "name": "IEEE International Symposium on Software Reliability Engineering",
+      "abbreviation": "ISSRE",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/issre/"
+    },
+    {
+      "name": "USENIX Workshop on Hot Topics in Operating Systems",
+      "abbreviation": "HotOS",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "http://dblp.uni-trier.de/db/conf/hotos/"
+    },
+    {
+      "name": "International Conference on Compiler Construction",
+      "abbreviation": "CC",
+      "kind": "conference",
+      "level": "B",
+      "page": 29,
+      "url": "https://dblp.uni-trier.de/db/conf/cc/index.html"
+    },
+    {
+      "name": "ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation",
+      "abbreviation": "PEPM",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/pepm/"
+    },
+    {
+      "name": "ACMSIGPLAN-SIGSOFT Workshop on Program Analysis for Software Tools and Engineering",
+      "abbreviation": "PASTE",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/paste/"
+    },
+    {
+      "name": "Asian Symposium on Programming Languages and Systems",
+      "abbreviation": "APLAS",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/aplas/"
+    },
+    {
+      "name": "Asia-Pacific Software Engineering Conference",
+      "abbreviation": "APSEC",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/apsec/"
+    },
+    {
+      "name": "International Conference on Evaluation and Assessment in Software Engineering",
+      "abbreviation": "EASE",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/ease/"
+    },
+    {
+      "name": "International Conference on Engineering of Complex Computer Systems",
+      "abbreviation": "ICECCS",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/iceccs/"
+    },
+    {
+      "name": "IEEE International Conference on Software Testing, Verification and Validation",
+      "abbreviation": "ICST",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/icst/"
+    },
+    {
+      "name": "IEEE International Symposium on Performance Analysis of Systems and Software",
+      "abbreviation": "ISPASS",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/ispass/"
+    },
+    {
+      "name": "IEEE International Working Conference on Source Code Analysis and Manipulation",
+      "abbreviation": "SCAM",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/scam/"
+    },
+    {
+      "name": "International Computer Software and Applications Conference",
+      "abbreviation": "COMPSAC",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/compsac/"
+    },
+    {
+      "name": "International Conference on Formal Engineering Methods",
+      "abbreviation": "ICFEM",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/icfem/"
+    },
+    {
+      "name": "IEEE International Conference on Software Services Engineering",
+      "abbreviation": "SSE",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "http://dblp.uni-trier.de/db/conf/IEEEscc/"
+    },
+    {
+      "name": "International Conference on Software and System Process",
+      "abbreviation": "ICSSP",
+      "kind": "conference",
+      "level": "C",
+      "page": 30,
+      "url": "https://dblp.uni-trier.de/db/conf/ispw/index.html"
+    },
+    {
+      "name": "International Conference on Software Engineering and Knowledge Engineering",
+      "abbreviation": "SEKE",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/seke/"
+    },
+    {
+      "name": "International Conference on Software Quality, Reliability and Security",
+      "abbreviation": "QRS",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "https://dblp.uni-trier.de/db/conf/qrs/"
+    },
+    {
+      "name": "International Conference on Software Reuse",
+      "abbreviation": "ICSR",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/icsr/"
+    },
+    {
+      "name": "International Conference on Web Engineering",
+      "abbreviation": "ICWE",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/icwe/"
+    },
+    {
+      "name": "International Symposium on Model Checking of Software",
+      "abbreviation": "SPIN",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/spin/index.html"
+    },
+    {
+      "name": "International Symposium on Automated Technology for Verification and Analysis",
+      "abbreviation": "ATVA",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/atva/"
+    },
+    {
+      "name": "International Symposium on Logic-based Program Synthesis and Transformation",
+      "abbreviation": "LOPSTR",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/lopstr/"
+    },
+    {
+      "name": "Theoretical Aspects of Software Engineering Conference",
+      "abbreviation": "TASE",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/tase/"
+    },
+    {
+      "name": "Mining Software Repositories",
+      "abbreviation": "MSR",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/msr/"
+    },
+    {
+      "name": "Requirements Engineering: Foundation for Software Quality",
+      "abbreviation": "REFSQ",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/refsq/"
+    },
+    {
+      "name": "Working IEEE/IFIP Conference on Software Architecture",
+      "abbreviation": "WICSA",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "http://dblp.uni-trier.de/db/conf/wicsa/"
+    },
+    {
+      "name": "Asia-Pacific Symposium on Internetware",
+      "abbreviation": "Internetware",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "https://dblp.org/db/conf/internetware/index.html"
+    },
+    {
+      "name": "International Conference on Runtime Verification",
+      "abbreviation": "RV",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "https://dblp.org/db/conf/rv/index.html"
+    },
+    {
+      "name": "International Conference on Formal Methods and Models for Co-Design",
+      "abbreviation": "MEMOCODE",
+      "kind": "conference",
+      "level": "C",
+      "page": 31,
+      "url": "https://dblp.uni-trier.de/db/conf/memocode/index.html"
+    },
+    {
+      "name": "ACM Transactions on Database Systems",
+      "abbreviation": "TODS",
+      "kind": "journal",
+      "level": "A",
+      "page": 32,
+      "url": "http://dblp.uni-trier.de/db/journals/tods/"
+    },
+    {
+      "name": "ACM Transactions on Information Systems",
+      "abbreviation": "TOIS",
+      "kind": "journal",
+      "level": "A",
+      "page": 32,
+      "url": "http://dblp.uni-trier.de/db/journals/tois/"
+    },
+    {
+      "name": "IEEE Transactions on Knowledge and Data Engineering",
+      "abbreviation": "TKDE",
+      "kind": "journal",
+      "level": "A",
+      "page": 32,
+      "url": "http://dblp.uni-trier.de/db/journals/tkde/"
+    },
+    {
+      "name": "The VLDB Journal",
+      "abbreviation": "VLDBJ",
+      "kind": "journal",
+      "level": "A",
+      "page": 32,
+      "url": "http://dblp.uni-trier.de/db/journals/vldb/"
+    },
+    {
+      "name": "ACM Transactions on Knowledge Discovery from Data",
+      "abbreviation": "TKDD",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/tkdd/"
+    },
+    {
+      "name": "ACM Transactions on the Web",
+      "abbreviation": "TWEB",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/tweb/"
+    },
+    {
+      "name": "Advanced Engineering Informatics",
+      "abbreviation": "AEI",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/aei/"
+    },
+    {
+      "name": "Data & Knowledge Engineering",
+      "abbreviation": "DKE",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/dke/"
+    },
+    {
+      "name": "Data Mining and Knowledge Discovery",
+      "abbreviation": "DMKD",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/datamine/"
+    },
+    {
+      "name": "European Journal of Information Systems",
+      "abbreviation": "EJIS",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/ejis/"
+    },
+    {
+      "name": "GeoInformatica",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/geoinformatica/"
+    },
+    {
+      "name": "Information Processing and Management",
+      "abbreviation": "IPM",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/ipm/"
+    },
+    {
+      "name": "Information Sciences",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/isci/"
+    },
+    {
+      "name": "Information Systems",
+      "abbreviation": "IS",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/is/"
+    },
+    {
+      "name": "Journal of the Association for Information Science and Technology",
+      "abbreviation": "JASIST",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/jasis/"
+    },
+    {
+      "name": "Journal of Web Semantics",
+      "abbreviation": "JWS",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/ws/"
+    },
+    {
+      "name": "Knowledge and Information Systems",
+      "abbreviation": "KAIS",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "http://dblp.uni-trier.de/db/journals/kais/"
+    },
+    {
+      "name": "Data Science and Engineering",
+      "abbreviation": "DSE",
+      "kind": "journal",
+      "level": "B",
+      "page": 33,
+      "url": "https://dblp.org/db/journals/dase/index.html"
+    },
+    {
+      "name": "Distributed and Parallel Databases",
+      "abbreviation": "DPD",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/dpd/"
+    },
+    {
+      "name": "Information & Management",
+      "abbreviation": "I&M",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/iam/"
+    },
+    {
+      "name": "Information Processing Letters",
+      "abbreviation": "IPL",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/ipl/"
+    },
+    {
+      "name": "Discover Computing （原Information Retrieval Journal）",
+      "abbreviation": "（原IR）",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/ir/"
+    },
+    {
+      "name": "International Journal of Cooperative Information Systems",
+      "abbreviation": "IJCIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/ijcis/"
+    },
+    {
+      "name": "International Journal of Geographical Information Science",
+      "abbreviation": "IJGIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/gis/"
+    },
+    {
+      "name": "International Journal of Intelligent Systems",
+      "abbreviation": "IJIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/ijis/"
+    },
+    {
+      "name": "International Journal of Knowledge Management",
+      "abbreviation": "IJKM",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/ijkm/"
+    },
+    {
+      "name": "International Journal on Semantic Web and Information Systems",
+      "abbreviation": "IJSWIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/ijswis/"
+    },
+    {
+      "name": "Journal of Computer Information Systems",
+      "abbreviation": "JCIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/jcis/"
+    },
+    {
+      "name": "Journal of Database Management",
+      "abbreviation": "JDM",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/jdm/"
+    },
+    {
+      "name": "Journal of Global Information Technology Management",
+      "abbreviation": "JGITM",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "https://dblp.org/db/journals/jgim/index.html"
+    },
+    {
+      "name": "Journal of Intelligent Information Systems",
+      "abbreviation": "JIIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/jiis/"
+    },
+    {
+      "name": "The Journal of Strategic Information Systems",
+      "abbreviation": "JSIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "http://dblp.uni-trier.de/db/journals/jsis/"
+    },
+    {
+      "name": "ACM Transactions on Intelligent Systems and Technology",
+      "abbreviation": "TIST",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "https://dblp.uni-trier.de/db/journals/tist/index.html"
+    },
+    {
+      "name": "ACM Transactions on Recommender Systems",
+      "abbreviation": "TORS",
+      "kind": "journal",
+      "level": "C",
+      "page": 34,
+      "url": "https://dblp.uni-trier.de/db/journals/tors/index.html"
+    },
+    {
+      "name": "ACM SIGMOD Conference",
+      "abbreviation": "SIGMOD",
+      "kind": "conference",
+      "level": "A",
+      "page": 35,
+      "url": "http://dblp.uni-trier.de/db/conf/sigmod/"
+    },
+    {
+      "name": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+      "abbreviation": "SIGKDD",
+      "kind": "conference",
+      "level": "A",
+      "page": 35,
+      "url": "http://dblp.uni-trier.de/db/conf/kdd/"
+    },
+    {
+      "name": "IEEE International Conference on Data Engineering",
+      "abbreviation": "ICDE",
+      "kind": "conference",
+      "level": "A",
+      "page": 35,
+      "url": "http://dblp.uni-trier.de/db/conf/icde/"
+    },
+    {
+      "name": "International ACM SIGIR Conference on Research and Development in Information Retrieval",
+      "abbreviation": "SIGIR",
+      "kind": "conference",
+      "level": "A",
+      "page": 35,
+      "url": "http://dblp.uni-trier.de/db/conf/sigir/"
+    },
+    {
+      "name": "International Conference on Very Large Data Bases",
+      "abbreviation": "VLDB",
+      "kind": "conference",
+      "level": "A",
+      "page": 35,
+      "url": "http://dblp.uni-trier.de/db/conf/vldb/"
+    },
+    {
+      "name": "ACM International Conference on Information and Knowledge Management",
+      "abbreviation": "CIKM",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/cikm/"
+    },
+    {
+      "name": "ACM International Conference on Web Search and Data Mining",
+      "abbreviation": "WSDM",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/wsdm/"
+    },
+    {
+      "name": "ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems",
+      "abbreviation": "PODS",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/pods/"
+    },
+    {
+      "name": "International Conference on Database Systems for Advanced Applications",
+      "abbreviation": "DASFAA",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/dasfaa/"
+    },
+    {
+      "name": "European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases",
+      "abbreviation": "ECML-PKDD",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/ecml/ http://dblp.uni-trier.de/db/conf/pkdd/"
+    },
+    {
+      "name": "IEEE International Semantic Web Conference",
+      "abbreviation": "ISWC",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/semweb/"
+    },
+    {
+      "name": "IEEE International Conference on Data Mining",
+      "abbreviation": "ICDM",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/icdm/"
+    },
+    {
+      "name": "International Conference on Database Theory",
+      "abbreviation": "ICDT",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/icdt/"
+    },
+    {
+      "name": "International Conference on Extending Database Technology",
+      "abbreviation": "EDBT",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/edbt/"
+    },
+    {
+      "name": "Conference on Innovative Data Systems Research",
+      "abbreviation": "CIDR",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/cidr/"
+    },
+    {
+      "name": "SIAM International Conference on Data Mining",
+      "abbreviation": "SDM",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/sdm/"
+    },
+    {
+      "name": "ACM Conference on Recommender Systems",
+      "abbreviation": "RecSys",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "https://dblp.org/db/conf/recsys/index. html"
+    },
+    {
+      "name": "Web Information Systems Engineering Conference",
+      "abbreviation": "WISE",
+      "kind": "conference",
+      "level": "B",
+      "page": 36,
+      "url": "http://dblp.uni-trier.de/db/conf/wise/"
+    },
+    {
+      "name": "Asia Pacific Web Conference",
+      "abbreviation": "APWeb",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/apweb/"
+    },
+    {
+      "name": "International Conference on Database and Expert System Applications",
+      "abbreviation": "DEXA",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/dexa/"
+    },
+    {
+      "name": "European Conference on Information Retrieval",
+      "abbreviation": "ECIR",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/ecir/"
+    },
+    {
+      "name": "Extended Semantic Web Conference",
+      "abbreviation": "ESWC",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/esws/"
+    },
+    {
+      "name": "International Workshop on Web and Databases",
+      "abbreviation": "WebDB",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/webdb/"
+    },
+    {
+      "name": "International Conference on Conceptual Modeling",
+      "abbreviation": "ER",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/er/"
+    },
+    {
+      "name": "International Conference on Mobile Data Management",
+      "abbreviation": "MDM",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/mdm/"
+    },
+    {
+      "name": "International Conference on Scientific and Statistical Database Management",
+      "abbreviation": "SSDBM",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/ssdbm/"
+    },
+    {
+      "name": "International Conference on Web Age Information Management",
+      "abbreviation": "WAIM",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/waim/"
+    },
+    {
+      "name": "International Symposium on Spatial and Temporal Databases",
+      "abbreviation": "SSTD",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "https://dblp.uni-trier.de/db/conf/ssd/index.html"
+    },
+    {
+      "name": "Pacific-Asia Conference on Knowledge Discovery and Data Mining",
+      "abbreviation": "PAKDD",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "http://dblp.uni-trier.de/db/conf/pakdd/"
+    },
+    {
+      "name": "International Conference on Advanced Data Mining and Applications",
+      "abbreviation": "ADMA",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "https://dblp.org/db/conf/adma/index.html"
+    },
+    {
+      "name": "Web Information Systems and Applications",
+      "abbreviation": "WISA",
+      "kind": "conference",
+      "level": "C",
+      "page": 37,
+      "url": "https://dblp.uni-trier.de/db/conf/IEEEwisa/index.html"
+    },
+    {
+      "name": "IEEE Transactions on Information Theory",
+      "abbreviation": "TIT",
+      "kind": "journal",
+      "level": "A",
+      "page": 38,
+      "url": "http://dblp.uni-trier.de/db/journals/tit/"
+    },
+    {
+      "name": "Information and Computation",
+      "abbreviation": "IANDC",
+      "kind": "journal",
+      "level": "A",
+      "page": 38,
+      "url": "http://dblp.uni-trier.de/db/journals/iandc/"
+    },
+    {
+      "name": "SIAM Journal on Computing",
+      "abbreviation": "SICOMP",
+      "kind": "journal",
+      "level": "A",
+      "page": 38,
+      "url": "http://dblp.uni-trier.de/db/journals/siamcomp/"
+    },
+    {
+      "name": "ACM Transactions on Algorithms",
+      "abbreviation": "TALG",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/talg/"
+    },
+    {
+      "name": "ACM Transactions on Computational Logic",
+      "abbreviation": "TOCL",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/tocl/"
+    },
+    {
+      "name": "ACM Transactions on Mathematical Software",
+      "abbreviation": "TOMS",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/toms/"
+    },
+    {
+      "name": "Algorithmica",
+      "abbreviation": "Algorithmica",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/algorithmica/"
+    },
+    {
+      "name": "Computational Complexity",
+      "abbreviation": "CC",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/cc/"
+    },
+    {
+      "name": "Formal Aspects of Computing",
+      "abbreviation": "FAC",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/fac/"
+    },
+    {
+      "name": "Formal Methods in System Design",
+      "abbreviation": "FMSD",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/fmsd/"
+    },
+    {
+      "name": "INFORMS Journal on Computing",
+      "abbreviation": "INFORMS",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/informs/"
+    },
+    {
+      "name": "Journal of Computer and System Sciences",
+      "abbreviation": "JCSS",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/jcss/"
+    },
+    {
+      "name": "Journal of Global Optimization",
+      "abbreviation": "JGO",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/jgo/"
+    },
+    {
+      "name": "Journal of Symbolic Computation",
+      "abbreviation": "JSC",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/jsc/"
+    },
+    {
+      "name": "Mathematical Structures in Computer Science",
+      "abbreviation": "MSCS",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/mscs/"
+    },
+    {
+      "name": "Theoretical Computer Science",
+      "abbreviation": "TCS",
+      "kind": "journal",
+      "level": "B",
+      "page": 39,
+      "url": "http://dblp.uni-trier.de/db/journals/tcs/"
+    },
+    {
+      "name": "Acta Informatica",
+      "abbreviation": "ACTA",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/acta/"
+    },
+    {
+      "name": "Annals of Pure and Applied Logic",
+      "abbreviation": "APAL",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/apal/"
+    },
+    {
+      "name": "Discrete Applied Mathematics",
+      "abbreviation": "DAM",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/dam/"
+    },
+    {
+      "name": "Fundamenta Informaticae",
+      "abbreviation": "FUIN",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/fuin/"
+    },
+    {
+      "name": "Information Processing Letters",
+      "abbreviation": "IPL",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/ipl/"
+    },
+    {
+      "name": "Journal of Complexity",
+      "abbreviation": "JCOMPLEXI TY",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/jc/"
+    },
+    {
+      "name": "Journal of Logic and Computation",
+      "abbreviation": "LOGCOM",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/logcom/"
+    },
+    {
+      "name": "The Journal of Symbolic Logic",
+      "abbreviation": "JSL",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/jsyml/"
+    },
+    {
+      "name": "Logical Methods in Computer Science",
+      "abbreviation": "LMCS",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/lmcs/"
+    },
+    {
+      "name": "SIAM Journal on Discrete Mathematics",
+      "abbreviation": "SIDMA",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/siamdm/"
+    },
+    {
+      "name": "Theory of Computing Systems",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "http://dblp.uni-trier.de/db/journals/mst/"
+    },
+    {
+      "name": "ACM Transactions in Quantum Computing",
+      "abbreviation": "TQC",
+      "kind": "journal",
+      "level": "C",
+      "page": 40,
+      "url": "https://dblp.org/db/journals/tqc/index.html"
+    },
+    {
+      "name": "ACM Symposium on the Theory of Computing",
+      "abbreviation": "STOC",
+      "kind": "conference",
+      "level": "A",
+      "page": 41,
+      "url": "http://dblp.uni-trier.de/db/conf/stoc/"
+    },
+    {
+      "name": "ACM-SIAM Symposium on Discrete Algorithms",
+      "abbreviation": "SODA",
+      "kind": "conference",
+      "level": "A",
+      "page": 41,
+      "url": "http://dblp.uni-trier.de/db/conf/soda/"
+    },
+    {
+      "name": "International Conference on Computer Aided Verification",
+      "abbreviation": "CAV",
+      "kind": "conference",
+      "level": "A",
+      "page": 41,
+      "url": "http://dblp.uni-trier.de/db/conf/cav/"
+    },
+    {
+      "name": "IEEE Annual Symposium on Foundations of Computer Science",
+      "abbreviation": "FOCS",
+      "kind": "conference",
+      "level": "A",
+      "page": 41,
+      "url": "http://dblp.uni-trier.de/db/conf/focs/"
+    },
+    {
+      "name": "ACM/IEEE Symposium on Logic in Computer Science",
+      "abbreviation": "LICS",
+      "kind": "conference",
+      "level": "A",
+      "page": 41,
+      "url": "http://dblp.uni-trier.de/db/conf/lics/"
+    },
+    {
+      "name": "International Symposium on Computational Geometry",
+      "abbreviation": "SoCG",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "https://dblp.uni-trier.de/db/conf/compgeom/index.html"
+    },
+    {
+      "name": "European Symposium on Algorithms",
+      "abbreviation": "ESA",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/esa/"
+    },
+    {
+      "name": "Conference on Computational Complexity",
+      "abbreviation": "CCC",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/coco/"
+    },
+    {
+      "name": "International Colloquium on Automata, Languages and Programming",
+      "abbreviation": "ICALP",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/icalp/"
+    },
+    {
+      "name": "Conference on Automated Deduction",
+      "abbreviation": "CADE",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/cade/"
+    },
+    {
+      "name": "International Conference on Concurrency Theory",
+      "abbreviation": "CONCUR",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/concur/"
+    },
+    {
+      "name": "International Conference on Hybrid Systems: Computation and Control",
+      "abbreviation": "HSCC",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/hybrid/"
+    },
+    {
+      "name": "International Conference on Theory and Applications of Satisfiability Testing",
+      "abbreviation": "SAT",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/sat/"
+    },
+    {
+      "name": "International Computing and Combinatorics Conference",
+      "abbreviation": "COCOON",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "https://dblp.org/db/conf/cocoon/index.html"
+    },
+    {
+      "name": "Formal Methods in Computer-Aided Design",
+      "abbreviation": "FMCAD",
+      "kind": "conference",
+      "level": "B",
+      "page": 42,
+      "url": "http://dblp.uni-trier.de/db/conf/fmcad/"
+    },
+    {
+      "name": "Computer Science Logic",
+      "abbreviation": "CSL",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/csl/"
+    },
+    {
+      "name": "Foundations of Software Technology and Theoretical Computer Science",
+      "abbreviation": "FSTTCS",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/fsttcs/"
+    },
+    {
+      "name": "IEEE International Conference on Data Science and Advanced Analytics",
+      "abbreviation": "DSAA",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "https://dblp.uni-trier.de/db/conf/dsaa/"
+    },
+    {
+      "name": "International Colloquium on Theoretical Aspects of Computing",
+      "abbreviation": "ICTAC",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/ictac/"
+    },
+    {
+      "name": "International Conference on Integer Programming and Combinatorial Optimization",
+      "abbreviation": "IPCO",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/ipco/"
+    },
+    {
+      "name": "International Conference on Formal Structures for Computation and Deduction",
+      "abbreviation": "FSCD （原RTA）",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/rta/"
+    },
+    {
+      "name": "International Symposium on Algorithms and Computation",
+      "abbreviation": "ISAAC",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/isaac/"
+    },
+    {
+      "name": "International Conference on Mathematical Foundations of Computer Science",
+      "abbreviation": "MFCS",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/mfcs/"
+    },
+    {
+      "name": "Symposium on Theoretical Aspects of Computer Science",
+      "abbreviation": "STACS",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "http://dblp.uni-trier.de/db/conf/stacs/"
+    },
+    {
+      "name": "International Symposium on Software Engineering: Theories, Tools, and Applications",
+      "abbreviation": "SETTA",
+      "kind": "conference",
+      "level": "C",
+      "page": 43,
+      "url": "https://dblp.org/db/conf/setta/index. html"
+    },
+    {
+      "name": "ACM Transactions on Graphics",
+      "abbreviation": "TOG",
+      "kind": "journal",
+      "level": "A",
+      "page": 44,
+      "url": "http://dblp.uni-trier.de/db/journals/tog/"
+    },
+    {
+      "name": "IEEE Transactions on Image Processing",
+      "abbreviation": "TIP",
+      "kind": "journal",
+      "level": "A",
+      "page": 44,
+      "url": "http://dblp.uni-trier.de/db/journals/tip/"
+    },
+    {
+      "name": "IEEE Transactions on Visualization and Computer Graphics",
+      "abbreviation": "TVCG",
+      "kind": "journal",
+      "level": "A",
+      "page": 44,
+      "url": "http://dblp.uni-trier.de/db/journals/tvcg/"
+    },
+    {
+      "name": "IEEE Transactions on Multimedia",
+      "abbreviation": "TMM",
+      "kind": "journal",
+      "level": "A",
+      "page": 44,
+      "url": "http://dblp.uni-trier.de/db/journals/tmm/"
+    },
+    {
+      "name": "ACM Transactions on Multimedia Computing, Communications and Applications",
+      "abbreviation": "TOMM",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/tomccap/"
+    },
+    {
+      "name": "Computer Aided Geometric Design",
+      "abbreviation": "CAGD",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/cagd/"
+    },
+    {
+      "name": "Computer Graphics Forum",
+      "abbreviation": "CGF",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/cgf/"
+    },
+    {
+      "name": "Computer-Aided Design",
+      "abbreviation": "CAD",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/cad/"
+    },
+    {
+      "name": "IEEE Transactions on Circuits and Systems for Video Technology",
+      "abbreviation": "TCSVT",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/tcsv/"
+    },
+    {
+      "name": "The Journal of the Acoustical Society of America",
+      "abbreviation": "JASA",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://scitation.aip.org/content/asa/jo urnal/jasa"
+    },
+    {
+      "name": "SIAM Journal on Imaging Sciences",
+      "abbreviation": "SIIMS",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/siamis/"
+    },
+    {
+      "name": "Speech Communication",
+      "abbreviation": "SPECOM",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "http://dblp.uni- trier.de/db/journals/speech/"
+    },
+    {
+      "name": "Computational Visual Media",
+      "abbreviation": "CVMJ",
+      "kind": "journal",
+      "level": "B",
+      "page": 45,
+      "url": "https://dblp.org/db/journals/cvm/inde x.html"
+    },
+    {
+      "name": "Computational Geometry: Theory and Applications",
+      "abbreviation": "CGTA",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/comgeo/"
+    },
+    {
+      "name": "Computer animation & virtual worlds",
+      "abbreviation": "CAVW",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "https://dblp.org/db/journals/jvca/index.html"
+    },
+    {
+      "name": "Computers & Graphics",
+      "abbreviation": "C&G",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/cg/"
+    },
+    {
+      "name": "Discrete & Computational Geometry",
+      "abbreviation": "DCG",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/dcg/"
+    },
+    {
+      "name": "IEEE Signal Processing Letters",
+      "abbreviation": "SPL",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/spl/"
+    },
+    {
+      "name": "IET Image Processing",
+      "abbreviation": "IET-IPR",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/iet-ipr/"
+    },
+    {
+      "name": "Journal of Visual Communication and Image Representation",
+      "abbreviation": "JVCIR",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/jvcir/"
+    },
+    {
+      "name": "Multimedia Systems",
+      "abbreviation": "MS",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/mms/"
+    },
+    {
+      "name": "Multimedia Tools and Applications",
+      "abbreviation": "MTA",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/mta/"
+    },
+    {
+      "name": "Signal Processing",
+      "abbreviation": "SIGPRO",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/sigpro/"
+    },
+    {
+      "name": "Signal Processing: Image Communication",
+      "abbreviation": "IMAGE",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/spic/"
+    },
+    {
+      "name": "The Visual Computer",
+      "abbreviation": "TVC",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/vc/"
+    },
+    {
+      "name": "Visual Informatics",
+      "abbreviation": "VI",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "https://dblp.uni-trier.de/db/journals/vi/index.html"
+    },
+    {
+      "name": "Virtual Reality & Intelligent Hardware",
+      "abbreviation": "VRIH",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "https://dblp.uni-trier.de/db/journals/vrih/index.html"
+    },
+    {
+      "name": "Graphical Models",
+      "abbreviation": "GMOD",
+      "kind": "journal",
+      "level": "C",
+      "page": 46,
+      "url": "http://dblp.uni-trier.de/db/journals/cvgip/"
+    },
+    {
+      "name": "ACM International Conference on Multimedia",
+      "abbreviation": "ACM MM",
+      "kind": "conference",
+      "level": "A",
+      "page": 47,
+      "url": "http://dblp.uni-trier.de/db/conf/mm/"
+    },
+    {
+      "name": "ACM Special Interest Group on Computer Graphics",
+      "abbreviation": "SIGGRAPH",
+      "kind": "conference",
+      "level": "A",
+      "page": 47,
+      "url": "http://dblp.uni- trier.de/db/conf/siggraph/index.html"
+    },
+    {
+      "name": "IEEE Conference on Virtual Reality and 3D User Interfaces （原IEEE Virtual Reality）",
+      "abbreviation": "VR",
+      "kind": "conference",
+      "level": "A",
+      "page": 47,
+      "url": "http://dblp.uni-trier.de/db/conf/vr/"
+    },
+    {
+      "name": "IEEE Visualization Conference",
+      "abbreviation": "IEEE VIS",
+      "kind": "conference",
+      "level": "A",
+      "page": 47,
+      "url": "http://dblp.uni- trier.de/db/conf/visualization/index.html"
+    },
+    {
+      "name": "ACM SIGMM International Conference on Multimedia Retrieval",
+      "abbreviation": "ICMR",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/mir/"
+    },
+    {
+      "name": "ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games",
+      "abbreviation": "I3D",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/si3d/"
+    },
+    {
+      "name": "ACM SIGGRAPH/Eurographics Symposium on Computer Animation",
+      "abbreviation": "SCA",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/sca/index.html"
+    },
+    {
+      "name": "Data Compression Conference",
+      "abbreviation": "DCC",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/dcc/"
+    },
+    {
+      "name": "Annual Conference of the European Association for Computer Graphics",
+      "abbreviation": "Eurographics",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/eurographics/"
+    },
+    {
+      "name": "Eurographics Conference on Visualization",
+      "abbreviation": "EuroVis",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/vissym/"
+    },
+    {
+      "name": "Eurographics Symposium on Geometry Processing",
+      "abbreviation": "SGP",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/sgp/"
+    },
+    {
+      "name": "Eurographics Symposium on Rendering",
+      "abbreviation": "EGSR",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/rt/"
+    },
+    {
+      "name": "IEEE International Conference on Acoustics, Speech and Signal Processing",
+      "abbreviation": "ICASSP",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/icassp/"
+    },
+    {
+      "name": "IEEE International Conference on Multimedia & Expo",
+      "abbreviation": "ICME",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/icmcs/"
+    },
+    {
+      "name": "International Symposium on Mixed and Augmented Reality",
+      "abbreviation": "ISMAR",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/ismar/"
+    },
+    {
+      "name": "Pacific Conference onComputer Graphics and Applications",
+      "abbreviation": "PG",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/pg/index.html"
+    },
+    {
+      "name": "Symposium on Solid and Physical Modeling",
+      "abbreviation": "SPM",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/sma/"
+    },
+    {
+      "name": "Conference of the International Speech Communication Association",
+      "abbreviation": "INTER- SPEECH",
+      "kind": "conference",
+      "level": "B",
+      "page": 48,
+      "url": "http://dblp.uni-trier.de/db/conf/interspeech/index.html"
+    },
+    {
+      "name": "ACM Symposium on Virtual Reality Software and Technology",
+      "abbreviation": "VRST",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp2.uni-trier.de/db/conf/vrst/"
+    },
+    {
+      "name": "International Conference on Computer Animation, Social Agents, and Extended Reality （原International Conference on Computer Animation and Social Agents）",
+      "abbreviation": "CASAXR （原CASA）",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni-trier.de/db/conf/ca/"
+    },
+    {
+      "name": "Computer Graphics International",
+      "abbreviation": "CGI",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni-trier.de/db/conf/cgi/"
+    },
+    {
+      "name": "Geometric Modeling and Processing",
+      "abbreviation": "GMP",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni-trier.de/db/conf/gmp/"
+    },
+    {
+      "name": "IEEE Pacific Visualization Symposium",
+      "abbreviation": "PacificVis",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni-trier.de/db/conf/apvis/"
+    },
+    {
+      "name": "International Conference on 3D Vision",
+      "abbreviation": "3DV",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "https://dblp.uni-trier.de/db/conf/3dim/"
+    },
+    {
+      "name": "International Conference on Computer-Aided Design and Computer Graphics Processing",
+      "abbreviation": "CAD/Graphics",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "https://dblp.uni- trier.de/db/conf/cadgraphics/"
+    },
+    {
+      "name": "IEEE International Conference on Image Processing",
+      "abbreviation": "ICIP",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni-trier.de/db/conf/icip/"
+    },
+    {
+      "name": "International Conference on Multimedia Modeling",
+      "abbreviation": "MMM",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni- trier.de/db/conf/mmm/index.html"
+    },
+    {
+      "name": "ACM Multimedia Asia",
+      "abbreviation": "MMAsia",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "https://dblp.uni- trier.de/db/conf/mmasia/index.html"
+    },
+    {
+      "name": "Shape Modeling International",
+      "abbreviation": "SMI",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "http://dblp.uni-trier.de/db/conf/smi/"
+    },
+    {
+      "name": "Computational Visual Media",
+      "abbreviation": "CVM",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "https://dblp.org/db/conf/cvm/index.htm l"
+    },
+    {
+      "name": "Chinese Conference on Pattern Recognition and Computer Vision",
+      "abbreviation": "PRCV",
+      "kind": "conference",
+      "level": "C",
+      "page": 49,
+      "url": "https://dblp.org/db/conf/prcv/index.ht ml"
+    },
+    {
+      "name": "International Conference on Image and Graphics",
+      "abbreviation": "ICIG",
+      "kind": "conference",
+      "level": "C",
+      "page": 50,
+      "url": "https://dblp.uni-trier.de/db/conf/icig/index.html"
+    },
+    {
+      "name": "National Conference on Man-Machine Speech Communication",
+      "abbreviation": "NCMMSC",
+      "kind": "conference",
+      "level": "C",
+      "page": 50,
+      "url": "https://dblp.uni-trier.de/search?q=NCMMSC"
+    },
+    {
+      "name": "Automatic Speech Recognition and Understanding Workshop",
+      "abbreviation": "ASRU",
+      "kind": "conference",
+      "level": "C",
+      "page": 50,
+      "url": "https://dblp.uni-trier.de/db/conf/asru/index.html"
+    },
+    {
+      "name": "Spoken Language Technology",
+      "abbreviation": "SLT",
+      "kind": "conference",
+      "level": "C",
+      "page": 50,
+      "url": "https://dblp.uni-trier.de/db/conf/slt/index.html"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "abbreviation": "AI",
+      "kind": "journal",
+      "level": "A",
+      "page": 51,
+      "url": "http://dblp.uni-trier.de/db/journals/ai/"
+    },
+    {
+      "name": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "abbreviation": "TPAMI",
+      "kind": "journal",
+      "level": "A",
+      "page": 51,
+      "url": "http://dblp.uni-trier.de/db/journals/pami/"
+    },
+    {
+      "name": "International Journal of Computer Vision",
+      "abbreviation": "IJCV",
+      "kind": "journal",
+      "level": "A",
+      "page": 51,
+      "url": "http://dblp.uni-trier.de/db/journals/ijcv/"
+    },
+    {
+      "name": "Journal of Machine Learning Research",
+      "abbreviation": "JMLR",
+      "kind": "journal",
+      "level": "A",
+      "page": 51,
+      "url": "http://dblp.uni-trier.de/db/journals/jmlr/"
+    },
+    {
+      "name": "ACM Transactions on Applied Perception",
+      "abbreviation": "TAP",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/tap/"
+    },
+    {
+      "name": "Autonomous Agents and Multi-Agent Systems",
+      "abbreviation": "AAMAS",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/aamas/"
+    },
+    {
+      "name": "Computational Linguistics",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/coling/"
+    },
+    {
+      "name": "Computer Vision and Image Understanding",
+      "abbreviation": "CVIU",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/cviu/"
+    },
+    {
+      "name": "Data & Knowledge Engineering",
+      "abbreviation": "DKE",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/dke/index.html"
+    },
+    {
+      "name": "Evolutionary Computation",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/ec/"
+    },
+    {
+      "name": "IEEE Transactions on Affective Computing",
+      "abbreviation": "TAC",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/taffco/"
+    },
+    {
+      "name": "IEEE Transactions on Audio, Speech and Language Processing （原IEEE/ACM Transactions on Audio, Speech and Language Processing）",
+      "abbreviation": "TASLP",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/taslp/"
+    },
+    {
+      "name": "IEEE Transactions on Cybernetics",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/tcyb/"
+    },
+    {
+      "name": "IEEE Transactions on Evolutionary Computation",
+      "abbreviation": "TEC",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/tec/"
+    },
+    {
+      "name": "IEEE Transactions on Fuzzy Systems",
+      "abbreviation": "TFS",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/tfs/"
+    },
+    {
+      "name": "IEEE Transactions on Neural Networks and learning systems",
+      "abbreviation": "TNNLS",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/tnn/"
+    },
+    {
+      "name": "International Journal of Approximate Reasoning",
+      "abbreviation": "IJAR",
+      "kind": "journal",
+      "level": "B",
+      "page": 52,
+      "url": "http://dblp.uni-trier.de/db/journals/ijar/"
+    },
+    {
+      "name": "Journal of Artificial Intelligence Research",
+      "abbreviation": "JAIR",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://dblp.uni-trier.de/db/journals/jair/index.html"
+    },
+    {
+      "name": "Journal of Automated Reasoning",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://dblp.uni-trier.de/db/journals/jar/"
+    },
+    {
+      "name": "Journal of Speech, Language, and Hearing Research",
+      "abbreviation": "JSLHR",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://jslhr.pubs.asha.org/"
+    },
+    {
+      "name": "Machine Learning",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://dblp.uni-trier.de/db/journals/ml/"
+    },
+    {
+      "name": "Neural Computation",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://dblp.uni-trier.de/db/journals/neco/"
+    },
+    {
+      "name": "Neural Networks",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://dblp.uni-trier.de/db/journals/nn/"
+    },
+    {
+      "name": "Pattern Recognition",
+      "abbreviation": "PR",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "http://dblp.uni-trier.de/db/conf/par/"
+    },
+    {
+      "name": "Transactions of the Association for Computational Linguistics",
+      "abbreviation": "TACL",
+      "kind": "journal",
+      "level": "B",
+      "page": 53,
+      "url": "https://dblp.org/db/journals/tacl/index.html"
+    },
+    {
+      "name": "ACM Transactions on Asian and Low-Resource Language Information Processing",
+      "abbreviation": "TALLIP",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/talip/"
+    },
+    {
+      "name": "Applied Intelligence",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/apin/"
+    },
+    {
+      "name": "Artificial Intelligence in Medicine",
+      "abbreviation": "AIM",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/artmed/"
+    },
+    {
+      "name": "Artificial Life",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/alife/"
+    },
+    {
+      "name": "Computational Intelligence",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/ci/"
+    },
+    {
+      "name": "Computer Speech & Language",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/csl/"
+    },
+    {
+      "name": "Connection Science",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/connection/"
+    },
+    {
+      "name": "Decision Support Systems",
+      "abbreviation": "DSS",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/dss/"
+    },
+    {
+      "name": "Engineering Applications of Artificial Intelligence",
+      "abbreviation": "EAAI",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/eaai/"
+    },
+    {
+      "name": "Expert Systems",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/es/"
+    },
+    {
+      "name": "Expert Systems with Applications",
+      "abbreviation": "ESWA",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/eswa/"
+    },
+    {
+      "name": "Fuzzy Sets and Systems",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/fss/"
+    },
+    {
+      "name": "IEEE Transactions on Games",
+      "abbreviation": "TG",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "http://dblp.uni-trier.de/db/journals/tciaig/"
+    },
+    {
+      "name": "IET Computer Vision",
+      "abbreviation": "IET-CVI",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "https://dblp.org/db/journals/iet-cvi/index.html"
+    },
+    {
+      "name": "IET Signal Processing",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 54,
+      "url": "https://dblp.org/db/journals/iet-spr/index.html"
+    },
+    {
+      "name": "Image and Vision Computing",
+      "abbreviation": "IVC",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ivc/"
+    },
+    {
+      "name": "Intelligent Data Analysis",
+      "abbreviation": "IDA",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ida/"
+    },
+    {
+      "name": "International Journal of Computational Intelligence and Applications",
+      "abbreviation": "IJCIA",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ijcia/"
+    },
+    {
+      "name": "International Journal of Intelligent Systems",
+      "abbreviation": "IJIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ijis/"
+    },
+    {
+      "name": "International Journal of Neural Systems",
+      "abbreviation": "IJNS",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ijns/"
+    },
+    {
+      "name": "International Journal of Pattern Recognition and Artificial Intelligence",
+      "abbreviation": "IJPRAI",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ijprai/"
+    },
+    {
+      "name": "International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems",
+      "abbreviation": "IJUFKS",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "https://dblp.uni-trier.de/db/journals/ijufks/"
+    },
+    {
+      "name": "International Journal on Document Analysis and Recognition",
+      "abbreviation": "IJDAR",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/ijdar/"
+    },
+    {
+      "name": "Journal of Experimental and Theoretical Artificial Intelligence",
+      "abbreviation": "JETAI",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/jetai/"
+    },
+    {
+      "name": "Knowledge-Based Systems",
+      "abbreviation": "KBS",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/kbs/"
+    },
+    {
+      "name": "Machine Translation",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/mt/"
+    },
+    {
+      "name": "Machine Vision and Applications",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/mva/"
+    },
+    {
+      "name": "Natural Computing",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/nc/"
+    },
+    {
+      "name": "Natural Language Engineering",
+      "abbreviation": "NLE",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/nle/"
+    },
+    {
+      "name": "Neural Computing and Applications",
+      "abbreviation": "NCA",
+      "kind": "journal",
+      "level": "C",
+      "page": 55,
+      "url": "http://dblp.uni-trier.de/db/journals/nca/"
+    },
+    {
+      "name": "Neural Processing Letters",
+      "abbreviation": "NPL",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "http://dblp.uni-trier.de/db/journals/npl/"
+    },
+    {
+      "name": "Neurocomputing",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "http://dblp.uni-trier.de/db/journals/ijon/"
+    },
+    {
+      "name": "Pattern Analysis and Applications",
+      "abbreviation": "PAA",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "http://dblp.uni-trier.de/db/journals/paa/"
+    },
+    {
+      "name": "Pattern Recognition Letters",
+      "abbreviation": "PRL",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "http://dblp.uni-trier.de/db/journals/prl/"
+    },
+    {
+      "name": "Soft Computing",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "http://dblp.uni-trier.de/db/journals/soco/"
+    },
+    {
+      "name": "Web Intelligence",
+      "abbreviation": "WI",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "http://dblp.uni-trier.de/db/journals/wias/"
+    },
+    {
+      "name": "ACM Transactions on Interactive Intelligent Systems",
+      "abbreviation": "TIIS",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "https://dblp.org/db/journals/tiis/index.html"
+    },
+    {
+      "name": "ACM Transactions on Evolutionary Learning and Optimization",
+      "abbreviation": "TELO",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": "https://dblp.uni-trier.de/db/journals/telo/index.html"
+    },
+    {
+      "name": "ACM Journal on Autonomous Transportation Systems",
+      "abbreviation": "JATS",
+      "kind": "journal",
+      "level": "C",
+      "page": 56,
+      "url": ""
+    },
+    {
+      "name": "AAAI Conference on Artificial Intelligence",
+      "abbreviation": "AAAI",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "http://dblp.uni-trier.de/db/conf/aaai/"
+    },
+    {
+      "name": "Conference on Neural Information Processing Systems",
+      "abbreviation": "NeurIPS",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "http://dblp.uni-trier.de/db/conf/nips/"
+    },
+    {
+      "name": "Annual Meeting of the Association for Computational Linguistics",
+      "abbreviation": "ACL",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "http://dblp.uni-trier.de/db/conf/acl/"
+    },
+    {
+      "name": "IEEE/CVF Computer Vision and Pattern Recognition Conference",
+      "abbreviation": "CVPR",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "http://dblp.uni-trier.de/db/conf/cvpr/"
+    },
+    {
+      "name": "International Conference on Computer Vision",
+      "abbreviation": "ICCV",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "http://dblp.uni-trier.de/db/conf/iccv/"
+    },
+    {
+      "name": "International Conference on Machine Learning",
+      "abbreviation": "ICML",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "http://dblp.uni-trier.de/db/conf/icml/"
+    },
+    {
+      "name": "International Conference on Learning Representations",
+      "abbreviation": "ICLR",
+      "kind": "conference",
+      "level": "A",
+      "page": 57,
+      "url": "https://dblp.uni-trier.de/db/conf/iclr/index.html"
+    },
+    {
+      "name": "Annual Conference on Computational Learning Theory",
+      "abbreviation": "COLT",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/colt/"
+    },
+    {
+      "name": "Conference on Empirical Methods in Natural Language Processing",
+      "abbreviation": "EMNLP",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/emnlp/"
+    },
+    {
+      "name": "European Conference on Artificial Intelligence",
+      "abbreviation": "ECAI",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/ecai/"
+    },
+    {
+      "name": "European Conference on Computer Vision",
+      "abbreviation": "ECCV",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/eccv/"
+    },
+    {
+      "name": "IEEE International Conference on Robotics and Automation",
+      "abbreviation": "ICRA",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/icra/"
+    },
+    {
+      "name": "International Conference on Automated Planning and Scheduling",
+      "abbreviation": "ICAPS",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "https://dblp.uni- trier.de/db/conf/icaps/index.html"
+    },
+    {
+      "name": "International Conference on Case-Based Reasoning",
+      "abbreviation": "ICCBR",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/iccbr/"
+    },
+    {
+      "name": "International Conference on Computational Linguistics",
+      "abbreviation": "COLING",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/coling/"
+    },
+    {
+      "name": "International Conference on Principles of Knowledge Representation and Reasoning",
+      "abbreviation": "KR",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/kr/"
+    },
+    {
+      "name": "Conference on Uncertainty in Artificial Intelligence",
+      "abbreviation": "UAI",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/uai/"
+    },
+    {
+      "name": "International Joint Conference on Autonomous Agents and Multi-agent Systems",
+      "abbreviation": "AAMAS",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "https://dblp.uni- trier.de/db/conf/ifaamas/index.html"
+    },
+    {
+      "name": "Parallel Problem Solving from Nature",
+      "abbreviation": "PPSN",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/ppsn/"
+    },
+    {
+      "name": "North American Chapter of the Association for Computational Linguistics",
+      "abbreviation": "NAACL",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/naacl/"
+    },
+    {
+      "name": "International Joint Conference on Artificial Intelligence",
+      "abbreviation": "IJCAI",
+      "kind": "conference",
+      "level": "B",
+      "page": 58,
+      "url": "http://dblp.uni-trier.de/db/conf/ijcai/"
+    },
+    {
+      "name": "International Conference on Artificial Intelligence and Statistics",
+      "abbreviation": "AISTATS",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/aistats/"
+    },
+    {
+      "name": "Asian Conference on Computer Vision",
+      "abbreviation": "ACCV",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/accv/"
+    },
+    {
+      "name": "Asian Conference on Machine Learning",
+      "abbreviation": "ACML",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/acml/"
+    },
+    {
+      "name": "British Machine Vision Conference",
+      "abbreviation": "BMVC",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/bmvc/"
+    },
+    {
+      "name": "CCF International Conference on Natural Language Processing and Chinese Computing",
+      "abbreviation": "NLPCC",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "https://dblp.uni-trier.de/db/conf/nlpcc/"
+    },
+    {
+      "name": "Conference on Computational Natural Language Learning",
+      "abbreviation": "CoNLL",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/conll"
+    },
+    {
+      "name": "Genetic and Evolutionary Computation Conference",
+      "abbreviation": "GECCO",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/gecco/"
+    },
+    {
+      "name": "IEEE International Conference on Tools with Artificial Intelligence",
+      "abbreviation": "ICTAI",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/ictai/"
+    },
+    {
+      "name": "IEEE\\RSJ International Conference on Intelligent Robots and Systems",
+      "abbreviation": "IROS",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/iros/"
+    },
+    {
+      "name": "International Conference on Algorithmic Learning Theory",
+      "abbreviation": "ALT",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/alt/"
+    },
+    {
+      "name": "International Conference on Artificial Neural Networks",
+      "abbreviation": "ICANN",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/icann/"
+    },
+    {
+      "name": "IEEE International Conference on Automatic Face and Gesture Recognition",
+      "abbreviation": "FG",
+      "kind": "conference",
+      "level": "C",
+      "page": 59,
+      "url": "http://dblp.uni-trier.de/db/conf/fgr/"
+    },
+    {
+      "name": "International Conference on Document Analysis and Recognition",
+      "abbreviation": "ICDAR",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/icdar/"
+    },
+    {
+      "name": "International Conference on Inductive Logic Programming",
+      "abbreviation": "ILP",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/ilp/"
+    },
+    {
+      "name": "International conference on Knowledge Science, Engineering and Management",
+      "abbreviation": "KSEM",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/ksem/"
+    },
+    {
+      "name": "International Conference on Neural Information Processing",
+      "abbreviation": "ICONIP",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/iconip/"
+    },
+    {
+      "name": "International Conference on Pattern Recognition",
+      "abbreviation": "ICPR",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/icpr/"
+    },
+    {
+      "name": "International Joint Conference on Biometrics",
+      "abbreviation": "IJCB",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/icb/"
+    },
+    {
+      "name": "International Joint Conference on Neural Networks",
+      "abbreviation": "IJCNN",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/ijcnn/"
+    },
+    {
+      "name": "Pacific Rim International Conference on Artificial Intelligence",
+      "abbreviation": "PRICAI",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "http://dblp.uni-trier.de/db/conf/pricai/"
+    },
+    {
+      "name": "Congress on Evolutionary Computation",
+      "abbreviation": "IEEE CEC",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "https://dblp.uni-trier.de/db/conf/cec/index.html"
+    },
+    {
+      "name": "International Conference on Distributed Artificial Intelligence",
+      "abbreviation": "DAI",
+      "kind": "conference",
+      "level": "C",
+      "page": 60,
+      "url": "https://dblp.uni-trier.de/db/conf/dai2/index.html"
+    },
+    {
+      "name": "ACM Transactions on Computer-Human Interaction",
+      "abbreviation": "TOCHI",
+      "kind": "journal",
+      "level": "A",
+      "page": 61,
+      "url": "http://dblp.uni-trier.de/db/journals/tochi/"
+    },
+    {
+      "name": "International Journal of Human-Computer Studies",
+      "abbreviation": "IJHCS",
+      "kind": "journal",
+      "level": "A",
+      "page": 61,
+      "url": "http://dblp.uni-trier.de/db/journals/ijmms/"
+    },
+    {
+      "name": "Computer Supported Cooperative Work",
+      "abbreviation": "CSCW",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "http://dblp.uni-trier.de/db/journals/cscw/"
+    },
+    {
+      "name": "Human-Computer Interaction",
+      "abbreviation": "HCI",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "http://dblp.uni-trier.de/db/journals/hhci/"
+    },
+    {
+      "name": "IEEE Transactions on Human-Machine Systems",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "http://dblp.uni-trier.de/db/journals/thms/"
+    },
+    {
+      "name": "Interacting with Computers",
+      "abbreviation": "IWC",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "http://dblp.uni-trier.de/db/journals/iwc/"
+    },
+    {
+      "name": "International Journal of Human-Computer Interaction",
+      "abbreviation": "IJHCI",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "http://dblp.uni-trier.de/db/journals/ijhci/"
+    },
+    {
+      "name": "User Modeling and User-Adapted Interaction",
+      "abbreviation": "UMUAI",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "http://dblp.uni-trier.de/db/journals/umuai/"
+    },
+    {
+      "name": "IEEE Transactions on Systems, Man,and Cybernetics: Systems",
+      "abbreviation": "TSMC",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "https://dblp.org/db/journals/tsmc/tsmc12.html"
+    },
+    {
+      "name": "CCF Transactions on Pervasive Computing and Interaction",
+      "abbreviation": "CCF TPCI",
+      "kind": "journal",
+      "level": "B",
+      "page": 62,
+      "url": "https://dblp.uni-trier.de/db/journals/ccftpci/index.html"
+    },
+    {
+      "name": "Behaviour & Information Technology",
+      "abbreviation": "BIT",
+      "kind": "journal",
+      "level": "C",
+      "page": 63,
+      "url": "http://dblp.uni-trier.de/db/journals/behaviourIT/"
+    },
+    {
+      "name": "Personal and Ubiquitous Computing",
+      "abbreviation": "PUC",
+      "kind": "journal",
+      "level": "C",
+      "page": 63,
+      "url": "http://dblp.uni-trier.de/db/journals/puc/"
+    },
+    {
+      "name": "Pervasive and Mobile Computing",
+      "abbreviation": "PMC",
+      "kind": "journal",
+      "level": "C",
+      "page": 63,
+      "url": "http://dblp.uni-trier.de/db/journals/percom/"
+    },
+    {
+      "name": "Proceedings of the ACM on Human-Computer Interaction",
+      "abbreviation": "PACMHCI",
+      "kind": "journal",
+      "level": "C",
+      "page": 63,
+      "url": "https://dblp.org/db/journals/pacmhci/index.html"
+    },
+    {
+      "name": "ACM Transactions on Human-Robot Interaction",
+      "abbreviation": "THRI",
+      "kind": "journal",
+      "level": "C",
+      "page": 63,
+      "url": "https://dblp.uni-trier.de/db/journals/thri/index.html"
+    },
+    {
+      "name": "ACM Conference On Computer-Supported Cooperative Work And Social Computing",
+      "abbreviation": "CSCW",
+      "kind": "conference",
+      "level": "A",
+      "page": 64,
+      "url": "http://dblp.uni-trier.de/db/conf/cscw"
+    },
+    {
+      "name": "ACM Conference on Human Factors in Computing Systems",
+      "abbreviation": "CHI",
+      "kind": "conference",
+      "level": "A",
+      "page": 64,
+      "url": "http://dblp.uni-trier.de/db/conf/chi"
+    },
+    {
+      "name": "ACM international joint conference on Pervasive and Ubiquitous Computing",
+      "abbreviation": "UbiComp",
+      "kind": "conference",
+      "level": "A",
+      "page": 64,
+      "url": "https://dblp.uni-trier.de/db/conf/huc/"
+    },
+    {
+      "name": "ACM Symposium on User Interface Software and Technology",
+      "abbreviation": "UIST",
+      "kind": "conference",
+      "level": "A",
+      "page": 64,
+      "url": "http://dblp.uni-trier.de/db/conf/uist/"
+    },
+    {
+      "name": "ACM International Conference on Supporting Group Work",
+      "abbreviation": "GROUP",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "http://dblp.uni-trier.de/db/conf/group/"
+    },
+    {
+      "name": "ACM International Conference on Intelligent User Interfaces",
+      "abbreviation": "IUI",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "http://dblp.uni-trier.de/db/conf/iui/"
+    },
+    {
+      "name": "ACM International Conference on Interactive Surfaces and Spaces",
+      "abbreviation": "ISS",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "http://dblp.uni-trier.de/db/conf/tabletop/"
+    },
+    {
+      "name": "European Conference on Computer Supported Cooperative Work",
+      "abbreviation": "ECSCW",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "http://dblp.uni-trier.de/db/conf/ecscw/"
+    },
+    {
+      "name": "IEEE International Conference on Pervasive Computing and Communications",
+      "abbreviation": "PERCOM",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "http://dblp.uni-trier.de/db/conf/percom/"
+    },
+    {
+      "name": "ACM International Conference on Mobile Human- Computer Interaction",
+      "abbreviation": "MobileHCI",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "http://dblp.uni-trier.de/db/conf/mhci/"
+    },
+    {
+      "name": "The International AAAI Conference on Web and Social Media",
+      "abbreviation": "ICWSM",
+      "kind": "conference",
+      "level": "B",
+      "page": 65,
+      "url": "https://dblp.org/db/conf/icwsm/index.html"
+    },
+    {
+      "name": "ACM SIGCHI Conference on Designing Interactive Systems",
+      "abbreviation": "DIS",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/ACMdis"
+    },
+    {
+      "name": "ACM International Conference on Multimodal Interaction",
+      "abbreviation": "ICMI",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/icmi/"
+    },
+    {
+      "name": "International ACM SIGACCESS Conference on Computers and Accessibility",
+      "abbreviation": "ASSETS",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/assets"
+    },
+    {
+      "name": "Graphics Interface",
+      "abbreviation": "GI",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/graphicsinterface/"
+    },
+    {
+      "name": "IEEE International Conference on Ubiquitous Intelligence and Computing",
+      "abbreviation": "UIC",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/uic/"
+    },
+    {
+      "name": "IEEE World Haptics Conference",
+      "abbreviation": "",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/haptics/"
+    },
+    {
+      "name": "International Conference on Human- Computer Interaction of International Federation for Information Processing",
+      "abbreviation": "INTERACT",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/interact/"
+    },
+    {
+      "name": "ACM Interaction Design and Children",
+      "abbreviation": "IDC",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/acmidc/"
+    },
+    {
+      "name": "International Conference on Collaborative Computing: Networking, Applications and Worksharing",
+      "abbreviation": "CollaborateCom",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "https://dblp.uni-trier.de/db/conf/colcom/"
+    },
+    {
+      "name": "International Conference on Computer Supported Cooperative Work in Design",
+      "abbreviation": "CSCWD",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/cscwd/"
+    },
+    {
+      "name": "International Conference on Cooperative Information Systems",
+      "abbreviation": "CoopIS",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/coopis/"
+    },
+    {
+      "name": "International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services",
+      "abbreviation": "MobiQuitous",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/mobiquitous/"
+    },
+    {
+      "name": "International Working Conference on Advanced Visual Interfaces",
+      "abbreviation": "AVI",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "http://dblp.uni-trier.de/db/conf/avi/"
+    },
+    {
+      "name": "Conference on Green, Pervasive and Cloud Computing",
+      "abbreviation": "GPC",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "https://dblp.uni-trier.de/db/conf/gpc/index.html"
+    },
+    {
+      "name": "CCF International Conference on Extended Reality",
+      "abbreviation": "ICXR",
+      "kind": "conference",
+      "level": "C",
+      "page": 66,
+      "url": "https://dblp.uni-trier.de/db/conf/icxr/index.html"
+    },
+    {
+      "name": "Journal of the ACM",
+      "abbreviation": "JACM",
+      "kind": "journal",
+      "level": "A",
+      "page": 67,
+      "url": "http://dblp.uni-trier.de/db/journals/jacm/"
+    },
+    {
+      "name": "Proceedings of the IEEE",
+      "abbreviation": "Proc. IEEE",
+      "kind": "journal",
+      "level": "A",
+      "page": 67,
+      "url": "http://dblp.uni-trier.de/db/journals/pieee/"
+    },
+    {
+      "name": "Science China Information Sciences",
+      "abbreviation": "SCIS",
+      "kind": "journal",
+      "level": "A",
+      "page": 67,
+      "url": "http://dblp.uni-trier.de/db/journals/chinaf/"
+    },
+    {
+      "name": "Bioinformatics",
+      "abbreviation": "Bioinformatics",
+      "kind": "journal",
+      "level": "A",
+      "page": 67,
+      "url": "http://dblp.uni-trier.de/db/journals/bioinformatics/"
+    },
+    {
+      "name": "Briefings in Bioinformatics",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/bib/"
+    },
+    {
+      "name": "Cognition",
+      "abbreviation": "Cognition",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://www.journals.elsevier.com/cognition/"
+    },
+    {
+      "name": "IEEE Transactions on Automation Science and Engineering",
+      "abbreviation": "TASAE",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/tase/"
+    },
+    {
+      "name": "IEEE Transactions on Geoscience and Remote Sensing",
+      "abbreviation": "TGARS",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/tgrs/"
+    },
+    {
+      "name": "IEEE Transactions on Intelligent Transportation Systems",
+      "abbreviation": "TITS",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/tits/"
+    },
+    {
+      "name": "IEEE Transactions on Medical Imaging",
+      "abbreviation": "TMI",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/tmi/"
+    },
+    {
+      "name": "IEEE Transactions on Robotics",
+      "abbreviation": "TR",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/trob/"
+    },
+    {
+      "name": "IEEE/ACM Transactions on Computational Biology and Bioinformatics",
+      "abbreviation": "TCBB",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/tcbb/"
+    },
+    {
+      "name": "Journal of Computer Science and Technology",
+      "abbreviation": "JCST",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/jcst/"
+    },
+    {
+      "name": "Journal of the American Medical Informatics Association",
+      "abbreviation": "JAMIA",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/jamia/"
+    },
+    {
+      "name": "PLOS Computational Biology",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/ploscb/"
+    },
+    {
+      "name": "The Computer Journal",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/cj/"
+    },
+    {
+      "name": "World Wide Web",
+      "abbreviation": "WWW",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "https://dblp.org/db/journals/www/index.html"
+    },
+    {
+      "name": "Frontiers of Computer Science",
+      "abbreviation": "FCS",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "http://dblp.uni-trier.de/db/journals/fcsc/"
+    },
+    {
+      "name": "Blockchain: Research and Applications",
+      "abbreviation": "BCRA",
+      "kind": "journal",
+      "level": "B",
+      "page": 68,
+      "url": "https://dblp.uni-trier.de/search?q=BCRA"
+    },
+    {
+      "name": "BMC Bioinformatics",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "http://dblp.uni-trier.de/db/journals/bmcbi/"
+    },
+    {
+      "name": "Cybernetics and Systems",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "http://dblp.uni-trier.de/db/journals/cas/"
+    },
+    {
+      "name": "IEEE Geoscience and Remote Sensing Letters",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "http://dblp.uni-trier.de/db/journals/lgrs/"
+    },
+    {
+      "name": "IEEE Journal of Biomedical and Health Informatics",
+      "abbreviation": "JBHI",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "http://dblp.uni-trier.de/db/journals/titb/"
+    },
+    {
+      "name": "IEEE Transactions on Big Data",
+      "abbreviation": "TBD",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.uni-trier.de/db/journals/tbd/"
+    },
+    {
+      "name": "IET Intelligent Transport Systems",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "http://digital- library.theiet.org/content/journals/iet-its"
+    },
+    {
+      "name": "Journal of Biomedical Informatics",
+      "abbreviation": "JBI",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.uni-trier.de/db/journals/jbi/"
+    },
+    {
+      "name": "Medical Image Analysis",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "http://dblp.uni-trier.de/db/journals/mia/"
+    },
+    {
+      "name": "IEEE Transactions on Industrial Informatics",
+      "abbreviation": "TII",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.org/db/journals/tii/index.html"
+    },
+    {
+      "name": "ACM Transactions on Cyber-Physical Systems",
+      "abbreviation": "TCPS",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.org/db/journals/tcps/index.html"
+    },
+    {
+      "name": "ACM Transactions on Computing Education",
+      "abbreviation": "TOCE",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.org/db/journals/jeric/index.html"
+    },
+    {
+      "name": "ENGINEERING Information Technology & Electronic Engineering （原Frontiers of Information Technology & Electronic Engineering）",
+      "abbreviation": "EITEE （原FITEE）",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://www.academax.com/EITEE/home"
+    },
+    {
+      "name": "IEEE Transactions on Computational Social Systems",
+      "abbreviation": "TCSS",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.org/db/journals/tcss/index.html"
+    },
+    {
+      "name": "IEEE Transactions on Reliability",
+      "abbreviation": "",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.org/db/journals/tr/index.html"
+    },
+    {
+      "name": "ACM Transactions on Computing for Healthcare",
+      "abbreviation": "HEALTH",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.uni- trier.de/db/journals/health/index.html"
+    },
+    {
+      "name": "ACM Distributed Ledger Technologies: Research and Practice",
+      "abbreviation": "ACM DLT",
+      "kind": "journal",
+      "level": "C",
+      "page": 69,
+      "url": "https://dblp.uni- trier.de/db/journals/distribledger/index.html"
+    },
+    {
+      "name": "The Web Conference （原International World Wide Web Conference）",
+      "abbreviation": "WWW",
+      "kind": "conference",
+      "level": "A",
+      "page": 70,
+      "url": "http://dblp.uni-trier.de/db/conf/www/"
+    },
+    {
+      "name": "IEEE Real-Time Systems Symposium",
+      "abbreviation": "RTSS",
+      "kind": "conference",
+      "level": "A",
+      "page": 70,
+      "url": "http://dblp.uni-trier.de/db/conf/rtss/"
+    },
+    {
+      "name": "Annual Meeting of the Cognitive Science Society",
+      "abbreviation": "CogSci",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "https://dblp.uni-trier.de/db/conf/cogsci/"
+    },
+    {
+      "name": "IEEE International Conference on Bioinformatics and Biomedicine",
+      "abbreviation": "BIBM",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "http://dblp.uni-trier.de/db/conf/bibm/"
+    },
+    {
+      "name": "International Conference on Embedded Software",
+      "abbreviation": "EMSOFT",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "http://dblp.uni-trier.de/db/conf/emsoft/"
+    },
+    {
+      "name": "International conference on Intelligent Systems for Molecular Biology",
+      "abbreviation": "ISMB",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "https://dblp.org/db/conf/ismb/index.html"
+    },
+    {
+      "name": "Annual International Conference on Research in Computational Molecular Biology",
+      "abbreviation": "RECOMB",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "http://dblp.uni-trier.de/db/conf/recomb/"
+    },
+    {
+      "name": "International Conference on Medical Image Computing and Computer-Assisted Intervention",
+      "abbreviation": "MICCAI",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "https://dblp.org/db/conf/miccai/index.html"
+    },
+    {
+      "name": "Conference on Web and Internet Economics",
+      "abbreviation": "WINE",
+      "kind": "conference",
+      "level": "B",
+      "page": 71,
+      "url": "https://dblp.org/db/conf/wine/index.html"
+    },
+    {
+      "name": "American Medical Informatics Association Annual Symposium",
+      "abbreviation": "AMIA",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "http://dblp.uni-trier.de/db/conf/amia/"
+    },
+    {
+      "name": "Asia Pacific Bioinformatics Conference",
+      "abbreviation": "APBC",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "http://dblp.uni-trier.de/db/conf/apbc/"
+    },
+    {
+      "name": "IEEE International Conference on Big Data",
+      "abbreviation": "IEEE BigData",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.uni-trier.de/db/conf/bigdataconf/"
+    },
+    {
+      "name": "IEEE International Conference on Cloud Computing",
+      "abbreviation": "IEEE CLOUD",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "http://dblp.uni-trier.de/db/conf/IEEEcloud/"
+    },
+    {
+      "name": "IEEE International Conference on Systems, Man, and Cybernetics",
+      "abbreviation": "SMC",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.uni-trier.de/db/conf/smc/"
+    },
+    {
+      "name": "International Conference on Spatial Information Theory",
+      "abbreviation": "COSIT",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "http://dblp.uni-trier.de/db/conf/cosit/"
+    },
+    {
+      "name": "International Symposium on Bioinformatics Research and Applications",
+      "abbreviation": "ISBRA",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.uni-trier.de/db/conf/isbra/"
+    },
+    {
+      "name": "International Symposium on Algorithmic Game Theory",
+      "abbreviation": "SAGT",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.org/db/conf/sagt/index.html"
+    },
+    {
+      "name": "ACM Special Interest Group on Spatial Information",
+      "abbreviation": "SIGSPATIAL",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.org/db/journals/sigspatial/index.html"
+    },
+    {
+      "name": "International Conference on Intelligent Computing",
+      "abbreviation": "ICIC",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.org/db/conf/icic/index.html"
+    },
+    {
+      "name": "International Conference on Service Science",
+      "abbreviation": "ICSS",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.uni-trier.de/db/conf/service/index.html"
+    },
+    {
+      "name": "Advances in Financial Technologies",
+      "abbreviation": "AFT",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.uni-trier.de/db/conf/aft/index.html"
+    },
+    {
+      "name": "International Joint Conference on Theoretical Computer Science - Frontier of Algorithmic Wisdom",
+      "abbreviation": "IJTCS-FAW",
+      "kind": "conference",
+      "level": "C",
+      "page": 72,
+      "url": "https://dblp.uni-trier.de/db/conf/faw/index.html"
+    }
+  ]
+}

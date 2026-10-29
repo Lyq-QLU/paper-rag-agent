@@ -1,0 +1,572 @@
+"""构建并运行 PaperGuide 的可复现检索评测。"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+from pathlib import Path
+
+from src.evaluation import chunk_id, evaluate_ground_truth, parse_ground_truth_cases
+from src.agent_workflow import parse_json_object
+from src.llm import call_llm
+from src.paper_loader import load_pdf_documents
+from src.rag_pipeline import Chunk, PaperRAG, split_documents
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_MANIFEST = PROJECT_ROOT / "evaluation" / "corpus_manifest.json"
+DEFAULT_OUTPUT = PROJECT_ROOT / "evaluation" / "local"
+
+
+QUESTION_TEMPLATES = {
+    "abstract": "论文《{title}》研究的核心问题、研究目标和主要贡献是什么？",
+    "method": "论文《{title}》采用了什么模型或算法，关键步骤是什么？",
+    "experiment": "论文《{title}》如何设置实验、使用哪些评价指标，主要结果是什么？",
+    "conclusion": "论文《{title}》得到哪些主要结论，并指出了哪些局限或未来工作？",
+    "table": "论文《{title}》的表格报告了哪些关键实验结果？",
+    "figure": "论文《{title}》的图中展示了什么方法流程或实验趋势？",
+    "body": "论文《{title}》在该证据片段中说明了什么关键内容？",
+}
+
+
+def load_manifest(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def resolve_corpus(manifest: dict, source_root: Path) -> list[tuple[Path, dict]]:
+    resolved: list[tuple[Path, dict]] = []
+    seen_hashes: set[str] = set()
+    errors: list[str] = []
+    for item in manifest.get("documents", []):
+        path = source_root / Path(item["relative_path"])
+        if not path.is_file():
+            errors.append(f"文件不存在：{item['relative_path']}")
+            continue
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        expected = str(item.get("sha256_prefix", ""))
+        if expected and not digest.startswith(expected):
+            errors.append(f"哈希不匹配：{item['relative_path']}")
+            continue
+        if digest in seen_hashes:
+            errors.append(f"清单包含重复PDF：{item['relative_path']}")
+            continue
+        seen_hashes.add(digest)
+        resolved.append((path, item))
+    if errors:
+        raise ValueError("\n".join(errors))
+    return resolved
+
+
+def document_title(path: Path) -> str:
+    return path.stem.replace("_", " ").strip()
+
+
+def choose_evidence_chunks(source_chunks: list) -> list:
+    """每篇论文选择四类候选证据；这些标签必须经过人工审核。"""
+    chosen = []
+    used: set[str] = set()
+    priorities = ["abstract", "method", "experiment", "conclusion"]
+    for section in priorities:
+        candidate = next(
+            (
+                chunk
+                for chunk in source_chunks
+                if chunk.metadata.get("section") == section and len(chunk.text) >= 120
+            ),
+            None,
+        )
+        if candidate is not None:
+            chosen.append(candidate)
+            used.add(chunk_id(candidate))
+
+    fallbacks = sorted(
+        source_chunks,
+        key=lambda chunk: (
+            chunk.metadata.get("section") in {"references", "back_matter"},
+            chunk.metadata.get("content_type") == "figure",
+            -len(chunk.text),
+        ),
+    )
+    for candidate in fallbacks:
+        candidate_id = chunk_id(candidate)
+        if candidate_id in used or len(candidate.text) < 120:
+            continue
+        chosen.append(candidate)
+        used.add(candidate_id)
+        if len(chosen) == 4:
+            break
+    return chosen[:4]
+
+
+def build_candidate_cases(chunks: list, corpus: list[tuple[Path, dict]]) -> list[dict]:
+    cases: list[dict] = []
+    for paper_index, (path, manifest_item) in enumerate(corpus, start=1):
+        source_chunks = [chunk for chunk in chunks if chunk.metadata.get("source") == path.name]
+        for question_index, evidence in enumerate(choose_evidence_chunks(source_chunks), start=1):
+            section = str(evidence.metadata.get("section", "body"))
+            content_type = str(evidence.metadata.get("content_type", "text"))
+            template_key = content_type if content_type in {"table", "figure"} else section
+            template = QUESTION_TEMPLATES.get(template_key, QUESTION_TEMPLATES["body"])
+            cases.append(
+                {
+                    "case_id": f"p{paper_index:02d}_q{question_index}",
+                    "question": template.format(title=document_title(path)),
+                    "relevant_chunk_ids": [chunk_id(evidence)],
+                    "split": "dev" if question_index == 1 else "test",
+                    "status": "needs_review",
+                    "metadata": {
+                        "source": path.name,
+                        "relative_path": manifest_item["relative_path"],
+                        "topic": manifest_item.get("topic", "unknown"),
+                        "page_start": evidence.metadata.get("page_start", evidence.metadata.get("page")),
+                        "page_end": evidence.metadata.get("page_end", evidence.metadata.get("page")),
+                        "section": section,
+                        "content_type": content_type,
+                        "evidence_preview": evidence.text[:600],
+                    },
+                }
+            )
+    return cases
+
+
+def prepare(args) -> None:
+    manifest = load_manifest(args.manifest)
+    corpus = resolve_corpus(manifest, args.source_root)
+    args.output.mkdir(parents=True, exist_ok=True)
+    documents = []
+    for path, _ in corpus:
+        paper_key = hashlib.sha256(str(path).encode("utf-8")).hexdigest()[:10]
+        documents.extend(load_pdf_documents([path], asset_root=args.output / "assets" / paper_key))
+    chunks = split_documents(documents)
+    chunk_records = [{"chunk_id": chunk_id(chunk), **chunk.to_dict()} for chunk in chunks]
+    candidates = build_candidate_cases(chunks, corpus)
+
+    (args.output / "chunks.json").write_text(
+        json.dumps(chunk_records, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    (args.output / "candidate_cases.json").write_text(
+        json.dumps(candidates, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    write_review_csv(candidates, args.output / "candidate_cases.csv")
+    (args.output / "resolved_corpus.json").write_text(
+        json.dumps(
+            [{**item, "absolute_path": str(path)} for path, item in corpus],
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    print(json.dumps({"papers": len(corpus), "chunks": len(chunks), "candidate_cases": len(candidates)}, ensure_ascii=False))
+
+    if args.build_index:
+        rag = PaperRAG()
+        rag.build_index(documents)
+        rag.save(args.output / "index")
+        print(f"索引已保存：{args.output / 'index'}")
+
+
+def write_review_csv(cases: list[dict], path: Path) -> None:
+    columns = [
+        "status", "case_id", "split", "question", "relevant_chunk_ids",
+        "source", "page_start", "page_end", "section", "content_type", "evidence_preview",
+    ]
+    with path.open("w", encoding="utf-8-sig", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer.writeheader()
+        for case in cases:
+            metadata = case.get("metadata", {})
+            writer.writerow(
+                {
+                    "status": case.get("status", "needs_review"),
+                    "case_id": case.get("case_id", ""),
+                    "split": case.get("split", "test"),
+                    "question": case.get("question", ""),
+                    "relevant_chunk_ids": ";".join(case.get("relevant_chunk_ids", [])),
+                    "source": metadata.get("source", ""),
+                    "page_start": metadata.get("page_start", ""),
+                    "page_end": metadata.get("page_end", ""),
+                    "section": metadata.get("section", ""),
+                    "content_type": metadata.get("content_type", ""),
+                    "evidence_preview": metadata.get("evidence_preview", ""),
+                }
+            )
+
+
+def load_case_records(path: Path) -> list[dict]:
+    if path.suffix.lower() == ".json":
+        return json.loads(path.read_text(encoding="utf-8"))
+    if path.suffix.lower() != ".csv":
+        raise ValueError("评测案例必须是JSON或CSV文件。")
+    with path.open("r", encoding="utf-8-sig", newline="") as stream:
+        records = []
+        for row in csv.DictReader(stream):
+            records.append(
+                {
+                    "status": row.get("status", "needs_review").strip(),
+                    "case_id": row.get("case_id", "").strip(),
+                    "split": row.get("split", "test").strip(),
+                    "question": row.get("question", "").strip(),
+                    "relevant_chunk_ids": [
+                        value.strip()
+                        for value in row.get("relevant_chunk_ids", "").split(";")
+                        if value.strip()
+                    ],
+                    "metadata": {
+                        "source": row.get("source", ""),
+                        "page_start": row.get("page_start", ""),
+                        "page_end": row.get("page_end", ""),
+                        "section": row.get("section", ""),
+                        "content_type": row.get("content_type", ""),
+                    },
+                }
+            )
+    return records
+
+
+def run_evaluation(args) -> None:
+    raw_cases = load_case_records(args.cases)
+    approved = [item for item in raw_cases if item.get("status") in set(args.accept_status)]
+    cases = parse_ground_truth_cases(approved)
+    if not cases:
+        raise ValueError(f"没有符合审核状态的案例：{', '.join(args.accept_status)}")
+    if args.split != "all":
+        cases = [case for case in cases if case.split == args.split]
+
+    rag = PaperRAG(user_id=args.user_id)
+    if not rag.load(args.index):
+        raise ValueError(f"无法加载索引：{args.index}")
+
+    report = {"summaries": [], "rows": {}}
+    modes = ["bm25", "dense", "hybrid"]
+    if args.include_reranker:
+        modes.append("hybrid_rerank")
+    if args.include_llm_reranker:
+        modes.append("hybrid_llm_rerank")
+    for mode in modes:
+        rows, summary = evaluate_ground_truth(
+            rag,
+            cases,
+            top_k=args.top_k,
+            mode=mode,
+            dense_weight=args.dense_weight,
+            max_per_source=args.max_per_source,
+        )
+        report["summaries"].append(summary)
+        report["rows"][mode] = rows
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(report["summaries"], ensure_ascii=False, indent=2))
+
+
+def grid_search(args) -> None:
+    raw_cases = load_case_records(args.cases)
+    accepted = [item for item in raw_cases if item.get("status") in set(args.accept_status)]
+    cases = [case for case in parse_ground_truth_cases(accepted) if case.split == "dev"]
+    if not cases:
+        raise ValueError("开发集中没有符合审核状态的案例。")
+    rag = PaperRAG()
+    if not rag.load(args.index):
+        raise ValueError(f"无法加载索引：{args.index}")
+    results = []
+    for dense_weight in args.weights:
+        _, summary = evaluate_ground_truth(
+            rag,
+            cases,
+            top_k=args.top_k,
+            mode="hybrid",
+            dense_weight=dense_weight,
+        )
+        results.append(summary)
+        print(json.dumps(summary, ensure_ascii=False))
+    results.sort(
+        key=lambda item: (item["document_hit_at_k"], item["document_mrr"], item["hit_at_k"]),
+        reverse=True,
+    )
+    output = {"selection_metric": ["document_hit_at_k", "document_mrr", "hit_at_k"], "best": results[0], "all": results}
+    args.report.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("BEST", json.dumps(results[0], ensure_ascii=False))
+
+
+def build_index(args) -> None:
+    records = json.loads(args.chunks.read_text(encoding="utf-8"))
+    chunks = [Chunk.from_dict(record) for record in records]
+    rag = PaperRAG()
+    rag.build_index_from_chunks(chunks)
+    rag.save(args.index)
+    print(json.dumps({"chunks": len(chunks), "index": str(args.index)}, ensure_ascii=False))
+
+
+def export_review(args) -> None:
+    cases = json.loads(args.input.read_text(encoding="utf-8"))
+    write_review_csv(cases, args.output)
+    print(json.dumps({"cases": len(cases), "output": str(args.output)}, ensure_ascii=False))
+
+
+def apply_review(args) -> None:
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
+    reviews = {
+        item["case_id"]: item
+        for item in json.loads(args.review.read_text(encoding="utf-8"))
+    }
+    updated = 0
+    for case in cases:
+        review = reviews.get(case.get("case_id"))
+        if not review:
+            continue
+        for field in ("question", "relevant_chunk_ids", "status"):
+            if field in review:
+                case[field] = review[field]
+        case.setdefault("metadata", {})["review_note"] = review.get("review_note", "")
+        updated += 1
+    args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_review_csv(cases, args.csv)
+    print(json.dumps({"updated": updated, "cases": str(args.cases), "csv": str(args.csv)}, ensure_ascii=False))
+
+
+def refine_questions(args) -> None:
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
+    chunks = {
+        item["chunk_id"]: item
+        for item in json.loads(args.chunks.read_text(encoding="utf-8"))
+    }
+    targets = [
+        case for case in cases
+        if case.get("status") in set(args.from_status)
+        and (args.split == "all" or case.get("split") == args.split)
+    ]
+    updated = 0
+    for start in range(0, len(targets), args.batch_size):
+        batch = targets[start:start + args.batch_size]
+        payload = []
+        for case in batch:
+            evidence = chunks[case["relevant_chunk_ids"][0]]["text"][:1600]
+            payload.append({"case_id": case["case_id"], "evidence": evidence})
+        prompt = (
+            "请为下面每个论文证据片段生成一个中文检索问题。要求：\n"
+            "1. 问题必须仅依据对应片段即可回答；2. 不得包含论文标题、作者、文件名或页码；"
+            "3. 不要照抄完整原句；4. 问题应包含能区分该证据的模型、场景、约束或指标；"
+            "5. 避免笼统的‘研究了什么’；6. 只返回JSON对象，格式为"
+            "{\"items\":[{\"case_id\":\"...\",\"question\":\"...\"}]}。\n\n"
+            + json.dumps(payload, ensure_ascii=False)
+        )
+        response = call_llm(prompt, user_id=args.user_id)
+        if not response:
+            raise ValueError("LLM未配置，无法改写候选问题。")
+        parsed = parse_json_object(response)
+        generated = {
+            str(item.get("case_id")): str(item.get("question", "")).strip()
+            for item in parsed.get("items", [])
+        }
+        missing = [case["case_id"] for case in batch if not generated.get(case["case_id"])]
+        if missing:
+            raise ValueError(f"模型返回缺少案例：{', '.join(missing)}")
+        for case in batch:
+            case["question"] = generated[case["case_id"]]
+            case["status"] = args.to_status
+            case.setdefault("metadata", {})["review_note"] = "LLM生成后经证据约束规则校验，待最终人工复核"
+            updated += 1
+        print(f"已改写 {updated}/{len(targets)} 道问题")
+
+    args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_review_csv(cases, args.csv)
+    print(json.dumps({"updated": updated, "status": args.to_status}, ensure_ascii=False))
+
+
+def verify_questions(args) -> None:
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
+    chunks = {
+        item["chunk_id"]: item
+        for item in json.loads(args.chunks.read_text(encoding="utf-8"))
+    }
+    targets = [
+        case for case in cases
+        if case.get("status") in set(args.from_status)
+        and (args.split == "all" or case.get("split") == args.split)
+    ]
+    verified = 0
+    rejected = 0
+    for start in range(0, len(targets), args.batch_size):
+        batch = targets[start:start + args.batch_size]
+        payload = []
+        for case in batch:
+            evidence = chunks[case["relevant_chunk_ids"][0]]["text"][:1800]
+            payload.append({"case_id": case["case_id"], "question": case["question"], "evidence": evidence})
+        prompt = (
+            "你是检索评测数据审核器。逐项判断给定证据是否足以回答问题。"
+            "不得参考外部知识，也不要因为措辞不同而拒绝；只有证据缺失核心答案、问题歧义或问题含论文标题/作者时才拒绝。"
+            "只返回JSON对象：{\"items\":[{\"case_id\":\"...\",\"answerable\":true,\"reason\":\"...\"}]}。\n\n"
+            + json.dumps(payload, ensure_ascii=False)
+        )
+        parsed = None
+        for attempt in range(1, 4):
+            response = call_llm(prompt, user_id=args.user_id)
+            if response:
+                parsed = parse_json_object(response)
+            if isinstance(parsed, dict) and isinstance(parsed.get("items"), list):
+                break
+            print(f"第 {start // args.batch_size + 1} 批JSON解析失败，重试 {attempt}/3")
+        if not isinstance(parsed, dict) or not isinstance(parsed.get("items"), list):
+            raise ValueError(f"证据校验第 {start // args.batch_size + 1} 批连续3次未返回合法JSON。")
+        verdicts = {str(item.get("case_id")): item for item in parsed.get("items", [])}
+        missing = [case["case_id"] for case in batch if case["case_id"] not in verdicts]
+        if missing:
+            raise ValueError(f"校验器返回缺少案例：{', '.join(missing)}")
+        for case in batch:
+            verdict = verdicts[case["case_id"]]
+            answerable = bool(verdict.get("answerable"))
+            case["status"] = args.pass_status if answerable else args.reject_status
+            case.setdefault("metadata", {})["verification_reason"] = str(verdict.get("reason", ""))
+            verified += int(answerable)
+            rejected += int(not answerable)
+        print(f"已校验 {min(start + len(batch), len(targets))}/{len(targets)} 道问题")
+    args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_review_csv(cases, args.csv)
+    print(json.dumps({"verified": verified, "rejected": rejected}, ensure_ascii=False))
+
+
+def add_holdout(args) -> None:
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
+    chunks = [Chunk.from_dict(item) for item in json.loads(args.chunks.read_text(encoding="utf-8"))]
+    used_ids = {value for case in cases for value in case.get("relevant_chunk_ids", [])}
+    sources = []
+    for case in cases:
+        source = case.get("metadata", {}).get("source")
+        if source and source not in sources:
+            sources.append(source)
+    added = 0
+    for paper_index, source in enumerate(sources, start=1):
+        eligible = [
+            chunk for chunk in chunks
+            if chunk.metadata.get("source") == source
+            and chunk_id(chunk) not in used_ids
+            and len(chunk.text) >= 350
+            and chunk.metadata.get("section") not in {"references", "back_matter", "front_matter"}
+            and chunk.metadata.get("content_type", "text") in {"text", "table"}
+        ]
+        eligible.sort(key=lambda chunk: hashlib.sha256(chunk_id(chunk).encode()).hexdigest())
+        selected = []
+        section_counts: dict[str, int] = {}
+        for chunk in eligible:
+            section = str(chunk.metadata.get("section", "body"))
+            if section_counts.get(section, 0) >= 1 and len(eligible) >= args.per_paper * 2:
+                continue
+            selected.append(chunk)
+            section_counts[section] = section_counts.get(section, 0) + 1
+            if len(selected) >= args.per_paper:
+                break
+        for question_index, evidence in enumerate(selected, start=1):
+            evidence_id = chunk_id(evidence)
+            cases.append(
+                {
+                    "case_id": f"{args.case_prefix}{paper_index:02d}_q{question_index}",
+                    "question": "待根据证据改写",
+                    "relevant_chunk_ids": [evidence_id],
+                    "split": args.split_name,
+                    "status": "needs_review",
+                    "metadata": {
+                        "source": source,
+                        "page_start": evidence.metadata.get("page_start", evidence.metadata.get("page")),
+                        "page_end": evidence.metadata.get("page_end", evidence.metadata.get("page")),
+                        "section": evidence.metadata.get("section", "body"),
+                        "content_type": evidence.metadata.get("content_type", "text"),
+                        "evidence_preview": evidence.text[:600],
+                        "review_note": "架构与融合权重锁定后新增的盲测候选",
+                    },
+                }
+            )
+            used_ids.add(evidence_id)
+            added += 1
+    args.cases.write_text(json.dumps(cases, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_review_csv(cases, args.csv)
+    print(json.dumps({"added": added, "split": args.split_name}, ensure_ascii=False))
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    prepare_parser = subparsers.add_parser("prepare", help="解析语料并生成待审核问题")
+    prepare_parser.add_argument("--source-root", type=Path, required=True)
+    prepare_parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
+    prepare_parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    prepare_parser.add_argument("--build-index", action="store_true")
+    prepare_parser.set_defaults(handler=prepare)
+
+    index_parser = subparsers.add_parser("build-index", help="从已解析Chunk构建FAISS索引")
+    index_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
+    index_parser.add_argument("--index", type=Path, default=DEFAULT_OUTPUT / "index")
+    index_parser.set_defaults(handler=build_index)
+
+    export_parser = subparsers.add_parser("export-review", help="把候选JSON导出为Excel可读CSV")
+    export_parser.add_argument("--input", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    export_parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    export_parser.set_defaults(handler=export_review)
+
+    review_parser = subparsers.add_parser("apply-review", help="应用问题与证据审核结果")
+    review_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    review_parser.add_argument("--review", type=Path, required=True)
+    review_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    review_parser.set_defaults(handler=apply_review)
+
+    refine_parser = subparsers.add_parser("refine-questions", help="使用已配置LLM把候选证据改写为无标题泄漏的问题")
+    refine_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    refine_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
+    refine_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    refine_parser.add_argument("--user-id", default="liuyongqi")
+    refine_parser.add_argument("--split", choices=["dev", "test", "holdout", "blind", "all"], default="test")
+    refine_parser.add_argument("--from-status", action="append", default=["needs_review"])
+    refine_parser.add_argument("--to-status", default="assistant_reviewed")
+    refine_parser.add_argument("--batch-size", type=int, default=10)
+    refine_parser.set_defaults(handler=refine_questions)
+
+    verify_parser = subparsers.add_parser("verify-questions", help="独立校验问题是否可由标注证据回答")
+    verify_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    verify_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
+    verify_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    verify_parser.add_argument("--user-id", default="liuyongqi")
+    verify_parser.add_argument("--split", choices=["dev", "test", "holdout", "blind", "all"], default="test")
+    verify_parser.add_argument("--from-status", action="append", default=["assistant_reviewed"])
+    verify_parser.add_argument("--pass-status", default="evidence_verified")
+    verify_parser.add_argument("--reject-status", default="rejected")
+    verify_parser.add_argument("--batch-size", type=int, default=10)
+    verify_parser.set_defaults(handler=verify_questions)
+
+    holdout_parser = subparsers.add_parser("add-holdout", help="在锁定方案后增加未参与调参的新问题证据")
+    holdout_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.json")
+    holdout_parser.add_argument("--chunks", type=Path, default=DEFAULT_OUTPUT / "chunks.json")
+    holdout_parser.add_argument("--csv", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    holdout_parser.add_argument("--per-paper", type=int, default=2)
+    holdout_parser.add_argument("--split-name", choices=["holdout", "blind"], default="holdout")
+    holdout_parser.add_argument("--case-prefix", default="h")
+    holdout_parser.set_defaults(handler=add_holdout)
+
+    evaluate_parser = subparsers.add_parser("evaluate", help="对已审核问题运行三路检索评测")
+    evaluate_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    evaluate_parser.add_argument("--index", type=Path, default=DEFAULT_OUTPUT / "index")
+    evaluate_parser.add_argument("--report", type=Path, default=DEFAULT_OUTPUT / "report.json")
+    evaluate_parser.add_argument("--split", choices=["dev", "test", "holdout", "blind", "all"], default="test")
+    evaluate_parser.add_argument("--top-k", type=int, default=5)
+    evaluate_parser.add_argument("--dense-weight", type=float, default=0.65)
+    evaluate_parser.add_argument("--max-per-source", type=int, default=2)
+    evaluate_parser.add_argument("--accept-status", action="append", default=["approved"])
+    evaluate_parser.add_argument("--include-reranker", action="store_true")
+    evaluate_parser.add_argument("--include-llm-reranker", action="store_true")
+    evaluate_parser.add_argument("--user-id", default="liuyongqi")
+    evaluate_parser.set_defaults(handler=run_evaluation)
+
+    grid_parser = subparsers.add_parser("grid-search", help="仅在开发集上选择Dense/BM25融合权重")
+    grid_parser.add_argument("--cases", type=Path, default=DEFAULT_OUTPUT / "candidate_cases.csv")
+    grid_parser.add_argument("--index", type=Path, default=DEFAULT_OUTPUT / "index")
+    grid_parser.add_argument("--report", type=Path, default=DEFAULT_OUTPUT / "grid_search.json")
+    grid_parser.add_argument("--top-k", type=int, default=5)
+    grid_parser.add_argument("--weights", type=float, nargs="+", default=[0.5, 0.6, 0.65, 0.7, 0.8, 0.9])
+    grid_parser.add_argument("--accept-status", action="append", default=["approved"])
+    grid_parser.set_defaults(handler=grid_search)
+    return parser
+
+
+if __name__ == "__main__":
+    parsed = build_parser().parse_args()
+    parsed.handler(parsed)
